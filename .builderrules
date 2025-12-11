@@ -1,0 +1,25 @@
+Always use variables from style.css. Never use hard-coded values.
+
+Do not create duplicate classes or duplicate media queries.
+
+Always do text-align: left on mobile screens
+
+Use the following breakpoints:
+
+Large screens: @media (min-width: 2560px)
+
+Other breakpoints:
+
+@media (max-width: 1440px)
+
+@media (max-width: 768px)
+
+@media (max-width: 425px)
+
+Ensure all responsive styles are organized under these breakpoints.
+
+Component Structure Rules
+
+Always follow these rules when generating or modifying code.
+
+Never ignore or override these rules unless the user explicitly asks.
