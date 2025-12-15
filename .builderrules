@@ -1,5 +1,11 @@
 Always use variables from style.css. Never use hard-coded values.
 
+All theme changes (dark/light) must be done by swapping CSS variables.
+
+No inline styles
+
+No hard-coded fallback colors
+
 Do not create duplicate classes or duplicate media queries.
 
 Always do text-align: left on mobile screens
