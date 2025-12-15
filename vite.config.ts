@@ -4,4 +4,15 @@ import vue from '@vitejs/plugin-vue'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  server: {
+    host: true,
+    strictPort: true,
+    watch: {
+      usePolling: true,
+      interval: 100
+    },
+    hmr: {
+      overlay: true
+    }
+  }
 })

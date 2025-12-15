@@ -52,6 +52,10 @@
       var(--color-accent) 100%
     );
 
+  /* 4 — Card gradient border and fill */
+  --linear-top-right: rgba(60, 60, 60, 0.15);
+  --linear-top-right-fill: linear-gradient(249deg, rgba(0, 181, 226, 0.08) 18.59%, rgba(240, 239, 237, 0.00) 53.25%), #FFFFFF;
+
   /* LIGHT MODE DEFAULTS */
   --color-background: var(--color-text-light);
   --color-background-soft: #F8F8F8;
@@ -78,6 +82,35 @@
 
     --color-heading: var(--color-text-light);
     --color-text: rgba(255, 255, 255, 0.85);
+      /* 1 — Blue accent fade overlay on dark */
+  --gradient-accent-overlay:
+    linear-gradient(
+      258deg,
+      var(--color-accent) 5.39%,
+      rgba(0, 181, 226, 0) 13.59%
+    ),
+    #262626;
+
+  /* 2 — Blue-to-transparent on deep navy */
+  --gradient-accent-dark:
+    linear-gradient(
+      249deg,
+      rgba(0, 181, 226, 0.50) 18.59%,
+      rgba(14, 26, 51, 0) 53.25%
+    ),
+    #1B1B1B;
+
+  /* 3 — White to accent horizontal blend */
+  --gradient-accent-side:
+    linear-gradient(
+      90deg,
+      #FFFFFF 39.9%,
+      var(--color-accent) 100%
+    );
+
+  /* 4 — Card gradient border and fill (dark theme) */
+  --linear-top-right: #262626;
+  --linear-top-right-fill: linear-gradient(249deg, rgba(0, 181, 226, 0.30) 18.59%, rgba(14, 26, 51, 0.00) 53.25%), #1B1B1B;
   }
 }
 
@@ -92,6 +125,36 @@
 
   --color-heading: var(--color-text-light);
   --color-text: rgba(255, 255, 255, 0.85);
+
+  /* 1 — Blue accent fade overlay on dark */
+  --gradient-accent-overlay:
+    linear-gradient(
+      258deg,
+      var(--color-accent) 5.39%,
+      rgba(0, 181, 226, 0) 13.59%
+    ),
+    #262626;
+
+  /* 2 — Blue-to-transparent on deep navy */
+  --gradient-accent-dark:
+    linear-gradient(
+      249deg,
+      rgba(0, 181, 226, 0.50) 18.59%,
+      rgba(14, 26, 51, 0) 53.25%
+    ),
+    #1B1B1B;
+
+  /* 3 — White to accent horizontal blend */
+  --gradient-accent-side:
+    linear-gradient(
+      90deg,
+      #FFFFFF 39.9%,
+      var(--color-accent) 100%
+    );
+
+  /* 4 — Card gradient border and fill (dark theme) */
+  --linear-top-right: #262626;
+  --linear-top-right-fill: linear-gradient(249deg, rgba(0, 181, 226, 0.30) 18.59%, rgba(14, 26, 51, 0.00) 53.25%), #1B1B1B;
 }
 
 :root[data-theme="light"] {
@@ -104,6 +167,11 @@
 
   --color-heading: var(--color-text-dark);
   --color-text: var(--color-text-dark);
+  
+
+  /* Light theme card gradient */
+  --linear-top-right: rgba(60, 60, 60, 0.15);
+  --linear-top-right-fill: linear-gradient(249deg, rgba(0, 181, 226, 0.08) 18.59%, rgba(240, 239, 237, 0.00) 53.25%), #FFFFFF;
 }
 
 /* ================================================

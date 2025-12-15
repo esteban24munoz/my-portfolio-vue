@@ -2,6 +2,8 @@ Always use variables from style.css. Never use hard-coded values.
 
 All theme changes (dark/light) must be done by swapping CSS variables.
 
+always make sure there is contrast when changing the theme
+
 No inline styles
 
 No hard-coded fallback colors

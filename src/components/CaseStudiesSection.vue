@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import CarmenCover from '../assets/carmen_cover.png'
+import ViewbookCover from '../assets/viewbook_cover.webp'
+import TheTableCover from '../assets/the_table_cover.png'
 
 type FilterTab = 'All' | 'Development' | 'Graphic Design'
 
@@ -15,7 +18,7 @@ interface CaseStudy {
   role: string
   description: string
   skills: string[]
-  image: string
+  image?: { [key: string]: string }
   category: 'Development' | 'Graphic Design'
 }
 
@@ -26,7 +29,7 @@ const caseStudies: CaseStudy[] = [
     role: 'UX/UI Designer & Web Developer',
     description: 'Collaborated with product managers, developers and designers to create 3 fully responsive and interactive websites that showcase important data in a storytelling way.',
     skills: ['React', 'TypeScript', 'Figma', 'AWS', 'GitHub', 'SEO'],
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/227a03404fc10b2260819f75cc6e18dad03f64bf?width=1126',
+    image: {CarmenCover},
     category: 'Development'
   },
   {
@@ -35,7 +38,7 @@ const caseStudies: CaseStudy[] = [
     role: 'Graphic Designer',
     description: 'Led the visual development of a comprehensive viewbook in just one month, presenting initial sketches and rough concepts to stakeholders, iterating on feedback to refine the design',
     skills: ['Indesign', 'Photoshop', 'Ilustrator'],
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/159cf09b19d7eb93036f8cfcfd32e86180685134?width=598',
+    image: {ViewbookCover},
     category: 'Graphic Design'
   },
   {
@@ -44,7 +47,7 @@ const caseStudies: CaseStudy[] = [
     role: 'UX/UI Designer & Web Developer',
     description: 'Designed and developed a robust React web application that displays products in stock and out of stock to Harding Students, leveraging MySQL databases for real-time inventory control and the registration of 1167 shoppers since it began operations.',
     skills: ['React', 'TypeScript', 'Figma'],
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4dad6658fe5b7d84ca5bfe0081d2201b7826b40f?width=1128',
+    image: {TheTableCover},
     category: 'Development'
   },
   {
@@ -53,7 +56,6 @@ const caseStudies: CaseStudy[] = [
     role: 'Graphic Designer',
     description: 'Branding project focused on creating a fresh, cohesive brand identity for a new fusion food concept starting as a food truck and expanding into catering and a future restaurant',
     skills: ['Indesign', 'Photoshop', 'Ilustrator', 'Figma'],
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/placeholder-4',
     category: 'Graphic Design'
   },
   {
@@ -62,7 +64,6 @@ const caseStudies: CaseStudy[] = [
     role: 'Graphic Design',
     description: '3D packaging design and advertisement for a new line of U.S.-grown spice blends, inspired by a specific historical design that would follow the client brief',
     skills: ['Indesign', 'Photoshop', 'Ilustrator'],
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/placeholder-5',
     category: 'Graphic Design'
   }
 ]
@@ -177,9 +178,9 @@ const caseStudies: CaseStudy[] = [
             <span class="skill-tag">Figma</span>
           </div>
         </div>
-        <div class="card-image">
+        <!-- <div class="card-image">
           <img src="https://api.builder.io/api/v1/image/assets/TEMP/placeholder-4" alt="Olive the Above branding" />
-        </div>
+        </div> -->
       </article>
 
       <article class="case-card card-5">
@@ -197,9 +198,9 @@ const caseStudies: CaseStudy[] = [
             <span class="skill-tag">Ilustrator</span>
           </div>
         </div>
-        <div class="card-image">
+        <!-- <div class="card-image">
           <img src="https://api.builder.io/api/v1/image/assets/TEMP/placeholder-5" alt="Packaging design" />
-        </div>
+        </div> -->
       </article>
     </div>
 
@@ -219,7 +220,7 @@ const caseStudies: CaseStudy[] = [
 }
 
 .section-header {
-  width: 100%;
+  text-align: center;
   max-width: 1082px;
   display: flex;
   flex-direction: column;
@@ -230,9 +231,12 @@ const caseStudies: CaseStudy[] = [
   font-size: 3.25rem;
   font-weight: 700;
   line-height: 1;
-  color: var(--color-heading);
+  background: linear-gradient(90deg, var(--color-text-light) 39.9%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   margin: 0;
-  transition: color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .filter-tabs {
@@ -277,13 +281,14 @@ const caseStudies: CaseStudy[] = [
 }
 
 .case-card {
-  border: 1.58px solid var(--color-border);
-  border-radius: 11px;
+  border: 1.578px solid var(--linear-top-right);
+  border-radius: 11.048px;
+  background: var(--linear-top-right-fill);
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2.07rem;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
   cursor: pointer;
 }
 
