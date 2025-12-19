@@ -70,7 +70,7 @@ const downloadResume = () => {
 .resume-preview-container {
   position: relative;
   width: 100%;
-  max-width: 1040px;
+  max-width: 560px;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);

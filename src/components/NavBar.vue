@@ -19,12 +19,14 @@ onMounted(() => {
   <nav class="navbar">
     <div class="navbar-container">
       <div class="navbar-content">
+          <a href="/" class="navbar-logo-link">
         <div class="navbar-logo">
           <svg width="85" height="45" viewBox="0 0 85 45" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.0598145 0.0598221V8.83087H26.4683L42.6514 44.3812H53.0457L60.5669 28.4068V44.3812H72.0598V0.0598221H61.1162L47.8908 28.4068L35.0457 0.0598221H0.0598145Z" :fill="currentTheme === 'dark' ? 'white' : '#0B1923'" :stroke="currentTheme === 'dark' ? 'white' : '#0B1923'" stroke-width="0.119639" stroke-miterlimit="10"/>
             <path d="M0.0598145 17.6443V44.3811H32.426V35.483H9.73587V26.2035H23.1725V17.6443H0.0598145Z" :fill="currentTheme === 'dark' ? 'white' : '#0B1923'" :stroke="currentTheme === 'dark' ? 'white' : '#0B1923'" stroke-width="0.119639" stroke-miterlimit="10"/>
           </svg>
         </div>
+      </a>
         
         <div class="navbar-menu">
           <a href="#/resume" class="nav-link">Resume</a>

@@ -5,11 +5,13 @@ import HeroSection from './components/HeroSection.vue'
 import CaseStudiesSection from './components/CaseStudiesSection.vue'
 import Footer from './components/Footer.vue'
 import Resume from './components/Resume.vue'
+import FoodprintsProject from './components/CaseStudies/FoodprintsProject.vue'
 
 const currentRoute = ref(window.location.hash || '')
 
 const updateRoute = () => {
   currentRoute.value = window.location.hash
+  window.scrollTo(0, 0)
 }
 
 onMounted(() => {
@@ -23,6 +25,9 @@ onMounted(() => {
     <main>
       <template v-if="currentRoute === '#/resume'">
         <Resume />
+      </template>
+      <template v-else-if="currentRoute === '#/foodprints'">
+        <FoodprintsProject />
       </template>
       <template v-else>
         <HeroSection />

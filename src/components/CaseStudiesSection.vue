@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+
+const navigateToFoodprints = () => {
+  window.location.hash = '#/foodprints'
+  window.scrollTo(0, 0)
+}
 import CarmenCover from '../assets/carmen_cover.png'
 import ViewbookCover from '../assets/viewbook_cover.webp'
 import TheTableCover from '../assets/the_table_cover.png'
@@ -99,7 +104,7 @@ const caseStudies: CaseStudy[] = [
     </div>
 
     <div class="bento-grid">
-      <article class="case-card card-1">
+      <article class="case-card card-1" @click="navigateToFoodprints">
         <div class="card-content">
           <div class="card-header">
             <h3 class="card-title">FoodPrints | World Food Programme (WFP) of the United Nations</h3>
