@@ -1,3 +1,8 @@
+<script setup lang="ts">
+  import amazoniaVideo from './assets/amazonia_v1.mp4';
+  import carmenVideo from './assets/carmen_v1.mp4';
+</script>
+
 <template>
   <div class="case-study">
     <div class="case-study-container">
@@ -175,11 +180,10 @@
 
         <div class="result-showcase">
           <div class="showcase-mockup">
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/32b210caac53c5aae36fde08793e6239f0bca473?width=1159"
-              alt="Of Beans and Dreams project"
-              class="laptop-mockup"
-            />
+            <video class="project-video" controls>
+              <source :src="carmenVideo" type="video/mp4" muted autoplay>
+              Your browser does not support the video tag.
+            </video>
           </div>
           <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
             <span class="link-title">Of Beans and Dreams |</span> The power of local food markets
@@ -197,7 +201,7 @@
           </a>
         </div>
 
-        <div class="result-showcase reverse">
+        <div class="result-showcase ">
           <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
             <span class="link-title">Madre Amazonia |</span> Local food, protected forests, stronger futures
             <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,11 +217,10 @@
             </svg>
           </a>
           <div class="showcase-mockup">
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/3d4823aa9ba700fae4276f7879b5f1d10033bfa5?width=1159"
-              alt="Madre Amazonia project"
-              class="laptop-mockup"
-            />
+            <video class="project-video" controls>
+              <source :src="amazoniaVideo" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </section>
@@ -250,10 +253,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// Component logic can be added here if needed
-</script>
-
 <style scoped>
 .case-study {
   width: 100%;
@@ -270,6 +269,16 @@
   flex-direction: column;
   gap: 119px;
 }
+
+/* VIDEO  */
+.project-video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+
 
 /* ===== Title and Overview Section ===== */
 .title-content {
@@ -311,7 +320,7 @@
   font-family: Inter, sans-serif;
   font-size: 18px;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   color: var(--color-text);
   opacity: 0.5;
   margin: 0;

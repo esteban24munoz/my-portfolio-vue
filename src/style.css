@@ -168,10 +168,12 @@
   --color-heading: var(--color-text-dark);
   --color-text: var(--color-text-dark);
   
+   /* 3 — White to accent horizontal blend */
+  --gradient-accent-side: linear-gradient(249deg, rgba(0, 181, 226, 0.80) 37.92%, rgba(14, 26, 51, 0.00) 53.25%), #1B1B1B;
 
   /* Light theme card gradient */
   --linear-top-right: rgba(60, 60, 60, 0.15);
-  --linear-top-right-fill: linear-gradient(249deg, rgba(0, 181, 226, 0.08) 18.59%, rgba(240, 239, 237, 0.00) 53.25%), #FFFFFF;
+  --linear-top-right-fill: none;
 }
 
 /* ================================================

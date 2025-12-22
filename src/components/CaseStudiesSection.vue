@@ -220,7 +220,7 @@ const caseStudies: CaseStudy[] = [
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4.44rem 1.5rem;
+  padding: 4rem 1.5rem;
   gap: 4.44rem;
 }
 
@@ -236,7 +236,7 @@ const caseStudies: CaseStudy[] = [
   font-size: 3.25rem;
   font-weight: 700;
   line-height: 1;
-  background: linear-gradient(90deg, var(--color-text-light) 39.9%, var(--color-accent) 100%);
+  background: var(--gradient-accent-side);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

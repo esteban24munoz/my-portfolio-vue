@@ -32,9 +32,9 @@ onMounted(() => {
       <template v-else>
         <HeroSection />
         <CaseStudiesSection />
-        <Footer />
       </template>
     </main>
+    <Footer />
   </div>
 </template>
 
