@@ -1,6 +1,37 @@
 <script setup lang="ts">
+  import { ref } from 'vue';
+  import VueEasyLightbox from 'vue-easy-lightbox';
   import amazoniaVideo from './assets/amazonia_v1.mp4';
   import carmenVideo from './assets/carmen_v1.mp4';
+  import PostInterviewImage from './assets/post_interview.png';
+  import PreInterviewImage from './assets/pre_interview.png';
+  import 'img-comparison-slider'
+
+  // Lightbox state
+  const visibleRef = ref(false);
+  const indexRef = ref(0);
+
+  // All wireframe images
+  const wireframeImages = [
+    'https://api.builder.io/api/v1/image/assets/TEMP/5bad53ab4069de19c3cb16d2d241322bc2d7cb66',
+    'https://api.builder.io/api/v1/image/assets/TEMP/098a74779d78efff728ef75fd820793c0ced0eff',
+    'https://api.builder.io/api/v1/image/assets/TEMP/5855bc0cce3c3c73470247c24a1690e64934a1c3',
+    'https://api.builder.io/api/v1/image/assets/TEMP/fe630774a6259cd48c8e3d07188876f58da9ec99',
+    'https://api.builder.io/api/v1/image/assets/TEMP/3718cb0b494d1f477a3c60e671d26c3c6da64c06',
+    'https://api.builder.io/api/v1/image/assets/TEMP/ddad196feb432ba763d895073e0ba4f079b3a698',
+    'https://api.builder.io/api/v1/image/assets/TEMP/11c750cf91334deb7ea740bedd5c520c2cdbce14'
+  ];
+
+  // Open lightbox with specific image
+  const openLightbox = (index: number) => {
+    indexRef.value = index;
+    visibleRef.value = true;
+  };
+
+  // Close lightbox
+  const onHide = () => {
+    visibleRef.value = false;
+  };
 </script>
 
 <template>
@@ -122,21 +153,25 @@
               src="https://api.builder.io/api/v1/image/assets/TEMP/5bad53ab4069de19c3cb16d2d241322bc2d7cb66?width=157"
               alt="Low-fidelity wireframe 1"
               class="wireframe-image"
+              @click="openLightbox(0)"
             />
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/098a74779d78efff728ef75fd820793c0ced0eff?width=112"
               alt="Low-fidelity wireframe 2"
               class="wireframe-image"
+              @click="openLightbox(1)"
             />
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/5855bc0cce3c3c73470247c24a1690e64934a1c3?width=106"
               alt="Low-fidelity wireframe 3"
               class="wireframe-image"
+              @click="openLightbox(2)"
             />
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/fe630774a6259cd48c8e3d07188876f58da9ec99?width=246"
               alt="Low-fidelity wireframe 4"
               class="wireframe-image"
+              @click="openLightbox(3)"
             />
           </div>
         </div>
@@ -155,17 +190,75 @@
                 src="https://api.builder.io/api/v1/image/assets/TEMP/3718cb0b494d1f477a3c60e671d26c3c6da64c06?width=306"
                 alt="High-fidelity wireframe 1"
                 class="wireframe-image"
+                @click="openLightbox(4)"
               />
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/ddad196feb432ba763d895073e0ba4f079b3a698?width=304"
                 alt="High-fidelity wireframe 2"
                 class="wireframe-image"
+                @click="openLightbox(5)"
               />
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/11c750cf91334deb7ea740bedd5c520c2cdbce14?width=310"
                 alt="High-fidelity wireframe 3"
                 class="wireframe-image"
+                @click="openLightbox(6)"
               />
+            </div>
+          </div>
+        </div>
+
+        <div class="ux-section">
+          
+<div class="image-comparison-wrapper">
+  <!-- SLIDER -->
+  <img-comparison-slider value="50">
+    <img
+      slot="first"
+      :src="PreInterviewImage"
+      alt="Before redesign"
+    />
+
+    <img
+      slot="second"
+      :src="PostInterviewImage"
+      alt="After redesign"
+    />
+  </img-comparison-slider>
+
+  <!-- LABELS BELOW -->
+  <div class="comparison-labels">
+    <span class="comparison-label">Before</span>
+    <span class="comparison-label">After</span>
+  </div>
+</div>
+
+          <div class="ux-content">
+            <div class="content-header">
+            <h4 class="block-title">UX Psychology Applied</h4>
+            <p class="block-description">
+              The design on the left represents the first iteration of this interactive section. Its primary goal was to prompt users to select a price point and then reveal the underlying truth behind that choice. After 5 usability tests, I redesigned the section taking in consideration the following cognitive bias:
+            </p>
+            </div>
+            <div class="ux-biases">
+              <div class="bias-item">
+                <h5 class="bias-title">Progressive Disclosure</h5>
+                <p class="bias-description">
+                  Users are less overwhelmed if they're exposed to complex features later
+                </p>
+              </div>
+              <div class="bias-item">
+                <h5 class="bias-title">Fitts's Law</h5>
+                <p class="bias-description">
+                  Large and close elements are easier to interact with
+                </p>
+              </div>
+              <div class="bias-item">
+                <h5 class="bias-title">Nudge</h5>
+                <p class="bias-description">
+                  Subtle hints can affect users' decisions (Transforming the cursor in to a “CLICK” circle when hovering over the button)
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -250,6 +343,14 @@
         </div>
       </section>
     </div>
+
+    <!-- Lightbox Component -->
+    <VueEasyLightbox
+      :visible="visibleRef"
+      :imgs="wireframeImages"
+      :index="indexRef"
+      @hide="onHide"
+    />
   </div>
 </template>
 
@@ -562,6 +663,12 @@
   height: auto;
   max-height: 374px;
   display: block;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.wireframe-image:hover {
+  transform: scale(1.02);
 }
 
 .wireframes-header {
@@ -592,6 +699,136 @@
 
 .wireframes-layout .wireframes-images {
   gap: 35px;
+}
+
+/* ===== UX Section ===== */
+
+.image-comparison-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+
+img-comparison-slider {
+  width: 100%;
+  max-width: 1200px;
+
+  height: auto;
+  --divider-width: 3px;
+  --divider-color: var(--primary-color);
+  --handle-color: var(--primary-color);
+  --handle-size: 44px;
+}
+
+img-comparison-slider img {
+  width: 600px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 11px;
+}
+
+/* Label row */
+.comparison-labels {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Individual labels */
+.comparison-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  opacity: 0.75;
+}
+
+.ux-section {
+  display: flex;
+  gap: 64px;
+  width: 100%;
+  padding: 100px 0;
+}
+
+.ux-header {
+  display: flex;
+  flex-direction: column;
+  gap: 69px;
+}
+
+.ux-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.ux-title {
+  font-family: Inter, sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.ux-content {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    width: var(--width);
+    flex-wrap: wrap;
+
+}
+
+.ux-image {
+  width: 600px;
+    height: auto;
+    border-radius: 10px;
+
+}
+
+.ux-biases {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  min-width: 320px;
+}
+
+.content-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.block-description {
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--color-text);
+    opacity: 0.75;
+    margin: 0;
+}
+
+.block-title{
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--color-heading);
+    line-height: normal;
+}
+
+.bias-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bias-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin: 0;
 }
 
 /* ===== Final Results Section ===== */

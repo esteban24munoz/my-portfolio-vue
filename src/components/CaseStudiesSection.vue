@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const navigateToFoodprints = () => {
-  window.location.hash = '#/foodprints'
-  window.scrollTo(0, 0)
-}
-import CarmenCover from '../assets/carmen_cover.png'
-import ViewbookCover from '../assets/viewbook_cover.webp'
-import TheTableCover from '../assets/the_table_cover.png'
-
 type FilterTab = 'All' | 'Development' | 'Graphic Design'
 
 const activeFilter = ref<FilterTab>('All')
@@ -17,61 +9,10 @@ const setFilter = (filter: FilterTab) => {
   activeFilter.value = filter
 }
 
-interface CaseStudy {
-  id: number
-  title: string
-  role: string
-  description: string
-  skills: string[]
-  image?: { [key: string]: string }
-  category: 'Development' | 'Graphic Design'
+const navigateToFoodprints = () => {
+  window.location.hash = '#/foodprints'
+  window.scrollTo(0, 0)
 }
-
-const caseStudies: CaseStudy[] = [
-  {
-    id: 1,
-    title: 'FoodPrints | World Food Programme (WFP) of the United Nations',
-    role: 'UX/UI Designer & Web Developer',
-    description: 'Collaborated with product managers, developers and designers to create 3 fully responsive and interactive websites that showcase important data in a storytelling way.',
-    skills: ['React', 'TypeScript', 'Figma', 'AWS', 'GitHub', 'SEO'],
-    image: {CarmenCover},
-    category: 'Development'
-  },
-  {
-    id: 2,
-    title: 'International Viewbook | Harding University',
-    role: 'Graphic Designer',
-    description: 'Led the visual development of a comprehensive viewbook in just one month, presenting initial sketches and rough concepts to stakeholders, iterating on feedback to refine the design',
-    skills: ['Indesign', 'Photoshop', 'Ilustrator'],
-    image: {ViewbookCover},
-    category: 'Graphic Design'
-  },
-  {
-    id: 3,
-    title: 'The Table',
-    role: 'UX/UI Designer & Web Developer',
-    description: 'Designed and developed a robust React web application that displays products in stock and out of stock to Harding Students, leveraging MySQL databases for real-time inventory control and the registration of 1167 shoppers since it began operations.',
-    skills: ['React', 'TypeScript', 'Figma'],
-    image: {TheTableCover},
-    category: 'Development'
-  },
-  {
-    id: 4,
-    title: 'Olive the Above | Fusion Cuisine Branding Team Project',
-    role: 'Graphic Designer',
-    description: 'Branding project focused on creating a fresh, cohesive brand identity for a new fusion food concept starting as a food truck and expanding into catering and a future restaurant',
-    skills: ['Indesign', 'Photoshop', 'Ilustrator', 'Figma'],
-    category: 'Graphic Design'
-  },
-  {
-    id: 5,
-    title: 'Packaging Design',
-    role: 'Graphic Design',
-    description: '3D packaging design and advertisement for a new line of U.S.-grown spice blends, inspired by a specific historical design that would follow the client brief',
-    skills: ['Indesign', 'Photoshop', 'Ilustrator'],
-    category: 'Graphic Design'
-  }
-]
 </script>
 
 <template>
