@@ -5,7 +5,9 @@
   import carmenVideo from './assets/carmen_v1.mp4';
   import PostInterviewImage from './assets/post_interview.png';
   import PreInterviewImage from './assets/pre_interview.png';
-  import 'img-comparison-slider'
+  import 'img-comparison-slider';
+  import ComputerFrame from "./assets/computer_frame.png";
+  import TableDesktop from "./assets/table_desktop.png";
 
   // Lightbox state
   const visibleRef = ref(false);
@@ -31,6 +33,21 @@
   // Close lightbox
   const onHide = () => {
     visibleRef.value = false;
+  };
+
+  // Restart video on click
+  const restartVideo = (event: Event) => {
+    const video = event.target as HTMLVideoElement;
+    video.currentTime = 0;
+    video.play();
+  };
+
+  // Restart video on keyboard press (Enter or Space)
+  const handleVideoKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      restartVideo(event);
+    }
   };
 </script>
 
@@ -235,26 +252,26 @@
 
           <div class="ux-content">
             <div class="content-header">
-            <h4 class="block-title">UX Psychology Applied</h4>
+            <h4 class="ux-title">UX Psychology Applied</h4>
             <p class="block-description">
               The design on the left represents the first iteration of this interactive section. Its primary goal was to prompt users to select a price point and then reveal the underlying truth behind that choice. After 5 usability tests, I redesigned the section taking in consideration the following cognitive bias:
             </p>
             </div>
             <div class="ux-biases">
               <div class="bias-item">
-                <h5 class="bias-title">Progressive Disclosure</h5>
+                <h5 class="bias-title">+ Progressive Disclosure</h5>
                 <p class="bias-description">
                   Users are less overwhelmed if they're exposed to complex features later
                 </p>
               </div>
               <div class="bias-item">
-                <h5 class="bias-title">Fitts's Law</h5>
+                <h5 class="bias-title">+ Framing</h5>
                 <p class="bias-description">
-                  Large and close elements are easier to interact with
+                  The way information is presented affects how users make decisions
                 </p>
               </div>
               <div class="bias-item">
-                <h5 class="bias-title">Nudge</h5>
+                <h5 class="bias-title">+ Nudge</h5>
                 <p class="bias-description">
                   Subtle hints can affect users' decisions (Transforming the cursor in to a “CLICK” circle when hovering over the button)
                 </p>
@@ -273,12 +290,24 @@
 
         <div class="result-showcase">
           <div class="showcase-mockup">
-            <video class="project-video" controls>
-              <source :src="carmenVideo" type="video/mp4" muted autoplay>
-              Your browser does not support the video tag.
-            </video>
+            <div class="laptop-container">
+              <video
+                class="project-video"
+                autoplay
+                muted
+                loop
+                tabindex="0"
+                @click="restartVideo"
+                @keydown="handleVideoKeydown"
+                aria-label="Click or press Enter to restart Carmen video"
+              >
+                <source :src="carmenVideo" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <img :src="ComputerFrame" alt="Computer Frame" class="laptop-frame" />
+            </div>
           </div>
-          <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://cdn.wfp.org/2025/foodprints/local/" class="project-link" target="_blank" rel="noopener noreferrer">
             <span class="link-title">Of Beans and Dreams |</span> The power of local food markets
             <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_232_239)">
@@ -295,9 +324,10 @@
         </div>
 
         <div class="result-showcase ">
-          <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-            <span class="link-title">Madre Amazonia |</span> Local food, protected forests, stronger futures
-            <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="https://cdn.wfp.org/2025/foodprints/local/" class="project-link" target="_blank" rel="noopener noreferrer">
+            <span class="link-title">Madre Amazonia |</span> <span class="link-description">Local food, protected forests, stronger futures
+            
+              <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_232_242)">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.795 4.375C10.795 4.20924 10.7292 4.05027 10.6119 3.93306C10.4947 3.81585 10.3358 3.75 10.17 3.75H1.875C1.37772 3.75 0.900805 3.94754 0.549175 4.29917C0.197544 4.65081 0 5.12772 0 5.625L0 18.125C0 18.6223 0.197544 19.0992 0.549175 19.4508C0.900805 19.8025 1.37772 20 1.875 20H14.375C14.8723 20 15.3492 19.8025 15.7008 19.4508C16.0525 19.0992 16.25 18.6223 16.25 18.125V9.83C16.25 9.66424 16.1842 9.50527 16.0669 9.38806C15.9497 9.27085 15.7908 9.205 15.625 9.205C15.4592 9.205 15.3003 9.27085 15.1831 9.38806C15.0658 9.50527 15 9.66424 15 9.83V18.125C15 18.2908 14.9342 18.4497 14.8169 18.5669C14.6997 18.6842 14.5408 18.75 14.375 18.75H1.875C1.70924 18.75 1.55027 18.6842 1.43306 18.5669C1.31585 18.4497 1.25 18.2908 1.25 18.125V5.625C1.25 5.45924 1.31585 5.30027 1.43306 5.18306C1.55027 5.06585 1.70924 5 1.875 5H10.17C10.3358 5 10.4947 4.93415 10.6119 4.81694C10.7292 4.69973 10.795 4.54076 10.795 4.375Z" fill="#00B5E2"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 0.625C20.0001 0.45924 19.9343 0.300269 19.8171 0.183058C19.6999 0.065848 19.5409 0 19.3751 0L13.1251 0C12.9594 0 12.8004 0.065848 12.6832 0.183058C12.566 0.300269 12.5001 0.45924 12.5001 0.625C12.5001 0.79076 12.566 0.949732 12.6832 1.06694C12.8004 1.18415 12.9594 1.25 13.1251 1.25H17.8664L7.68263 11.4325C7.62452 11.4906 7.57842 11.5596 7.54697 11.6355C7.51552 11.7114 7.49934 11.7928 7.49934 11.875C7.49934 11.9572 7.51552 12.0386 7.54697 12.1145C7.57842 12.1904 7.62452 12.2594 7.68263 12.3175C7.74074 12.3756 7.80972 12.4217 7.88565 12.4532C7.96157 12.4846 8.04295 12.5008 8.12513 12.5008C8.20731 12.5008 8.28868 12.4846 8.36461 12.4532C8.44053 12.4217 8.50952 12.3756 8.56763 12.3175L18.7501 2.13375V6.875C18.7501 7.04076 18.816 7.19973 18.9332 7.31694C19.0504 7.43415 19.2094 7.5 19.3751 7.5C19.5409 7.5 19.6999 7.43415 19.8171 7.31694C19.9343 7.19973 20.0001 7.04076 20.0001 6.875V0.625Z" fill="#00B5E2"/>
@@ -308,12 +338,25 @@
                 </clipPath>
               </defs>
             </svg>
+            </span>
           </a>
           <div class="showcase-mockup">
-            <video class="project-video" controls>
-              <source :src="amazoniaVideo" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+            <div class="laptop-container">
+              <video
+                class="project-video"
+                autoplay
+                muted
+                loop
+                tabindex="0"
+                @click="restartVideo"
+                @keydown="handleVideoKeydown"
+                aria-label="Click or press Enter to restart Amazonia video"
+              >
+                <source :src="amazoniaVideo" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <img :src="ComputerFrame" alt="Computer Frame" class="laptop-frame" />
+            </div>
           </div>
         </div>
       </section>
@@ -330,13 +373,13 @@
           </div>
           <article class="next-project-card">
             <div class="card-content">
-              <h4 class="card-title">International Viewbook | Harding University</h4>
-              <p class="card-role">Graphic Designer</p>
+              <h4 class="card-title">The Table | Harding University</h4>
+              <p class="card-role">UX/UI Designer & Web Developer</p>
             </div>
             <div class="card-image">
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/159cf09b19d7eb93036f8cfcfd32e86180685134?width=598"
-                alt="International Viewbook Harding University"
+              :src="TableDesktop"
+                alt="The Table Project Desktop Preview"
               />
             </div>
           </article>
@@ -371,11 +414,46 @@
   gap: 119px;
 }
 
-/* VIDEO  */
-.project-video {
+/* VIDEO IN LAPTOP FRAME */
+.laptop-container {
+  position: relative;
   width: 100%;
-  height: auto;
-  border-radius: 10px;
+  max-width: 579px;
+  aspect-ratio: 579 / 345;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-video {
+  position: absolute;
+  width: 75.3%;
+  height: 83.8%;
+  top: 11.3%;
+  left: 12.6%;
+  object-fit: cover;
+  border-radius: 6px;
+  z-index: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.project-video:hover {
+  opacity: 0.9;
+}
+
+.project-video:focus {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+  opacity: 0.95;
+}
+
+.laptop-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
   display: block;
 }
 
@@ -570,8 +648,7 @@
 }
 
 .block-title {
-  font-family: Inter, sans-serif;
-  font-size: 22px;
+  font-size: 32px;
   font-weight: 700;
   color: var(--color-heading);
   margin: 0;
@@ -766,11 +843,9 @@ img-comparison-slider img {
 }
 
 .ux-title {
-  font-family: Inter, sans-serif;
-  font-size: 52px;
+  font-size: 42px;
   font-weight: 700;
   line-height: 1.2;
-  text-align: center;
 }
 
 .ux-content {
@@ -792,7 +867,7 @@ img-comparison-slider img {
 .ux-biases {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
   flex: 1;
   min-width: 320px;
 }
@@ -809,14 +884,9 @@ img-comparison-slider img {
     color: var(--color-text);
     opacity: 0.75;
     margin: 0;
+    font-size: 16px;
 }
 
-.block-title{
-    font-size: 42px;
-    font-weight: 700;
-    color: var(--color-heading);
-    line-height: normal;
-}
 
 .bias-item {
   display: flex;
@@ -829,6 +899,12 @@ img-comparison-slider img {
   font-weight: 700;
   color: var(--color-heading);
   margin: 0;
+}
+
+.bias-description{
+  padding-left: 32px;
+  color: var(--color-text);
+  opacity: 0.75;
 }
 
 /* ===== Final Results Section ===== */
@@ -902,9 +978,10 @@ img-comparison-slider img {
   font-weight: 700;
 }
 
+
+
 .external-icon {
-  flex-shrink: 0;
-  margin-top: 4px;
+  display: inline;
 }
 
 /* ===== Next Project Section ===== */
@@ -955,7 +1032,8 @@ img-comparison-slider img {
   display: flex;
   flex-direction: column;
   gap: 33px;
-  max-width: 431px;
+width: 628px;
+height: 537px;
   transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
   cursor: pointer;
 }
@@ -990,6 +1068,7 @@ img-comparison-slider img {
 
 .next-project-card .card-image {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -999,7 +1078,6 @@ img-comparison-slider img {
 
 .next-project-card .card-image img {
   width: 100%;
-  max-width: 299px;
   height: auto;
   border-radius: 14px;
 }
