@@ -13,6 +13,17 @@ const navigateToFoodprints = () => {
   window.location.hash = '#/foodprints'
   window.scrollTo(0, 0)
 }
+
+const navigateToViewbook = () => {
+  window.location.hash = '#/viewbook'
+  window.scrollTo(0, 0)
+}
+
+const navigateToTheTable = () => {
+  window.location.hash = '#/thetable'
+  window.scrollTo(0, 0)
+}
+
 </script>
 
 <template>
@@ -68,7 +79,7 @@ const navigateToFoodprints = () => {
         </div>
       </article>
 
-      <article class="case-card card-2">
+      <article class="case-card card-2" @click="navigateToViewbook">
         <div class="card-content">
           <div class="card-header">
             <h3 class="card-title">International Viewbook | Harding University</h3>
@@ -88,10 +99,10 @@ const navigateToFoodprints = () => {
         </div>
       </article>
 
-      <article class="case-card card-3">
+      <article class="case-card card-3" @click="navigateToTheTable">
         <div class="card-content">
           <div class="card-header">
-            <h3 class="card-title">The Table</h3>
+            <h3 class="card-title">The Table | Harding University</h3>
             <p class="card-role">UX/UI Designer & Web Developer</p>
           </div>
           <p class="card-description">

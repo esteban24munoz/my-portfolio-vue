@@ -1,0 +1,46 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none; /* prevents it from blocking interactions */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode: normal;
+}
+
+.cursor-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 120%;
+  letter-spacing: -0.007px;
+  text-align: center;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+/* Hide default cursor on elements that trigger custom cursor */
+[data-cursor-text][data-cursor-color] {
+  cursor: none;
+}
+
+/* Ensure child elements show normal cursor */
+[data-cursor-text][data-cursor-color] * {
+  cursor: auto; /* shows default pointer depending on element type */
+}
+
+/* Touch devices fallback */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none; /* hide custom cursor entirely */
+  }
+
+  [data-cursor-text][data-cursor-color] {
+    cursor: auto;
+  }
+}

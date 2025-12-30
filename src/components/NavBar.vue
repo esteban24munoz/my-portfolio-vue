@@ -33,17 +33,23 @@ onMounted(() => {
           <a href="#contact" class="nav-link">Contact</a>
           <button class="theme-toggle" aria-label="Toggle theme" @click="toggleTheme">
             <svg v-if="currentTheme === 'dark'" width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.130814" y="0.130814" width="44.7384" height="44.7384" rx="22.3692" fill="#1B1B1B"/>
-              <rect x="0.130814" y="0.130814" width="44.7384" height="44.7384" rx="22.3692" fill="url(#paint0_linear_dark)" fill-opacity="0.5"/>
-              <rect x="0.130814" y="0.130814" width="44.7384" height="44.7384" rx="22.3692" stroke="#262626" stroke-width="0.261628"/>
+              <rect x="0.5" y="0.5" width="44" height="44" rx="22" fill="#1B1B1B" fill-opacity="0.2"/>
+              <rect x="0.5" y="0.5" width="44" height="44" rx="22" fill="url(#paint0_linear_dark)" fill-opacity="0.2"/>
+              <rect x="0.5" y="0.5" width="44" height="44" rx="22" stroke="#434343"/>
+              <rect x="0.5" y="0.5" width="44" height="44" rx="22" stroke="url(#paint1_linear_dark)"/>
               <path d="M19.2297 9.87296C19.389 10.0671 19.4865 10.3044 19.5098 10.5544C19.5331 10.8044 19.4811 11.0557 19.3606 11.2759C18.4147 13.0114 17.9209 14.9571 17.9249 16.9336C17.9249 23.5087 23.285 28.8328 29.8911 28.8328C30.7545 28.8317 31.59 28.7445 32.3978 28.5712C32.6449 28.5183 32.9021 28.5391 33.1375 28.6309C33.373 28.7228 33.5763 28.8817 33.7223 29.0879C33.8768 29.3025 33.9556 29.5624 33.9465 29.8267C33.9373 30.091 33.8406 30.3447 33.6716 30.5481C32.389 32.1234 30.7711 33.3927 28.9358 34.2634C27.1005 35.1341 25.094 35.5843 23.0626 35.5812C15.5244 35.5812 9.4187 29.5081 9.4187 22.0256C9.4187 16.394 12.8755 11.5637 17.7973 9.51649C18.0424 9.41233 18.3148 9.39078 18.5732 9.45509C18.8316 9.5194 19.0621 9.66608 19.2297 9.87296ZM17.3624 11.5621C15.4699 12.5774 13.8879 14.0864 12.7843 15.9287C11.6808 17.7711 11.0969 19.878 11.0948 22.0256C11.0948 28.599 16.4565 33.9231 23.0626 33.9231C24.6445 33.9255 26.2112 33.6143 27.672 33.0075C29.1329 32.4007 30.459 31.5103 31.5737 30.3879C31.0221 30.4565 30.4612 30.4909 29.8911 30.4909C22.3529 30.4909 16.2488 24.4178 16.2488 16.9353C16.2488 15.027 16.6445 13.2104 17.3624 11.5621Z" fill="#00B5E2"/>
               <defs>
                 <linearGradient id="paint0_linear_dark" x1="35.5682" y1="5.58725" x2="16.7584" y2="12.7888" gradientUnits="userSpaceOnUse">
                   <stop stop-color="#00B5E2"/>
                   <stop offset="1" stop-color="#0E1A33" stop-opacity="0"/>
                 </linearGradient>
+                <linearGradient id="paint1_linear_dark" x1="5.27098" y1="52.5503" x2="11.6711" y2="50.3363" gradientUnits="userSpaceOnUse">
+                  <stop offset="0.102787" stop-color="#00B5E2"/>
+                  <stop offset="1" stop-color="#2156E6" stop-opacity="0"/>
+                </linearGradient>
               </defs>
             </svg>
+            
             <svg v-else width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.130814" y="0.130814" width="44.7384" height="44.7384" rx="22.3692" stroke="#262626" stroke-width="0.261628"/>
               <rect x="0.130814" y="0.130814" width="44.7384" height="44.7384" rx="22.3692" stroke="url(#paint0_linear_light)" stroke-width="0.261628"/>

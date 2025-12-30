@@ -1,54 +1,62 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
-  import VueEasyLightbox from 'vue-easy-lightbox';
-  import amazoniaVideo from './assets/amazonia_v1.mp4';
-  import carmenVideo from './assets/carmen_v1.mp4';
-  import PostInterviewImage from './assets/post_interview.png';
-  import PreInterviewImage from './assets/pre_interview.png';
-  import 'img-comparison-slider';
-  import ComputerFrame from "./assets/computer_frame.png";
-  import TableDesktop from "./assets/table_desktop.png";
+import { ref } from "vue";
+import VueEasyLightbox from "vue-easy-lightbox";
+import CustomCursor from "../../CustomCursor/CustomCursor.vue";
+import "img-comparison-slider";
+import ComputerFrame from "./assets/computer_frame.png";
 
-  // Lightbox state
-  const visibleRef = ref(false);
-  const indexRef = ref(0);
+import TableCover from "./assets/table_cover_trans.png";
+import LoginCover from "./assets/login_cover_trans.png";
+import SystemCover from "./assets/system_cover_trans.png";
+import TableInsight from "./assets/table_insight.png";
 
-  // All wireframe images
-  const wireframeImages = [
-    'https://api.builder.io/api/v1/image/assets/TEMP/5bad53ab4069de19c3cb16d2d241322bc2d7cb66',
-    'https://api.builder.io/api/v1/image/assets/TEMP/098a74779d78efff728ef75fd820793c0ced0eff',
-    'https://api.builder.io/api/v1/image/assets/TEMP/5855bc0cce3c3c73470247c24a1690e64934a1c3',
-    'https://api.builder.io/api/v1/image/assets/TEMP/fe630774a6259cd48c8e3d07188876f58da9ec99',
-    'https://api.builder.io/api/v1/image/assets/TEMP/3718cb0b494d1f477a3c60e671d26c3c6da64c06',
-    'https://api.builder.io/api/v1/image/assets/TEMP/ddad196feb432ba763d895073e0ba4f079b3a698',
-    'https://api.builder.io/api/v1/image/assets/TEMP/11c750cf91334deb7ea740bedd5c520c2cdbce14'
-  ];
+// Wireframes Images
+import LowWireframe1 from "./assets/wireframe-1.jpg";
+import LowWireframe2 from "./assets/wireframe-2.jpg";
+import LowWireframe3 from "./assets/wireframe-3.jpg";
+import LoginWireframe1 from "./assets/login-wireframe.jpg";
+import DashboardWireframe1 from "./assets/dashboard-wireframe.jpg";
 
-  // Open lightbox with specific image
-  const openLightbox = (index: number) => {
-    indexRef.value = index;
-    visibleRef.value = true;
-  };
 
-  // Close lightbox
-  const onHide = () => {
-    visibleRef.value = false;
-  };
+// Lightbox state
+const visibleRef = ref(false);
+const indexRef = ref(0);
 
-  // Restart video on click
-  const restartVideo = (event: Event) => {
-    const video = event.target as HTMLVideoElement;
-    video.currentTime = 0;
-    video.play();
-  };
+// All wireframe images - using high-resolution imported images for lightbox
+const wireframeImages = [
+  LowWireframe1,
+  LowWireframe2,
+  LowWireframe3,
+  LoginWireframe1,
+  DashboardWireframe1
 
-  // Restart video on keyboard press (Enter or Space)
-  const handleVideoKeydown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      restartVideo(event);
-    }
-  };
+];
+
+// Open lightbox with specific image
+const openLightbox = (index: number) => {
+  indexRef.value = index;
+  visibleRef.value = true;
+};
+
+// Close lightbox
+const onHide = () => {
+  visibleRef.value = false;
+};
+
+// Restart video on click
+const restartVideo = (event: Event) => {
+  const video = event.target as HTMLVideoElement;
+  video.currentTime = 0;
+  video.play();
+};
+
+// Restart video on keyboard press (Enter or Space)
+const handleVideoKeydown = (event: KeyboardEvent) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    restartVideo(event);
+  }
+};
 </script>
 
 <template>
@@ -60,15 +68,19 @@
           <h1 class="main-title">
             Eight Months.<br />
             Four Websites.<br />
-            One Developer.
+            One Vision.
           </h1>
-          
+
           <div class="overview-section">
             <h2 class="section-label">01. OVERVIEW</h2>
             <p class="overview-description">
-              This case study goes over my challenges and results of FoodPrints, a project that draws from public statistics, figures of WFP data across the region, diving deeper into the human narratives hidden within.
+              The Table's website goal was to to provide real-time inventory updates, allowing students to see which
+              items at the food pantry are available in stock.
+
               <br /><br />
-              Through visually compelling products—interactive displays, infographics, case studies, and immersive audio-visual pieces—we aimed to create an analytical and emotional experience centered on food security and nutrition.
+              Furthermore, the website would enhance the accessibility to management tools while providing a user
+              friendly interface for the volunteers, shoppers and board members.
+
             </p>
           </div>
         </div>
@@ -76,25 +88,13 @@
         <!-- Project Images -->
         <div class="project-images">
           <div class="image-wrapper">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/4ade2759ce9056320d3d020ca246f48ea588e1ce?width=648" 
-              alt="Carmen Desktop Project"
-              class="project-image"
-            />
+            <img :src="TableCover" alt="Table Cover" class="project-image" />
           </div>
           <div class="image-wrapper">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/2998c5d8223513ab7aa226d354f066238b0c7f86?width=672" 
-              alt="Desktop Development Project 1"
-              class="project-image"
-            />
+            <img :src="LoginCover" alt="Login Cover" class="project-image" />
           </div>
           <div class="image-wrapper">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/8e53b034fd58b0b509675c2f3ea8a6be1792f0ba?width=672" 
-              alt="Desktop Development Project 2"
-              class="project-image"
-            />
+            <img :src="SystemCover" alt="System Cover" class="project-image" />
           </div>
         </div>
       </section>
@@ -108,17 +108,17 @@
             Web Developer
           </h3>
           <p class="role-description">
-            As a UX/UI designer, I created both low-fidelity and high-fidelity wireframes for the websites and presented interactive demos in Figma and Dora.ai to demonstrate the storytelling approach.
+            As a UX/UI designer, I created both low-fidelity and high-fidelity
+            wireframes for the websites and presented interactive demos in Figma
+            and Dora.ai to demonstrate the storytelling approach.
             <br /><br />
-            Later, my primary role shifted to development, where I built the website and made it interactive and fully responsive across all screen sizes.
+            Later, my primary role shifted to development, where I built the
+            website and made it interactive and fully responsive across all
+            screen sizes.
           </p>
         </div>
         <div class="mockup-wrapper">
-          <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/7698e6be4f88b3ff80275987476a91a83874eb7d?width=1159" 
-            alt="MacBook Air mockup showing project"
-            class="laptop-mockup"
-          />
+          <img :src="TableInsight" alt="Table Insight" class="laptop-mockup" />
         </div>
       </section>
 
@@ -136,13 +136,21 @@
           <div class="challenge-block">
             <h4 class="block-title">Challenge</h4>
             <p class="block-description">
-              In my role as a developer, one of the biggest challenges was time. The deadlines were tight, as we planned to launch these three websites by the end of 2025. Responsiveness was also difficult to achieve because we had designed parallax and scrolling animations for several sections in all of the websites.
+              In my role as a developer, one of the biggest challenges was time.
+              The deadlines were tight, as we planned to launch these three
+              websites by the end of 2025. Responsiveness was also difficult to
+              achieve because we had designed parallax and scrolling animations
+              for several sections in all of the websites.
             </p>
           </div>
           <div class="solution-block">
             <h4 class="block-title">Solution</h4>
             <p class="block-description">
-              During one of our design meetings, I proposed making some of the section layouts reusable so they could be easily reused in code and for future websites. The team agreed, and we created a shared library of sections—first in design and then in code—that could be reused across projects in order to save more time.
+              During one of our design meetings, I proposed making some of the
+              section layouts reusable so they could be easily reused in code
+              and for future websites. The team agreed, and we created a shared
+              library of sections—first in design and then in code—that could be
+              reused across projects in order to save more time.
             </p>
           </div>
         </div>
@@ -159,126 +167,49 @@
         </div>
 
         <div class="wireframes-section low-fidelity">
-          <div class="wireframes-content">
-            <h4 class="block-title">Low-Fidelity Wireframes</h4>
-            <p class="block-description">
-              I began the creative process by building the first wireframes, focusing on storytelling and the real stories collected from countries like Honduras, Colombia, and El Salvador. Some concepts explored more ambitious ideas and were refined to thoughtfully align with the organization's brand guidelines
+          <div class="wireframe-header">
+            <h4 class="wireframe-title">Homepage <br />Low-Fidelity Wireframes</h4>
+            <p class="wireframe-description">
+              After creating basic layout drafts, I created rough drafts of the viewbook.
+              These rough drafts were used to get feedback from the client and to refine the design.
+              Some concepts explored more ambitious ideas and were refined to thoughtfully
+              align with the organization's brand guidelines
             </p>
           </div>
+
+
           <div class="wireframes-images">
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/5bad53ab4069de19c3cb16d2d241322bc2d7cb66?width=157"
-              alt="Low-fidelity wireframe 1"
-              class="wireframe-image"
-              @click="openLightbox(0)"
-            />
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/098a74779d78efff728ef75fd820793c0ced0eff?width=112"
-              alt="Low-fidelity wireframe 2"
-              class="wireframe-image"
-              @click="openLightbox(1)"
-            />
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/5855bc0cce3c3c73470247c24a1690e64934a1c3?width=106"
-              alt="Low-fidelity wireframe 3"
-              class="wireframe-image"
-              @click="openLightbox(2)"
-            />
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/fe630774a6259cd48c8e3d07188876f58da9ec99?width=246"
-              alt="Low-fidelity wireframe 4"
-              class="wireframe-image"
-              @click="openLightbox(3)"
-            />
+            <img :src="LowWireframe1" alt="Low-fidelity wireframe 1" class="wireframe-image" @click="openLightbox(0)" />
+            <img :src="LowWireframe2" alt="Low-fidelity wireframe 2" class="wireframe-image" @click="openLightbox(1)" />
+            <img :src="LowWireframe3" alt="Low-fidelity wireframe 3" class="wireframe-image" @click="openLightbox(2)" />
+
           </div>
         </div>
+
+        <div class="divider-line short"></div>
 
         <div class="wireframes-section high-fidelity">
-          <div class="wireframes-header">
-            <h4 class="block-title">High-Fidelity Wireframes</h4>
-            <div class="divider-line short"></div>
-          </div>
-          <div class="wireframes-layout">
-            <p class="block-description">
-              Some of my wireframe ideas that were later used by the graphic designer in charge of the final visual design of the websites
+
+
+          <div class="wireframe-header">
+            <h4 class="wireframe-title">Login and Dashboard <br />Low-Fidelity Wireframes</h4>
+            <p class="wireframe-description">
+              After creating basic layout drafts, I created rough drafts of the viewbook.
+              These rough drafts were used to get feedback from the client and to refine the design.
+              Some concepts explored more ambitious ideas and were refined to thoughtfully
+              align with the organization's brand guidelines
             </p>
-            <div class="wireframes-images">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/3718cb0b494d1f477a3c60e671d26c3c6da64c06?width=306"
-                alt="High-fidelity wireframe 1"
-                class="wireframe-image"
-                @click="openLightbox(4)"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/ddad196feb432ba763d895073e0ba4f079b3a698?width=304"
-                alt="High-fidelity wireframe 2"
-                class="wireframe-image"
-                @click="openLightbox(5)"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/11c750cf91334deb7ea740bedd5c520c2cdbce14?width=310"
-                alt="High-fidelity wireframe 3"
-                class="wireframe-image"
-                @click="openLightbox(6)"
-              />
-            </div>
+          </div>
+
+
+          <div class="wireframes-images">
+            <img :src="LoginWireframe1" alt="Login wireframe 1" width="500px" class="wireframe-image" @click="openLightbox(3)" />
+            <img :src="DashboardWireframe1" alt="Dashboard wireframe 2" width="500px" class="wireframe-image"
+              @click="openLightbox(4)" />
+
           </div>
         </div>
 
-        <div class="ux-section">
-          
-<div class="image-comparison-wrapper">
-  <!-- SLIDER -->
-  <img-comparison-slider value="50">
-    <img
-      slot="first"
-      :src="PreInterviewImage"
-      alt="Before redesign"
-    />
-
-    <img
-      slot="second"
-      :src="PostInterviewImage"
-      alt="After redesign"
-    />
-  </img-comparison-slider>
-
-  <!-- LABELS BELOW -->
-  <div class="comparison-labels">
-    <span class="comparison-label">Before</span>
-    <span class="comparison-label">After</span>
-  </div>
-</div>
-
-          <div class="ux-content">
-            <div class="content-header">
-            <h4 class="ux-title">UX Psychology Applied</h4>
-            <p class="block-description">
-              The design on the left represents the first iteration of this interactive section. Its primary goal was to prompt users to select a price point and then reveal the underlying truth behind that choice. After 5 usability tests, I redesigned the section taking in consideration the following cognitive bias:
-            </p>
-            </div>
-            <div class="ux-biases">
-              <div class="bias-item">
-                <h5 class="bias-title">+ Progressive Disclosure</h5>
-                <p class="bias-description">
-                  Users are less overwhelmed if they're exposed to complex features later
-                </p>
-              </div>
-              <div class="bias-item">
-                <h5 class="bias-title">+ Framing</h5>
-                <p class="bias-description">
-                  The way information is presented affects how users make decisions
-                </p>
-              </div>
-              <div class="bias-item">
-                <h5 class="bias-title">+ Nudge</h5>
-                <p class="bias-description">
-                  Subtle hints can affect users' decisions (Transforming the cursor in to a “CLICK” circle when hovering over the button)
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Final Results Section -->
@@ -291,70 +222,61 @@
         <div class="result-showcase">
           <div class="showcase-mockup">
             <div class="laptop-container">
-              <video
-                class="project-video"
-                autoplay
-                muted
-                loop
-                tabindex="0"
-                @click="restartVideo"
-                @keydown="handleVideoKeydown"
-                aria-label="Click or press Enter to restart Carmen video"
-              >
-                <source :src="carmenVideo" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
+              <img :src="TableInsight" alt="Table Insight" class="laptop-frame" />
               <img :src="ComputerFrame" alt="Computer Frame" class="laptop-frame" />
             </div>
           </div>
-          <a href="https://cdn.wfp.org/2025/foodprints/local/" class="project-link" target="_blank" rel="noopener noreferrer">
-            <span class="link-title">Of Beans and Dreams |</span> The power of local food markets
-            <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="https://cdn.wfp.org/2025/foodprints/local/" class="project-link" target="_blank"
+            rel="noopener noreferrer">
+            <span class="link-title">Of Beans and Dreams |</span> The power of
+            local food markets
+            <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_232_239)">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.795 4.375C10.795 4.20924 10.7292 4.05027 10.6119 3.93306C10.4947 3.81585 10.3358 3.75 10.17 3.75H1.875C1.37772 3.75 0.900805 3.94754 0.549175 4.29917C0.197544 4.65081 0 5.12772 0 5.625L0 18.125C0 18.6223 0.197544 19.0992 0.549175 19.4508C0.900805 19.8025 1.37772 20 1.875 20H14.375C14.8723 20 15.3492 19.8025 15.7008 19.4508C16.0525 19.0992 16.25 18.6223 16.25 18.125V9.83C16.25 9.66424 16.1842 9.50527 16.0669 9.38806C15.9497 9.27085 15.7908 9.205 15.625 9.205C15.4592 9.205 15.3003 9.27085 15.1831 9.38806C15.0658 9.50527 15 9.66424 15 9.83V18.125C15 18.2908 14.9342 18.4497 14.8169 18.5669C14.6997 18.6842 14.5408 18.75 14.375 18.75H1.875C1.70924 18.75 1.55027 18.6842 1.43306 18.5669C1.31585 18.4497 1.25 18.2908 1.25 18.125V5.625C1.25 5.45924 1.31585 5.30027 1.43306 5.18306C1.55027 5.06585 1.70924 5 1.875 5H10.17C10.3358 5 10.4947 4.93415 10.6119 4.81694C10.7292 4.69973 10.795 4.54076 10.795 4.375Z" fill="#00B5E2"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 0.625C20.0001 0.45924 19.9343 0.300269 19.8171 0.183058C19.6998 0.065848 19.5409 0 19.3751 0L13.1251 0C12.9594 0 12.8004 0.065848 12.6832 0.183058C12.566 0.300269 12.5001 0.45924 12.5001 0.625C12.5001 0.79076 12.566 0.949732 12.6832 1.06694C12.8004 1.18415 12.9594 1.25 13.1251 1.25H17.8664L7.68262 11.4325C7.62451 11.4906 7.57841 11.5596 7.54696 11.6355C7.51552 11.7114 7.49933 11.7928 7.49933 11.875C7.49933 11.9572 7.51552 12.0386 7.54696 12.1145C7.57841 12.1904 7.62451 12.2594 7.68262 12.3175C7.74073 12.3756 7.80971 12.4217 7.88564 12.4532C7.96156 12.4846 8.04294 12.5008 8.12512 12.5008C8.2073 12.5008 8.28867 12.4846 8.3646 12.4532C8.44052 12.4217 8.50951 12.3756 8.56762 12.3175L18.7501 2.13375V6.875C18.7501 7.04076 18.816 7.19973 18.9332 7.31694C19.0504 7.43415 19.2094 7.5 19.3751 7.5C19.5409 7.5 19.6998 7.43415 19.8171 7.31694C19.9343 7.19973 20.0001 7.04076 20.0001 6.875V0.625Z" fill="#00B5E2"/>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M10.795 4.375C10.795 4.20924 10.7292 4.05027 10.6119 3.93306C10.4947 3.81585 10.3358 3.75 10.17 3.75H1.875C1.37772 3.75 0.900805 3.94754 0.549175 4.29917C0.197544 4.65081 0 5.12772 0 5.625L0 18.125C0 18.6223 0.197544 19.0992 0.549175 19.4508C0.900805 19.8025 1.37772 20 1.875 20H14.375C14.8723 20 15.3492 19.8025 15.7008 19.4508C16.0525 19.0992 16.25 18.6223 16.25 18.125V9.83C16.25 9.66424 16.1842 9.50527 16.0669 9.38806C15.9497 9.27085 15.7908 9.205 15.625 9.205C15.4592 9.205 15.3003 9.27085 15.1831 9.38806C15.0658 9.50527 15 9.66424 15 9.83V18.125C15 18.2908 14.9342 18.4497 14.8169 18.5669C14.6997 18.6842 14.5408 18.75 14.375 18.75H1.875C1.70924 18.75 1.55027 18.6842 1.43306 18.5669C1.31585 18.4497 1.25 18.2908 1.25 18.125V5.625C1.25 5.45924 1.31585 5.30027 1.43306 5.18306C1.55027 5.06585 1.70924 5 1.875 5H10.17C10.3358 5 10.4947 4.93415 10.6119 4.81694C10.7292 4.69973 10.795 4.54076 10.795 4.375Z"
+                  fill="#00B5E2" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M20.0001 0.625C20.0001 0.45924 19.9343 0.300269 19.8171 0.183058C19.6998 0.065848 19.5409 0 19.3751 0L13.1251 0C12.9594 0 12.8004 0.065848 12.6832 0.183058C12.566 0.300269 12.5001 0.45924 12.5001 0.625C12.5001 0.79076 12.566 0.949732 12.6832 1.06694C12.8004 1.18415 12.9594 1.25 13.1251 1.25H17.8664L7.68262 11.4325C7.62451 11.4906 7.57841 11.5596 7.54696 11.6355C7.51552 11.7114 7.49933 11.7928 7.49933 11.875C7.49933 11.9572 7.51552 12.0386 7.54696 12.1145C7.57841 12.1904 7.62451 12.2594 7.68262 12.3175C7.74073 12.3756 7.80971 12.4217 7.88564 12.4532C7.96156 12.4846 8.04294 12.5008 8.12512 12.5008C8.2073 12.5008 8.28867 12.4846 8.3646 12.4532C8.44052 12.4217 8.50951 12.3756 8.56762 12.3175L18.7501 2.13375V6.875C18.7501 7.04076 18.816 7.19973 18.9332 7.31694C19.0504 7.43415 19.2094 7.5 19.3751 7.5C19.5409 7.5 19.6998 7.43415 19.8171 7.31694C19.9343 7.19973 20.0001 7.04076 20.0001 6.875V0.625Z"
+                  fill="#00B5E2" />
               </g>
               <defs>
                 <clipPath id="clip0_232_239">
-                  <rect width="20" height="20" fill="white"/>
+                  <rect width="20" height="20" fill="white" />
                 </clipPath>
               </defs>
             </svg>
           </a>
         </div>
 
-        <div class="result-showcase ">
-          <a href="https://cdn.wfp.org/2025/foodprints/local/" class="project-link" target="_blank" rel="noopener noreferrer">
-            <span class="link-title">Madre Amazonia |</span> <span class="link-description">Local food, protected forests, stronger futures
-            
-              <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_232_242)">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.795 4.375C10.795 4.20924 10.7292 4.05027 10.6119 3.93306C10.4947 3.81585 10.3358 3.75 10.17 3.75H1.875C1.37772 3.75 0.900805 3.94754 0.549175 4.29917C0.197544 4.65081 0 5.12772 0 5.625L0 18.125C0 18.6223 0.197544 19.0992 0.549175 19.4508C0.900805 19.8025 1.37772 20 1.875 20H14.375C14.8723 20 15.3492 19.8025 15.7008 19.4508C16.0525 19.0992 16.25 18.6223 16.25 18.125V9.83C16.25 9.66424 16.1842 9.50527 16.0669 9.38806C15.9497 9.27085 15.7908 9.205 15.625 9.205C15.4592 9.205 15.3003 9.27085 15.1831 9.38806C15.0658 9.50527 15 9.66424 15 9.83V18.125C15 18.2908 14.9342 18.4497 14.8169 18.5669C14.6997 18.6842 14.5408 18.75 14.375 18.75H1.875C1.70924 18.75 1.55027 18.6842 1.43306 18.5669C1.31585 18.4497 1.25 18.2908 1.25 18.125V5.625C1.25 5.45924 1.31585 5.30027 1.43306 5.18306C1.55027 5.06585 1.70924 5 1.875 5H10.17C10.3358 5 10.4947 4.93415 10.6119 4.81694C10.7292 4.69973 10.795 4.54076 10.795 4.375Z" fill="#00B5E2"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 0.625C20.0001 0.45924 19.9343 0.300269 19.8171 0.183058C19.6999 0.065848 19.5409 0 19.3751 0L13.1251 0C12.9594 0 12.8004 0.065848 12.6832 0.183058C12.566 0.300269 12.5001 0.45924 12.5001 0.625C12.5001 0.79076 12.566 0.949732 12.6832 1.06694C12.8004 1.18415 12.9594 1.25 13.1251 1.25H17.8664L7.68263 11.4325C7.62452 11.4906 7.57842 11.5596 7.54697 11.6355C7.51552 11.7114 7.49934 11.7928 7.49934 11.875C7.49934 11.9572 7.51552 12.0386 7.54697 12.1145C7.57842 12.1904 7.62452 12.2594 7.68263 12.3175C7.74074 12.3756 7.80972 12.4217 7.88565 12.4532C7.96157 12.4846 8.04295 12.5008 8.12513 12.5008C8.20731 12.5008 8.28868 12.4846 8.36461 12.4532C8.44053 12.4217 8.50952 12.3756 8.56763 12.3175L18.7501 2.13375V6.875C18.7501 7.04076 18.816 7.19973 18.9332 7.31694C19.0504 7.43415 19.2094 7.5 19.3751 7.5C19.5409 7.5 19.6999 7.43415 19.8171 7.31694C19.9343 7.19973 20.0001 7.04076 20.0001 6.875V0.625Z" fill="#00B5E2"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_232_242">
-                  <rect width="20" height="20" fill="white"/>
-                </clipPath>
-              </defs>
-            </svg>
+        <div class="result-showcase">
+          <a href="https://cdn.wfp.org/2025/foodprints/local/" class="project-link" target="_blank"
+            rel="noopener noreferrer">
+            <span class="link-title">Madre Amazonia |</span>
+            <span class="link-description">Local food, protected forests, stronger futures
+
+              <svg class="external-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_232_242)">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M10.795 4.375C10.795 4.20924 10.7292 4.05027 10.6119 3.93306C10.4947 3.81585 10.3358 3.75 10.17 3.75H1.875C1.37772 3.75 0.900805 3.94754 0.549175 4.29917C0.197544 4.65081 0 5.12772 0 5.625L0 18.125C0 18.6223 0.197544 19.0992 0.549175 19.4508C0.900805 19.8025 1.37772 20 1.875 20H14.375C14.8723 20 15.3492 19.8025 15.7008 19.4508C16.0525 19.0992 16.25 18.6223 16.25 18.125V9.83C16.25 9.66424 16.1842 9.50527 16.0669 9.38806C15.9497 9.27085 15.7908 9.205 15.625 9.205C15.4592 9.205 15.3003 9.27085 15.1831 9.38806C15.0658 9.50527 15 9.66424 15 9.83V18.125C15 18.2908 14.9342 18.4497 14.8169 18.5669C14.6997 18.6842 14.5408 18.75 14.375 18.75H1.875C1.70924 18.75 1.55027 18.6842 1.43306 18.5669C1.31585 18.4497 1.25 18.2908 1.25 18.125V5.625C1.25 5.45924 1.31585 5.30027 1.43306 5.18306C1.55027 5.06585 1.70924 5 1.875 5H10.17C10.3358 5 10.4947 4.93415 10.6119 4.81694C10.7292 4.69973 10.795 4.54076 10.795 4.375Z"
+                    fill="#00B5E2" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M20.0001 0.625C20.0001 0.45924 19.9343 0.300269 19.8171 0.183058C19.6999 0.065848 19.5409 0 19.3751 0L13.1251 0C12.9594 0 12.8004 0.065848 12.6832 0.183058C12.566 0.300269 12.5001 0.45924 12.5001 0.625C12.5001 0.79076 12.566 0.949732 12.6832 1.06694C12.8004 1.18415 12.9594 1.25 13.1251 1.25H17.8664L7.68263 11.4325C7.62452 11.4906 7.57842 11.5596 7.54697 11.6355C7.51552 11.7114 7.49934 11.7928 7.49934 11.875C7.49934 11.9572 7.51552 12.0386 7.54697 12.1145C7.57842 12.1904 7.62452 12.2594 7.68263 12.3175C7.74074 12.3756 7.80972 12.4217 7.88565 12.4532C7.96157 12.4846 8.04295 12.5008 8.12513 12.5008C8.20731 12.5008 8.28868 12.4846 8.36461 12.4532C8.44053 12.4217 8.50952 12.3756 8.56763 12.3175L18.7501 2.13375V6.875C18.7501 7.04076 18.816 7.19973 18.9332 7.31694C19.0504 7.43415 19.2094 7.5 19.3751 7.5C19.5409 7.5 19.6999 7.43415 19.8171 7.31694C19.9343 7.19973 20.0001 7.04076 20.0001 6.875V0.625Z"
+                    fill="#00B5E2" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_232_242">
+                    <rect width="20" height="20" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
             </span>
           </a>
           <div class="showcase-mockup">
             <div class="laptop-container">
-              <video
-                class="project-video"
-                autoplay
-                muted
-                loop
-                tabindex="0"
-                @click="restartVideo"
-                @keydown="handleVideoKeydown"
-                aria-label="Click or press Enter to restart Amazonia video"
-              >
-                <source :src="amazoniaVideo" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
+
+              <img :src="SystemCover" alt="Table Desktop" />
               <img :src="ComputerFrame" alt="Computer Frame" class="laptop-frame" />
             </div>
           </div>
@@ -362,13 +284,25 @@
       </section>
 
       <!-- Next Project Section -->
-      <section class="next-project-section">
+      <!-- <section class="next-project-section">
         <div class="divider-line"></div>
         <div class="next-project-content">
           <div class="next-project-header">
             <h3 class="next-project-title">Next Project</h3>
-            <svg class="arrow-icon" width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.38626e-06 13.1275C1.42974e-06 12.6302 0.197544 12.1533 0.549175 11.8017C0.900806 11.4501 1.37772 11.2525 1.875 11.2525L23.5987 11.2525L15.5475 3.20501C15.3732 3.03068 15.2349 2.82372 15.1405 2.59595C15.0462 2.36818 14.9976 2.12405 14.9976 1.87751C14.9976 1.63097 15.0462 1.38685 15.1405 1.15907C15.2349 0.931301 15.3732 0.724342 15.5475 0.550012C15.7218 0.375682 15.9288 0.237396 16.1566 0.143049C16.3843 0.0487028 16.6285 0.000144862 16.875 0.000144884C17.1215 0.000144905 17.3657 0.0487028 17.5934 0.143049C17.8212 0.237396 18.0282 0.375682 18.2025 0.550012L29.4525 11.8C29.6271 11.9742 29.7656 12.1811 29.8602 12.4089C29.9547 12.6367 30.0034 12.8809 30.0034 13.1275C30.0034 13.3741 29.9547 13.6183 29.8602 13.8461C29.7656 14.0739 29.6271 14.2808 29.4525 14.455L18.2025 25.705C17.8504 26.0571 17.3729 26.2549 16.875 26.2549C16.3771 26.2549 15.8996 26.0571 15.5475 25.705C15.1954 25.3529 14.9976 24.8754 14.9976 24.3775C14.9976 23.8796 15.1954 23.4021 15.5475 23.05L23.5987 15.0025L1.875 15.0025C1.37772 15.0025 0.900805 14.805 0.549175 14.4533C0.197544 14.1017 1.34279e-06 13.6248 1.38626e-06 13.1275Z" fill="#00B5E2"/>
+            <svg
+              class="arrow-icon"
+              width="30"
+              height="27"
+              viewBox="0 0 30 27"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M1.38626e-06 13.1275C1.42974e-06 12.6302 0.197544 12.1533 0.549175 11.8017C0.900806 11.4501 1.37772 11.2525 1.875 11.2525L23.5987 11.2525L15.5475 3.20501C15.3732 3.03068 15.2349 2.82372 15.1405 2.59595C15.0462 2.36818 14.9976 2.12405 14.9976 1.87751C14.9976 1.63097 15.0462 1.38685 15.1405 1.15907C15.2349 0.931301 15.3732 0.724342 15.5475 0.550012C15.7218 0.375682 15.9288 0.237396 16.1566 0.143049C16.3843 0.0487028 16.6285 0.000144862 16.875 0.000144884C17.1215 0.000144905 17.3657 0.0487028 17.5934 0.143049C17.8212 0.237396 18.0282 0.375682 18.2025 0.550012L29.4525 11.8C29.6271 11.9742 29.7656 12.1811 29.8602 12.4089C29.9547 12.6367 30.0034 12.8809 30.0034 13.1275C30.0034 13.3741 29.9547 13.6183 29.8602 13.8461C29.7656 14.0739 29.6271 14.2808 29.4525 14.455L18.2025 25.705C17.8504 26.0571 17.3729 26.2549 16.875 26.2549C16.3771 26.2549 15.8996 26.0571 15.5475 25.705C15.1954 25.3529 14.9976 24.8754 14.9976 24.3775C14.9976 23.8796 15.1954 23.4021 15.5475 23.05L23.5987 15.0025L1.875 15.0025C1.37772 15.0025 0.900805 14.805 0.549175 14.4533C0.197544 14.1017 1.34279e-06 13.6248 1.38626e-06 13.1275Z"
+                fill="#00B5E2"
+              />
             </svg>
           </div>
           <article class="next-project-card">
@@ -378,24 +312,40 @@
             </div>
             <div class="card-image">
               <img
-              :src="TableDesktop"
+                :src="TableDesktop"
                 alt="The Table Project Desktop Preview"
               />
             </div>
           </article>
         </div>
-      </section>
+      </section> -->
     </div>
 
     <!-- Lightbox Component -->
-    <VueEasyLightbox
-      :visible="visibleRef"
-      :imgs="wireframeImages"
-      :index="indexRef"
-      @hide="onHide"
-    />
+    <VueEasyLightbox :visible="visibleRef" :imgs="wireframeImages" :index="indexRef" @hide="onHide" />
+
+    <!-- Custom Cursor Component -->
+    <CustomCursor />
   </div>
 </template>
+
+<style>
+/* Global cursor styles (unscoped) */
+[data-cursor-text][data-cursor-color] {
+  cursor: none;
+}
+
+[data-cursor-text][data-cursor-color] * {
+  cursor: auto;
+}
+
+/* Touch devices fallback */
+@media (hover: none) and (pointer: coarse) {
+  [data-cursor-text][data-cursor-color] {
+    cursor: auto;
+  }
+}
+</style>
 
 <style scoped>
 .case-study {
@@ -456,8 +406,6 @@
   pointer-events: none;
   display: block;
 }
-
-
 
 /* ===== Title and Overview Section ===== */
 .title-content {
@@ -703,6 +651,7 @@
   gap: 60px;
   align-items: flex-start;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .wireframes-section.low-fidelity {
@@ -711,7 +660,6 @@
 }
 
 .wireframes-section.high-fidelity {
-  flex-direction: column;
   gap: 23px;
 }
 
@@ -722,6 +670,38 @@
   display: flex;
   flex-direction: column;
   gap: 59px;
+}
+
+
+.wireframe-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 235px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.wireframe-title {
+  font-family: Inter, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--color-heading);
+  margin: 0;
+  min-width: 212px;
+  flex-shrink: 0;
+}
+
+.wireframe-description {
+  flex: 1;
+  max-width: 616px;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--color-text);
+  opacity: 0.75;
+  margin: 0;
 }
 
 .wireframes-images {
@@ -787,11 +767,9 @@
   gap: 16px;
 }
 
-
 img-comparison-slider {
   width: 100%;
   max-width: 1200px;
-
   height: auto;
   --divider-width: 3px;
   --divider-color: var(--primary-color);
@@ -799,11 +777,19 @@ img-comparison-slider {
   --handle-size: 44px;
 }
 
+.slider-image-wrapper {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.slider-image-wrapper img,
 img-comparison-slider img {
   width: 600px;
   height: auto;
   object-fit: cover;
   border-radius: 11px;
+  display: block;
 }
 
 /* Label row */
@@ -849,19 +835,17 @@ img-comparison-slider img {
 }
 
 .ux-content {
-    display: flex;
-    align-items: center;
-    gap: var(--gap);
-    width: var(--width);
-    flex-wrap: wrap;
-
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  width: var(--width);
+  flex-wrap: wrap;
 }
 
 .ux-image {
   width: 600px;
-    height: auto;
-    border-radius: 10px;
-
+  height: auto;
+  border-radius: 10px;
 }
 
 .ux-biases {
@@ -879,14 +863,13 @@ img-comparison-slider img {
 }
 
 .block-description {
-    font-weight: 700;
-    line-height: 1.5;
-    color: var(--color-text);
-    opacity: 0.75;
-    margin: 0;
-    font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--color-text);
+  opacity: 0.75;
+  margin: 0;
+  font-size: 16px;
 }
-
 
 .bias-item {
   display: flex;
@@ -901,7 +884,7 @@ img-comparison-slider img {
   margin: 0;
 }
 
-.bias-description{
+.bias-description {
   padding-left: 32px;
   color: var(--color-text);
   opacity: 0.75;
@@ -978,8 +961,6 @@ img-comparison-slider img {
   font-weight: 700;
 }
 
-
-
 .external-icon {
   display: inline;
 }
@@ -1032,8 +1013,8 @@ img-comparison-slider img {
   display: flex;
   flex-direction: column;
   gap: 33px;
-width: 628px;
-height: 537px;
+  width: 628px;
+  height: 537px;
   transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
   cursor: pointer;
 }
@@ -1062,7 +1043,7 @@ height: 537px;
   font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  color: #C0C0C0;
+  color: #c0c0c0;
   margin: 0;
 }
 
