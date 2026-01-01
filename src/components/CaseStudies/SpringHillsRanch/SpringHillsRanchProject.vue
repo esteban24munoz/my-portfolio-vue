@@ -8,20 +8,18 @@ import PostInterviewImage from "./assets/post_interview.png";
 import PreInterviewImage from "./assets/pre_interview.png";
 import "img-comparison-slider";
 import ComputerFrame from "./assets/computer_frame.png";
-import TableDesktop from "./assets/table_desktop.png";
-import LowWireframe1 from "./assets/low_wireframe_1.png";
-import LowWireframe2 from "./assets/low_wireframe_2.png";
-import LowWireframe3 from "./assets/low_wireframe_3.png";
-import LowWireframe4 from "./assets/low_wireframe_4.png";
-import HighWireframe1 from "./assets/high_wireframe_1.png";
-import HighWireframe2 from "./assets/high_wireframe_2.png";
-import HighWireframe3 from "./assets/high_wireframe_3.png";
+
+import UserFlow from "./assets/user_flow.png";
+import SystemWireframe1 from "./assets/system_wireframe_2.png";
+import SystemWireframe2 from "./assets/system_wireframe_1.png";
+import SystemWireframe3 from "./assets/system_wireframe_3.png";
+import HomeWireframe1 from "./assets/home_wireframe_1.png";
+import HomeWireframe2 from "./assets/home_wireframe_2.png";
 
 //Project Cover
-import CarmenCover from "./assets/carmen_cover.png";
-import AmazoniaCover from "./assets/amazonia_cover.png";
-import ChefCover from "./assets/chef_cover.jpg";
-import CarmenInsight from "./assets/carmen_insight.png";
+import SpringhillsCover from "./assets/springhills_cover.png";
+import SpringHillsInsight from "./assets/springhills_insight.png";
+import SpringHillsSystemCover from "./assets/springhills_system_trans.png";
 
 // Wireframe Lightbox state
 const wireframeVisibleRef = ref(false);
@@ -33,20 +31,18 @@ const ProjectIndexRef = ref(0);
 
 // All wireframe images - using high-resolution imported images for lightbox
 const wireframeImages = [
-  LowWireframe1,
-  LowWireframe2,
-  LowWireframe3,
-  LowWireframe4,
-  HighWireframe1,
-  HighWireframe2,
-  HighWireframe3,
+  UserFlow,
+  SystemWireframe1,
+  SystemWireframe2,
+  SystemWireframe3,
+  HomeWireframe1,
+  HomeWireframe2,
 ];
 
 const projectImages = [
-  CarmenCover,
-  AmazoniaCover,
-  ChefCover,
-  CarmenInsight
+  SpringhillsCover,
+  SpringHillsSystemCover,
+  SpringHillsInsight,
 ]
 
 // Open lightbox with specific image
@@ -94,23 +90,18 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
       <section class="title-content">
         <div class="main-title-wrapper">
           <h1 class="main-title">
-            Eight Months.<br />
-            Four Websites.<br />
-            One Vision.
+             #1 Ranked<br />
+            Cattle Website<br />
+            On Google
           </h1>
 
           <div class="overview-section">
             <h2 class="section-label">01. OVERVIEW</h2>
             <p class="overview-description">
-              This case study goes over my challenges and results of FoodPrints,
-              a project that draws from public statistics, figures of WFP data
-              across the region, diving deeper into the human narratives hidden
-              within.
+              This case study goes over my challenges and results of Spring Hills Ranch LLC Website,
+              a complete informational e-commerce website for a small, family-run cattle farm in Mt. Vernon, Missouri. The site needed to showcase their brand, allow users to contact the owner, and expand their reach beyond local customers.
               <br /><br />
-              Through visually compelling products—interactive displays,
-              infographics, case studies, and immersive audio-visual pieces—we
-              aimed to create an analytical and emotional experience centered on
-              food security and nutrition.
+               Key tasks included designing a user-friendly layout, implementing a CRM system (to manage new bull's and the one's sold), ensuring mobile responsiveness, and highlighting the farm’s values and identity.
             </p>
           </div>
         </div>
@@ -119,29 +110,13 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
         <div class="project-images">
           <div class="image-wrapper">
             <img
-            :src="CarmenCover"
+            :src="SpringhillsCover"
             alt="Carmen Desktop Project"
             class="project-image lightbox-trigger"
             @click="openProjectLightbox(0)"
             />
           </div>
-          <div class="image-wrapper">
-            <img
-              :src="AmazoniaCover"
-              alt="Desktop Development Project 1"
-              class="project-image lightbox-trigger"
-              @click="openProjectLightbox(1)"
-            />
-          </div>
-          
-          <div class="image-wrapper">
-            <img
-              :src="ChefCover"
-              alt="Desktop Development Project 2"
-              class="project-image lightbox-trigger"
-              @click="openProjectLightbox(2)"
-            />
-          </div>
+        
         </div>
       </section>
 
@@ -165,7 +140,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
         </div>
         <div class="mockup-wrapper">
           <img
-            :src="CarmenInsight"
+            :src="SpringHillsInsight"
             alt="MacBook Air mockup showing project"
             class="laptop-mockup lightbox-trigger"
             @click="openProjectLightbox(3)"
@@ -213,13 +188,12 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
           <div class="divider-line"></div>
           <div class="process-title-wrapper">
             <h2 class="section-label">04. PROCESS</h2>
-            <h3 class="process-title">Storytelling Focused</h3>
+            <h3 class="process-title">Understanding the User</h3>
           </div>
         </div>
-
-        <div class="wireframes-section low-fidelity">
+       <div class="wireframes-section low-fidelity">
           <div class="wireframes-content">
-            <h4 class="block-title">Low-Fidelity Wireframes</h4>
+            <h4 class="block-title">User Flow</h4>
             <p class="block-description">
               I began the creative process by building the first wireframes,
               focusing on storytelling and the real stories collected from
@@ -230,35 +204,19 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
           </div>
           <div class="wireframes-images">
             <img
-              :src="LowWireframe1"
+              :src="UserFlow"
               alt="Low-fidelity wireframe 1"
               class="wireframe-image"
               @click="openLightbox(0)"
             />
-            <img
-              :src="LowWireframe2"
-              alt="Low-fidelity wireframe 2"
-              class="wireframe-image"
-              @click="openLightbox(1)"
-            />
-            <img
-              :src="LowWireframe3"
-              alt="Low-fidelity wireframe 3"
-              class="wireframe-image"
-              @click="openLightbox(2)"
-            />
-            <img
-              :src="LowWireframe4"
-              alt="Low-fidelity wireframe 4"
-              class="wireframe-image"
-              @click="openLightbox(3)"
-            />
+    
+
           </div>
         </div>
 
-        <div class="wireframes-section high-fidelity">
+       <div class="wireframes-section high-fidelity">
           <div class="wireframes-header">
-            <h4 class="block-title">High-Fidelity Wireframes</h4>
+            <h4 class="block-title">Low-Fidelity <br/> Homepage Wireframes</h4>
             <div class="divider-line short"></div>
           </div>
           <div class="wireframes-layout">
@@ -268,19 +226,47 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
             </p>
             <div class="wireframes-images">
               <img
-                :src="HighWireframe1"
+                :src="HomeWireframe1"
                 alt="High-fidelity wireframe 1"
                 class="wireframe-image"
                 @click="openLightbox(4)"
               />
               <img
-                :src="HighWireframe2"
+                :src="HomeWireframe2"
+                alt="High-fidelity wireframe 2"
+                class="wireframe-image"
+                @click="openLightbox(5)"
+              />
+            
+            </div>
+          </div>
+        </div>
+
+        <div class="wireframes-section high-fidelity">
+          <div class="wireframes-header">
+            <h4 class="block-title">CRM System Wireframes</h4>
+            <div class="divider-line short"></div>
+          </div>
+          <div class="wireframes-layout">
+            <p class="block-description">
+              Some of my wireframe ideas that were later used by the graphic
+              designer in charge of the final visual design of the websites
+            </p>
+            <div class="wireframes-images">
+              <img
+                :src="SystemWireframe1"
+                alt="High-fidelity wireframe 1"
+                class="wireframe-image"
+                @click="openLightbox(4)"
+              />
+              <img
+                :src="SystemWireframe1"
                 alt="High-fidelity wireframe 2"
                 class="wireframe-image"
                 @click="openLightbox(5)"
               />
               <img
-                :src="HighWireframe3"
+                :src="SystemWireframe3"
                 alt="High-fidelity wireframe 3"
                 class="wireframe-image"
                 @click="openLightbox(6)"
@@ -289,80 +275,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
           </div>
         </div>
 
-        <div class="ux-section">
-          <div class="image-comparison-wrapper">
-            <!-- SLIDER -->
-            <img-comparison-slider value="50">
-              <div
-                slot="first"
-                class="slider-image-wrapper"
-                data-cursor-text="before"
-                data-cursor-color="var(--color-accent)"
-                data-cursor-text-color="var(--color-text-light)"
-              >
-                <img
-                  :src="PreInterviewImage"
-                  alt="Before redesign"
-                />
-              </div>
 
-              <div
-                slot="second"
-                class="slider-image-wrapper"
-                data-cursor-text="after"
-                data-cursor-color="var(--color-accent)"
-                data-cursor-text-color="var(--color-text-light)"
-              >
-                <img
-                  :src="PostInterviewImage"
-                  alt="After redesign"
-                />
-              </div>
-            </img-comparison-slider>
-
-            <!-- LABELS BELOW -->
-            <!-- <div class="comparison-labels">
-              <span class="comparison-label">Before</span>
-              <span class="comparison-label">After</span>
-            </div> -->
-          </div>
-
-          <div class="ux-content">
-            <div class="content-header">
-              <h4 class="ux-title">UX Psychology Applied</h4>
-              <p class="block-description">
-                The design on the left represents the first iteration of this
-                interactive section. Its primary goal was to prompt users to
-                select a price point and then reveal the underlying truth behind
-                that choice. After 5 usability tests, I redesigned the section
-                taking in consideration the following cognitive bias:
-              </p>
-            </div>
-            <div class="ux-biases">
-              <div class="bias-item">
-                <h5 class="bias-title">+ Progressive Disclosure</h5>
-                <p class="bias-description">
-                  Users are less overwhelmed if they're exposed to complex
-                  features later
-                </p>
-              </div>
-              <div class="bias-item">
-                <h5 class="bias-title">+ Framing</h5>
-                <p class="bias-description">
-                  The way information is presented affects how users make
-                  decisions
-                </p>
-              </div>
-              <div class="bias-item">
-                <h5 class="bias-title">+ Nudge</h5>
-                <p class="bias-description">
-                  Subtle hints can affect users' decisions (Transforming the
-                  cursor in to a “CLICK” circle when hovering over the button)
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Final Results Section -->
@@ -371,7 +284,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
           <h2 class="section-label">05. FINAL RESULTS</h2>
           <h3 class="results-title">Bringing the Story to Life</h3>
         </div>
-
+<!-- 
         <div class="result-showcase">
           <div class="showcase-mockup">
             <div class="laptop-container">
@@ -497,45 +410,12 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
               />
             </div>
           </div>
-        </div>
+        </div> -->
+        
       </section>
 
-      <!-- Next Project Section -->
-      <section class="next-project-section">
-        <div class="divider-line"></div>
-        <div class="next-project-content">
-          <div class="next-project-header">
-            <h3 class="next-project-title">Next Project</h3>
-            <svg
-              class="arrow-icon"
-              width="30"
-              height="27"
-              viewBox="0 0 30 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M1.38626e-06 13.1275C1.42974e-06 12.6302 0.197544 12.1533 0.549175 11.8017C0.900806 11.4501 1.37772 11.2525 1.875 11.2525L23.5987 11.2525L15.5475 3.20501C15.3732 3.03068 15.2349 2.82372 15.1405 2.59595C15.0462 2.36818 14.9976 2.12405 14.9976 1.87751C14.9976 1.63097 15.0462 1.38685 15.1405 1.15907C15.2349 0.931301 15.3732 0.724342 15.5475 0.550012C15.7218 0.375682 15.9288 0.237396 16.1566 0.143049C16.3843 0.0487028 16.6285 0.000144862 16.875 0.000144884C17.1215 0.000144905 17.3657 0.0487028 17.5934 0.143049C17.8212 0.237396 18.0282 0.375682 18.2025 0.550012L29.4525 11.8C29.6271 11.9742 29.7656 12.1811 29.8602 12.4089C29.9547 12.6367 30.0034 12.8809 30.0034 13.1275C30.0034 13.3741 29.9547 13.6183 29.8602 13.8461C29.7656 14.0739 29.6271 14.2808 29.4525 14.455L18.2025 25.705C17.8504 26.0571 17.3729 26.2549 16.875 26.2549C16.3771 26.2549 15.8996 26.0571 15.5475 25.705C15.1954 25.3529 14.9976 24.8754 14.9976 24.3775C14.9976 23.8796 15.1954 23.4021 15.5475 23.05L23.5987 15.0025L1.875 15.0025C1.37772 15.0025 0.900805 14.805 0.549175 14.4533C0.197544 14.1017 1.34279e-06 13.6248 1.38626e-06 13.1275Z"
-                fill="#00B5E2"
-              />
-            </svg>
-          </div>
-          <article class="next-project-card">
-            <div class="card-content">
-              <h4 class="card-title">The Table | Harding University</h4>
-              <p class="card-role">UX/UI Designer & Web Developer</p>
-            </div>
-            <div class="card-image">
-              <img
-                :src="TableDesktop"
-                alt="The Table Project Desktop Preview"
-              />
-            </div>
-          </article>
-        </div>
-      </section>
+      
+
     </div>
 
     <!-- Lightbox Component -->
@@ -926,7 +806,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
 
 .wireframe-image {
   height: auto;
-  max-height: 374px;
+  max-height: 274px;
   display: block;
   cursor: zoom-in;
   transition: transform 0.2s ease;

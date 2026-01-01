@@ -8,6 +8,7 @@ import Resume from './components/Resume.vue'
 import FoodprintsProject from './components/CaseStudies/Foodprints/FoodprintsProject.vue'
 import ViewbookProject from './components/CaseStudies/Viewbook/ViewbookProject.vue'
 import TheTableProject from './components/CaseStudies/TheTable/TheTableProject.vue'
+import SpringHillsRanchProject from './components/CaseStudies/SpringHillsRanch/SpringHillsRanchProject.vue'
 
 const currentRoute = ref(window.location.hash || '')
 
@@ -36,6 +37,9 @@ onMounted(() => {
       </template>
       <template v-else-if="currentRoute === '#/thetable'">
         <TheTableProject />
+      </template>
+      <template v-else-if="currentRoute === '#/springhillsranch'">
+        <SpringHillsRanchProject />
       </template>
       <template v-else>
         <HeroSection />

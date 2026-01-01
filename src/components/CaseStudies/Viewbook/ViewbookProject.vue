@@ -53,6 +53,10 @@ const roughIndexRef = ref(0);
 const iterationVisibleRef = ref(false);
 const iterationIndexRef = ref(0);
 
+// Lightbox state for project images
+const ProjectVisibleRef = ref(false);
+const ProjectIndexRef = ref(0);
+
 // All wireframe images - using high-resolution imported images for lightbox
 const wireframeImages = [
   ViewbookWireframe1,
@@ -81,6 +85,12 @@ const iterationImages = [
   ViewbookIteration4,
   ViewbookIteration5,
   ViewbookIteration6,
+];
+
+// All project images - using high-resolution imported images for lightbox
+const projectImages = [
+  ViewbookCover,
+  ViewbookInsight,
 ];
 
 
@@ -113,6 +123,17 @@ const onHideRough = () => {
 
 const onHideIteration = () => {
   iterationVisibleRef.value = false;
+};
+
+// Open lightbox for project images
+const openProjectLightbox = (index: number) => {
+  ProjectIndexRef.value = index;
+  ProjectVisibleRef.value = true;
+};
+
+// Close project lightbox
+const onProjectHide = () => {
+  ProjectVisibleRef.value = false;
 };
 
 // Restart video on click
@@ -170,8 +191,9 @@ const flippingBookHtml = ref(
           <div class="image-wrapper">
             <img
               :src="ViewbookCover"
-              alt="Carmen Desktop Project"
-              class="project-image"
+              alt="Viewbook Cover"
+              class="project-image lightbox-trigger"
+              @click="openProjectLightbox(0)"
             />
           </div>
         </div>
@@ -201,7 +223,8 @@ const flippingBookHtml = ref(
           <img
             :src="ViewbookInsight"
             alt="MacBook Air mockup showing project"
-            class="laptop-mockup"
+            class="laptop-mockup lightbox-trigger"
+            @click="openProjectLightbox(1)"
           />
         </div>
       </section>
@@ -419,6 +442,13 @@ const flippingBookHtml = ref(
       :index="iterationIndexRef"
       @hide="onHideIteration"
     />
+    <!-- Lightbox for project images -->
+    <vue-easy-lightbox
+      :visible="ProjectVisibleRef"
+      :imgs="projectImages"
+      :index="ProjectIndexRef"
+      @hide="onProjectHide"
+    />
   </div>
 </template>
 
@@ -577,6 +607,16 @@ const flippingBookHtml = ref(
   height: auto;
   border-radius: 10px;
   display: block;
+}
+
+/* LightBox Trigger */
+.lightbox-trigger {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.lightbox-trigger:hover {
+  transform: scale(1.02);
 }
 
 /* ===== Role Section ===== */

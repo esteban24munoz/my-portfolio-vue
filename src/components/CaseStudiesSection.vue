@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import SpringHilllSCover from '../assets/spring_hills_cover.png'
+import PackagingDesignCover from '../assets/spice_package_cover.png'
 
 type FilterTab = 'All' | 'Development' | 'Graphic Design'
 
@@ -21,6 +23,11 @@ const navigateToViewbook = () => {
 
 const navigateToTheTable = () => {
   window.location.hash = '#/thetable'
+  window.scrollTo(0, 0)
+}
+
+const navigateToSpringHillsRanch = () => {
+  window.location.hash = '#/springhillsranch'
   window.scrollTo(0, 0)
 }
 
@@ -119,20 +126,20 @@ const navigateToTheTable = () => {
         </div>
       </article>
 
-      <article class="case-card card-4">
+      <article class="case-card card-4" @click="navigateToSpringHillsRanch">
         <div class="card-content">
           <div class="card-header">
-            <h3 class="card-title">Olive the Above | Fusion Cuisine Branding Team Project</h3>
-            <p class="card-role">Graphic Designer</p>
+            <h3 class="card-title">Spring Hills Ranch | Freelance</h3>
+            <p class="card-role">UX/UI Designer & Web Developer</p>
           </div>
           <p class="card-description">
-            Branding project focused on creating a fresh, cohesive brand identity for a new fusion food concept starting as a food truck and expanding into catering and a future restaurant
+            An informational e-commerce website from conception to implementation, specifically tailored to meet the needs of a small, family-run cattle farming enterprise in Mt. Vernon, Missouri.
           </p>
           <div class="card-skills">
-            <span class="skill-tag">Indesign</span>
-            <span class="skill-tag">Photoshop</span>
-            <span class="skill-tag">Ilustrator</span>
             <span class="skill-tag">Figma</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">APIs</span>
+            <span class="skill-tag">SEO</span>
           </div>
         </div>
         <!-- <div class="card-image">
@@ -172,7 +179,6 @@ const navigateToTheTable = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem 1.5rem;
   gap: 4.44rem;
 }
 
