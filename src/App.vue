@@ -9,6 +9,7 @@ import FoodprintsProject from './components/CaseStudies/Foodprints/FoodprintsPro
 import ViewbookProject from './components/CaseStudies/Viewbook/ViewbookProject.vue'
 import TheTableProject from './components/CaseStudies/TheTable/TheTableProject.vue'
 import SpringHillsRanchProject from './components/CaseStudies/SpringHillsRanch/SpringHillsRanchProject.vue'
+import OliveTheAboveProject from './components/CaseStudies/OliveTheAbove/OliveTheAboveProject.vue'
 import GoUpButton from './components/goUpButton/GoUpButton.vue'
 
 const currentRoute = ref(window.location.hash || '')
@@ -41,6 +42,9 @@ onMounted(() => {
       </template>
       <template v-else-if="currentRoute === '#/springhillsranch'">
         <SpringHillsRanchProject />
+      </template>
+      <template v-else-if="currentRoute === '#/olivetheabove'">
+        <OliveTheAboveProject />
       </template>
       <template v-else>
         <HeroSection />

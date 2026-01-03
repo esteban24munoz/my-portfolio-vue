@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import SpringHilllSCover from '../assets/spring_hills_cover.png'
-import PackagingDesignCover from '../assets/spice_package_cover.png'
+import { ref, computed } from 'vue'
+import SpringHillsCover from '../assets/spring_hills_cover.png'
+import OliveTheAboveCover from '../assets/olive_cover.png'
 
 type FilterTab = 'All' | 'Development' | 'Graphic Design'
+type CaseStudy = {
+  id: string
+  title: string
+  role: string
+  description: string
+  skills: string[]
+  category: 'Development' | 'Graphic Design'
+  image?: string
+  coverImage?: string
+  onClick?: () => void
+}
 
 const activeFilter = ref<FilterTab>('All')
 
@@ -30,6 +41,71 @@ const navigateToSpringHillsRanch = () => {
   window.location.hash = '#/springhillsranch'
   window.scrollTo(0, 0)
 }
+const navigateToOliveTheAbove = () => {
+  window.location.hash = '#/olivetheabove'
+  window.scrollTo(0, 0)
+}
+
+const caseStudies: CaseStudy[] = [
+  {
+    id: 'card-1',
+    title: 'FoodPrints | World Food Programme (WFP) of the United Nations',
+    role: 'UX/UI Designer & Web Developer',
+    description: 'Collaborated with product managers, developers and designers to create 3 fully responsive and interactive websites that showcase important data in a storytelling way.',
+    skills: ['React', 'TypeScript', 'Figma', 'AWS', 'GitHub', 'SEO'],
+    category: 'Development',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/227a03404fc10b2260819f75cc6e18dad03f64bf?width=1126',
+    onClick: navigateToFoodprints
+  },
+  {
+    id: 'card-2',
+    title: 'International Viewbook | Harding University',
+    role: 'Graphic Designer',
+    description: 'Led the visual development of a comprehensive viewbook in just one month, presenting initial sketches and rough concepts to stakeholders, iterating on feedback to refine the design',
+    skills: ['Indesign', 'Photoshop', 'Ilustrator'],
+    category: 'Graphic Design',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/159cf09b19d7eb93036f8cfcfd32e86180685134?width=598',
+    onClick: navigateToViewbook
+  },
+  {
+    id: 'card-3',
+    title: 'The Table | Harding University',
+    role: 'UX/UI Designer & Web Developer',
+    description: 'Designed and developed a robust React web application that displays products in stock and out of stock to Harding Students, leveraging MySQL databases for real-time inventory control and the registration of 1167 shoppers since it began operations.',
+    skills: ['React', 'TypeScript', 'Figma'],
+    category: 'Development',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4dad6658fe5b7d84ca5bfe0081d2201b7826b40f?width=1128',
+    onClick: navigateToTheTable
+  },
+  {
+    id: 'card-4',
+    title: 'Spring Hills Ranch | Freelance',
+    role: 'UX/UI Designer & Web Developer',
+    description: 'An informational e-commerce website from conception to implementation, specifically tailored to meet the needs of a small, family-run cattle farming enterprise in Mt. Vernon, Missouri.',
+    skills: ['Figma', 'PHP', 'APIs', 'SEO'],
+    category: 'Development',
+    coverImage: SpringHillsCover,
+    onClick: navigateToSpringHillsRanch
+  },
+  {
+    id: 'card-5',
+    title: 'Olive the Above | Fusion Cuisine Branding Team Project',
+    role: 'Graphic Design',
+    description: 'Branding project focused on creating a fresh, cohesive brand identity for a new fusion food concept starting as a food truck and expanding into catering and a future restaurant.',
+    skills: ['Indesign', 'Photoshop', 'Ilustrator'],
+    category: 'Graphic Design',
+    coverImage: OliveTheAboveCover,
+    onClick: navigateToOliveTheAbove
+
+  }
+]
+
+const filteredCaseStudies = computed(() => {
+  if (activeFilter.value === 'All') {
+    return caseStudies
+  }
+  return caseStudies.filter(study => study.category === activeFilter.value)
+})
 
 </script>
 
@@ -62,111 +138,31 @@ const navigateToSpringHillsRanch = () => {
       </div>
     </div>
 
-    <div class="bento-grid">
-      <article class="case-card card-1" @click="navigateToFoodprints">
+    <div class="bento-grid" :class="`grid-${filteredCaseStudies.length}`">
+      <article
+        v-for="(study, index) in filteredCaseStudies"
+        :key="study.id"
+        :class="['case-card', study.id]"
+        @click="study.onClick"
+      >
+        <div v-if="study.coverImage" class="card-cover">
+          <img :src="study.coverImage" :alt="`${study.title} cover`" class="cover-image" />
+        </div>
         <div class="card-content">
           <div class="card-header">
-            <h3 class="card-title">FoodPrints | World Food Programme (WFP) of the United Nations</h3>
-            <p class="card-role">UX/UI Designer & Web Developer</p>
+            <h3 class="card-title">{{ study.title }}</h3>
+            <p class="card-role">{{ study.role }}</p>
           </div>
           <p class="card-description">
-            Collaborated with product managers, developers and designers to create 3 fully responsive and interactive websites that showcase important data in a storytelling way.
+            {{ study.description }}
           </p>
           <div class="card-skills">
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">GitHub</span>
-            <span class="skill-tag">SEO</span>
+            <span v-for="skill in study.skills" :key="skill" class="skill-tag">{{ skill }}</span>
           </div>
         </div>
-        <div class="card-image">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/227a03404fc10b2260819f75cc6e18dad03f64bf?width=1126" alt="FoodPrints WFP project" />
+        <div v-if="study.image" class="card-image">
+          <img :src="study.image" :alt="study.title" />
         </div>
-      </article>
-
-      <article class="case-card card-2" @click="navigateToViewbook">
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">International Viewbook | Harding University</h3>
-            <p class="card-role">Graphic Designer</p>
-          </div>
-          <p class="card-description">
-            Led the visual development of a comprehensive viewbook in just one month, presenting initial sketches and rough concepts to stakeholders, iterating on feedback to refine the design
-          </p>
-          <div class="card-skills">
-            <span class="skill-tag">Indesign</span>
-            <span class="skill-tag">Photoshop</span>
-            <span class="skill-tag">Ilustrator</span>
-          </div>
-        </div>
-        <div class="card-image">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/159cf09b19d7eb93036f8cfcfd32e86180685134?width=598" alt="Harding University Viewbook" />
-        </div>
-      </article>
-
-      <article class="case-card card-3" @click="navigateToTheTable">
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">The Table | Harding University</h3>
-            <p class="card-role">UX/UI Designer & Web Developer</p>
-          </div>
-          <p class="card-description">
-            Designed and developed a robust React web application that displays products in stock and out of stock to Harding Students, leveraging MySQL databases for real-time inventory control and the registration of 1167 shoppers since it began operations.
-          </p>
-          <div class="card-skills">
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">Figma</span>
-          </div>
-        </div>
-        <div class="card-image">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/4dad6658fe5b7d84ca5bfe0081d2201b7826b40f?width=1128" alt="The Table application" />
-        </div>
-      </article>
-
-      <article class="case-card card-4" @click="navigateToSpringHillsRanch">
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">Spring Hills Ranch | Freelance</h3>
-            <p class="card-role">UX/UI Designer & Web Developer</p>
-          </div>
-          <p class="card-description">
-            An informational e-commerce website from conception to implementation, specifically tailored to meet the needs of a small, family-run cattle farming enterprise in Mt. Vernon, Missouri.
-          </p>
-          <div class="card-skills">
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">PHP</span>
-            <span class="skill-tag">APIs</span>
-            <span class="skill-tag">SEO</span>
-          </div>
-        </div>
-        <!-- <div class="card-image">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/placeholder-4" alt="Olive the Above branding" />
-        </div> -->
-      </article>
-
-      <article class="case-card card-5">
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">Olive the Above | Fusion Cuisine Branding Team Project</h3>
-            <p class="card-role">Graphic Design</p>
-          </div>
-          <p class="card-description">
-            Branding project focused on creating a fresh, cohesive brand identity for a new fusion food concept starting as a food truck and expanding into catering and a future restaurant
-          </p>
-          <div class="card-skills">
-            <span class="skill-tag">Indesign</span>
-            <span class="skill-tag">Photoshop</span>
-            <span class="skill-tag">Ilustrator</span>
-            <span class="skill-tag">Figma</span>
-
-          </div>
-        </div>
-        <!-- <div class="card-image">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/placeholder-5" alt="Packaging design" />
-        </div> -->
       </article>
     </div>
 
@@ -239,11 +235,61 @@ const navigateToSpringHillsRanch = () => {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Default layout (All - 5 cards) */
+.bento-grid.grid-5 {
   grid-template-areas:
     "card1 card1 card1 card1 card1 card1 card1 card2 card2 card2 card2 card2"
     "card4 card4 card4 card4 card4 card3 card3 card3 card3 card3 card3 card3"
     "card5 card5 card5 card5 card5 card3 card3 card3 card3 card3 card3 card3";
 }
+
+.bento-grid.grid-5 .card-1 { grid-area: card1; }
+.bento-grid.grid-5 .card-2 { grid-area: card2; }
+.bento-grid.grid-5 .card-3 { grid-area: card3; }
+.bento-grid.grid-5 .card-4 { grid-area: card4; }
+.bento-grid.grid-5 .card-5 { grid-area: card5; }
+
+/* Development filter (3 cards: FoodPrints, The Table, Spring Hills Ranch) */
+.bento-grid.grid-3 {
+  grid-template-areas:
+    "card1 card1 card1 card1 card1 card1 card3 card3 card3 card3 card3 card3"
+    "card4 card4 card4 card4 card4 card4 card3 card3 card3 card3 card3 card3";
+}
+
+.bento-grid.grid-3 .case-card:nth-child(1) { grid-area: card1; }
+.bento-grid.grid-3 .case-card:nth-child(2) { grid-area: card3; }
+.bento-grid.grid-3 .case-card:nth-child(3) { grid-area: card4; }
+
+/* Graphic Design filter (2 cards: Viewbook, Packaging Design) */
+.bento-grid.grid-2 {
+  grid-template-areas:
+    "card2 card2 card2 card2 card2 card2 card5 card5 card5 card5 card5 card5";
+}
+
+.bento-grid.grid-2 .case-card:nth-child(1) { grid-area: card2; }
+.bento-grid.grid-2 .case-card:nth-child(2) { grid-area: card5; }
+
+/* Fallback for single card */
+.bento-grid.grid-1 {
+  grid-template-areas: "card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1";
+}
+
+.bento-grid.grid-1 .case-card { grid-area: card1; }
+
+/* Fallback for 4 cards */
+.bento-grid.grid-4 {
+  grid-template-areas:
+    "card1 card1 card1 card1 card1 card1 card2 card2 card2 card2 card2 card2"
+    "card3 card3 card3 card3 card3 card3 card4 card4 card4 card4 card4 card4";
+}
+
+.bento-grid.grid-4 .case-card:nth-child(1) { grid-area: card1; }
+.bento-grid.grid-4 .case-card:nth-child(2) { grid-area: card2; }
+.bento-grid.grid-4 .case-card:nth-child(3) { grid-area: card3; }
+.bento-grid.grid-4 .case-card:nth-child(4) { grid-area: card4; }
 
 .case-card {
   border: 1.578px solid var(--linear-top-right);
@@ -253,8 +299,22 @@ const navigateToSpringHillsRanch = () => {
   display: flex;
   flex-direction: column;
   gap: 2.07rem;
-  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .case-card:hover {
@@ -262,24 +322,42 @@ const navigateToSpringHillsRanch = () => {
   transform: translateY(-4px);
 }
 
-.card-1 {
-  grid-area: card1;
+.card-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 1;
+  border-radius: 11.048px;
+  overflow: hidden;
 }
 
-.card-2 {
-  grid-area: card2;
+.card-cover .cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.card-3 {
-  grid-area: card3;
+.card-4:hover .card-cover,
+.card-5:hover .card-cover {
+  opacity: 1;
+  visibility: visible;
 }
 
-.card-4 {
-  grid-area: card4;
+.card-4 .card-content,
+.card-5 .card-content {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.4s ease;
 }
 
-.card-5 {
-  grid-area: card5;
+.card-4:hover .card-content,
+.card-5:hover .card-content {
+  opacity: 0;
 }
 
 .card-content {
@@ -398,12 +476,32 @@ const navigateToSpringHillsRanch = () => {
 }
 
 @media (max-width: 1200px) {
-  .bento-grid {
+  .bento-grid.grid-5 {
     grid-template-areas:
       "card1 card1 card1 card1 card1 card1 card2 card2 card2 card2 card2 card2"
       "card3 card3 card3 card3 card3 card3 card3 card3 card3 card3 card3 card3"
       "card4 card4 card4 card4 card4 card4 card5 card5 card5 card5 card5 card5";
   }
+
+  .bento-grid.grid-3 {
+    grid-template-areas:
+      "card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1"
+      "card3 card3 card3 card3 card3 card3 card3 card3 card3 card3 card3 card3"
+      "card4 card4 card4 card4 card4 card4 card4 card4 card4 card4 card4 card4";
+  }
+
+  .bento-grid.grid-3 .case-card:nth-child(1) { grid-area: card1; }
+  .bento-grid.grid-3 .case-card:nth-child(2) { grid-area: card3; }
+  .bento-grid.grid-3 .case-card:nth-child(3) { grid-area: card4; }
+
+  .bento-grid.grid-2 {
+    grid-template-areas:
+      "card2 card2 card2 card2 card2 card2 card2 card2 card2 card2 card2 card2"
+      "card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5";
+  }
+
+  .bento-grid.grid-2 .case-card:nth-child(1) { grid-area: card2; }
+  .bento-grid.grid-2 .case-card:nth-child(2) { grid-area: card5; }
 
   .section-title {
     font-size: 2.75rem;
@@ -429,15 +527,19 @@ const navigateToSpringHillsRanch = () => {
     font-size: 1rem;
   }
 
-  .bento-grid {
+  .bento-grid,
+  .bento-grid.grid-1,
+  .bento-grid.grid-2,
+  .bento-grid.grid-3,
+  .bento-grid.grid-4,
+  .bento-grid.grid-5 {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-    grid-template-areas:
-      "card1"
-      "card2"
-      "card3"
-      "card4"
-      "card5";
+    grid-template-areas: none;
+  }
+
+  .bento-grid .case-card {
+    grid-area: auto;
   }
 
   .case-card {
