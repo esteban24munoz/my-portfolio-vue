@@ -9,6 +9,7 @@ import FoodprintsProject from './components/CaseStudies/Foodprints/FoodprintsPro
 import ViewbookProject from './components/CaseStudies/Viewbook/ViewbookProject.vue'
 import TheTableProject from './components/CaseStudies/TheTable/TheTableProject.vue'
 import SpringHillsRanchProject from './components/CaseStudies/SpringHillsRanch/SpringHillsRanchProject.vue'
+import GoUpButton from './components/goUpButton/GoUpButton.vue'
 
 const currentRoute = ref(window.location.hash || '')
 
@@ -24,7 +25,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <NavBar />
+    <NavBar :current-route="currentRoute" />
     <main>
       <template v-if="currentRoute === '#/resume'">
         <Resume />
@@ -47,6 +48,7 @@ onMounted(() => {
       </template>
     </main>
     <Footer />
+    <GoUpButton />
   </div>
 </template>
 

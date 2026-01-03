@@ -2,16 +2,15 @@
 import { ref } from "vue";
 import VueEasyLightbox from "vue-easy-lightbox";
 import CustomCursor from "../../CustomCursor/CustomCursor.vue";
-import amazoniaVideo from "./assets/amazonia_v1.mp4";
-import carmenVideo from "./assets/carmen_v1.mp4";
+import SpringHillsVideo from "./assets/springhills_video.mp4";
 import PostInterviewImage from "./assets/post_interview.png";
 import PreInterviewImage from "./assets/pre_interview.png";
 import "img-comparison-slider";
 import ComputerFrame from "./assets/computer_frame.png";
 
 import UserFlow from "./assets/user_flow.png";
-import SystemWireframe1 from "./assets/system_wireframe_2.png";
-import SystemWireframe2 from "./assets/system_wireframe_1.png";
+import SystemWireframe1 from "./assets/system_wireframe_1.png";
+import SystemWireframe2 from "./assets/system_wireframe_2.png";
 import SystemWireframe3 from "./assets/system_wireframe_3.png";
 import HomeWireframe1 from "./assets/home_wireframe_1.png";
 import HomeWireframe2 from "./assets/home_wireframe_2.png";
@@ -20,6 +19,7 @@ import HomeWireframe2 from "./assets/home_wireframe_2.png";
 import SpringhillsCover from "./assets/springhills_cover.png";
 import SpringHillsInsight from "./assets/springhills_insight.png";
 import SpringHillsSystemCover from "./assets/springhills_system_trans.png";
+import SpringHillsSystemCover2 from "./assets/springhills_system_2_trans.png";
 
 // Wireframe Lightbox state
 const wireframeVisibleRef = ref(false);
@@ -32,18 +32,19 @@ const ProjectIndexRef = ref(0);
 // All wireframe images - using high-resolution imported images for lightbox
 const wireframeImages = [
   UserFlow,
+  HomeWireframe1,
+  HomeWireframe2,
   SystemWireframe1,
   SystemWireframe2,
   SystemWireframe3,
-  HomeWireframe1,
-  HomeWireframe2,
 ];
 
 const projectImages = [
   SpringhillsCover,
   SpringHillsSystemCover,
   SpringHillsInsight,
-]
+  SpringHillsSystemCover2,
+];
 
 // Open lightbox with specific image
 const openLightbox = (index: number) => {
@@ -90,7 +91,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
       <section class="title-content">
         <div class="main-title-wrapper">
           <h1 class="main-title">
-             #1 Ranked<br />
+            #1 Ranked<br />
             Cattle Website<br />
             On Google
           </h1>
@@ -98,10 +99,16 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
           <div class="overview-section">
             <h2 class="section-label">01. OVERVIEW</h2>
             <p class="overview-description">
-              This case study goes over my challenges and results of Spring Hills Ranch LLC Website,
-              a complete informational e-commerce website for a small, family-run cattle farm in Mt. Vernon, Missouri. The site needed to showcase their brand, allow users to contact the owner, and expand their reach beyond local customers.
+              This case study goes over my challenges and results of Spring
+              Hills Ranch LLC Website, a complete informational e-commerce
+              website for a small, family-run cattle farm in Mt. Vernon,
+              Missouri. The site needed to showcase their brand, allow users to
+              contact the owner, and expand their reach beyond local customers.
               <br /><br />
-               Key tasks included designing a user-friendly layout, implementing a CRM system (to manage new bull's and the one's sold), ensuring mobile responsiveness, and highlighting the farm’s values and identity.
+              Key tasks included designing a user-friendly layout, implementing
+              a CRM system (to manage new bull's and the one's sold), ensuring
+              mobile responsiveness, and highlighting the farm’s values and
+              identity.
             </p>
           </div>
         </div>
@@ -110,13 +117,12 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
         <div class="project-images">
           <div class="image-wrapper">
             <img
-            :src="SpringhillsCover"
-            alt="Carmen Desktop Project"
-            class="project-image lightbox-trigger"
-            @click="openProjectLightbox(0)"
+              :src="SpringhillsCover"
+              alt="Carmen Desktop Project"
+              class="project-image lightbox-trigger"
+              @click="openProjectLightbox(0)"
             />
           </div>
-        
         </div>
       </section>
 
@@ -191,7 +197,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
             <h3 class="process-title">Understanding the User</h3>
           </div>
         </div>
-       <div class="wireframes-section low-fidelity">
+        <div class="wireframes-section low-fidelity">
           <div class="wireframes-content">
             <h4 class="block-title">User Flow</h4>
             <p class="block-description">
@@ -209,14 +215,15 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
               class="wireframe-image"
               @click="openLightbox(0)"
             />
-    
-
           </div>
         </div>
 
-       <div class="wireframes-section high-fidelity">
+        <div class="wireframes-section high-fidelity">
           <div class="wireframes-header">
-            <h4 class="block-title">Low-Fidelity <br/> Homepage Wireframes</h4>
+            <h4 class="block-title">
+              Low-Fidelity <br />
+              Homepage Wireframes
+            </h4>
             <div class="divider-line short"></div>
           </div>
           <div class="wireframes-layout">
@@ -229,15 +236,14 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
                 :src="HomeWireframe1"
                 alt="High-fidelity wireframe 1"
                 class="wireframe-image"
-                @click="openLightbox(4)"
+                @click="openLightbox(1)"
               />
               <img
                 :src="HomeWireframe2"
                 alt="High-fidelity wireframe 2"
                 class="wireframe-image"
-                @click="openLightbox(5)"
+                @click="openLightbox(2)"
               />
-            
             </div>
           </div>
         </div>
@@ -257,34 +263,32 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
                 :src="SystemWireframe1"
                 alt="High-fidelity wireframe 1"
                 class="wireframe-image"
-                @click="openLightbox(4)"
+                @click="openLightbox(3)"
               />
               <img
-                :src="SystemWireframe1"
+                :src="SystemWireframe2"
                 alt="High-fidelity wireframe 2"
                 class="wireframe-image"
-                @click="openLightbox(5)"
+                @click="openLightbox(4)"
               />
               <img
                 :src="SystemWireframe3"
                 alt="High-fidelity wireframe 3"
                 class="wireframe-image"
-                @click="openLightbox(6)"
+                @click="openLightbox(5)"
               />
             </div>
           </div>
         </div>
-
-
       </section>
 
       <!-- Final Results Section -->
       <section class="results-section">
         <div class="results-title-wrapper">
           <h2 class="section-label">05. FINAL RESULTS</h2>
-          <h3 class="results-title">Bringing the Story to Life</h3>
+          <h3 class="results-title">Quality Red Angus Cattle</h3>
         </div>
-<!-- 
+
         <div class="result-showcase">
           <div class="showcase-mockup">
             <div class="laptop-container">
@@ -296,9 +300,9 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
                 tabindex="0"
                 @click="restartVideo"
                 @keydown="handleVideoKeydown"
-                aria-label="Click or press Enter to restart Carmen video"
+                aria-label="Click or press Enter to restart Spring Hills video"
               >
-                <source :src="carmenVideo" type="video/mp4" />
+                <source :src="SpringHillsVideo" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <img
@@ -309,13 +313,13 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
             </div>
           </div>
           <a
-            href="https://cdn.wfp.org/2025/foodprints/local/"
+            href="https://springhillsranch.com/"
             class="project-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span class="link-title">Of Beans and Dreams |</span> The power of
-            local food markets
+            <span class="link-title">Spring Hills Ranch Website</span>
+            View Project
             <svg
               class="external-icon"
               width="20"
@@ -347,75 +351,23 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
           </a>
         </div>
 
-        <div class="result-showcase">
-          <a
-            href="https://cdn.wfp.org/2025/foodprints/local/"
-            class="project-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span class="link-title">Madre Amazonia |</span>
-            <span class="link-description"
-              >Local food, protected forests, stronger futures
-
-              <svg
-                class="external-icon"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_232_242)">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M10.795 4.375C10.795 4.20924 10.7292 4.05027 10.6119 3.93306C10.4947 3.81585 10.3358 3.75 10.17 3.75H1.875C1.37772 3.75 0.900805 3.94754 0.549175 4.29917C0.197544 4.65081 0 5.12772 0 5.625L0 18.125C0 18.6223 0.197544 19.0992 0.549175 19.4508C0.900805 19.8025 1.37772 20 1.875 20H14.375C14.8723 20 15.3492 19.8025 15.7008 19.4508C16.0525 19.0992 16.25 18.6223 16.25 18.125V9.83C16.25 9.66424 16.1842 9.50527 16.0669 9.38806C15.9497 9.27085 15.7908 9.205 15.625 9.205C15.4592 9.205 15.3003 9.27085 15.1831 9.38806C15.0658 9.50527 15 9.66424 15 9.83V18.125C15 18.2908 14.9342 18.4497 14.8169 18.5669C14.6997 18.6842 14.5408 18.75 14.375 18.75H1.875C1.70924 18.75 1.55027 18.6842 1.43306 18.5669C1.31585 18.4497 1.25 18.2908 1.25 18.125V5.625C1.25 5.45924 1.31585 5.30027 1.43306 5.18306C1.55027 5.06585 1.70924 5 1.875 5H10.17C10.3358 5 10.4947 4.93415 10.6119 4.81694C10.7292 4.69973 10.795 4.54076 10.795 4.375Z"
-                    fill="#00B5E2"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M20.0001 0.625C20.0001 0.45924 19.9343 0.300269 19.8171 0.183058C19.6999 0.065848 19.5409 0 19.3751 0L13.1251 0C12.9594 0 12.8004 0.065848 12.6832 0.183058C12.566 0.300269 12.5001 0.45924 12.5001 0.625C12.5001 0.79076 12.566 0.949732 12.6832 1.06694C12.8004 1.18415 12.9594 1.25 13.1251 1.25H17.8664L7.68263 11.4325C7.62452 11.4906 7.57842 11.5596 7.54697 11.6355C7.51552 11.7114 7.49934 11.7928 7.49934 11.875C7.49934 11.9572 7.51552 12.0386 7.54697 12.1145C7.57842 12.1904 7.62452 12.2594 7.68263 12.3175C7.74074 12.3756 7.80972 12.4217 7.88565 12.4532C7.96157 12.4846 8.04295 12.5008 8.12513 12.5008C8.20731 12.5008 8.28868 12.4846 8.36461 12.4532C8.44053 12.4217 8.50952 12.3756 8.56763 12.3175L18.7501 2.13375V6.875C18.7501 7.04076 18.816 7.19973 18.9332 7.31694C19.0504 7.43415 19.2094 7.5 19.3751 7.5C19.5409 7.5 19.6999 7.43415 19.8171 7.31694C19.9343 7.19973 20.0001 7.04076 20.0001 6.875V0.625Z"
-                    fill="#00B5E2"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_232_242">
-                    <rect width="20" height="20" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </span>
-          </a>
-          <div class="showcase-mockup">
-            <div class="laptop-container">
-              <video
-                class="project-video"
-                autoplay
-                muted
-                loop
-                tabindex="0"
-                @click="restartVideo"
-                @keydown="handleVideoKeydown"
-                aria-label="Click or press Enter to restart Amazonia video"
-              >
-                <source :src="amazoniaVideo" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <img
-                :src="ComputerFrame"
-                alt="Computer Frame"
-                class="laptop-frame"
-              />
-            </div>
-          </div>
-        </div> -->
-        
+        <div class="result-image-showcase">
+     <h4 class="block-title">CRM System </h4>
+          
+          <img
+            :src="SpringHillsSystemCover"
+            alt="High-fidelity wireframe 1"
+            class="wireframe-image"
+            @click="openProjectLightbox(1)"
+          />
+          <img
+            :src="SpringHillsSystemCover2"
+            alt="High-fidelity wireframe 2"
+            class="wireframe-image"
+            @click="openProjectLightbox(3)"
+          />
+        </div>
       </section>
-
-      
-
     </div>
 
     <!-- Lightbox Component -->
@@ -582,7 +534,6 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
 .lightbox-trigger:hover {
   transform: scale(1.02);
 }
-
 
 /* ===== Project Images ===== */
 .project-images {
@@ -1018,6 +969,14 @@ img-comparison-slider img {
 
 .result-showcase.reverse {
   flex-direction: row-reverse;
+}
+
+.result-image-showcase {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .showcase-mockup {

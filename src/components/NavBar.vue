@@ -1,9 +1,29 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 type Theme = 'dark' | 'light'
 
+interface Props {
+  currentRoute?: string
+}
+
+const props = defineProps<Props>()
+
 const currentTheme = ref<Theme>('dark')
+
+const caseStudyTitles: Record<string, string> = {
+  '#/foodprints': 'FoodPrints | World Food Programme (WFP) of the United Nations',
+  '#/viewbook': 'International Viewbook | Harding University',
+  '#/thetable': 'The Table | Harding University',
+  '#/springhillsranch': 'Spring Hills Ranch | Freelance'
+}
+
+const currentCaseStudyTitle = computed(() => {
+  if (props.currentRoute && caseStudyTitles[props.currentRoute]) {
+    return caseStudyTitles[props.currentRoute]
+  }
+  return null
+})
 
 const toggleTheme = () => {
   currentTheme.value = currentTheme.value === 'dark' ? 'light' : 'dark'
@@ -19,14 +39,17 @@ onMounted(() => {
   <nav class="navbar">
     <div class="navbar-container">
       <div class="navbar-content">
+        <div class="navbar-left">
           <a href="/" class="navbar-logo-link">
-        <div class="navbar-logo">
-          <svg width="85" height="45" viewBox="0 0 85 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.0598145 0.0598221V8.83087H26.4683L42.6514 44.3812H53.0457L60.5669 28.4068V44.3812H72.0598V0.0598221H61.1162L47.8908 28.4068L35.0457 0.0598221H0.0598145Z" :fill="currentTheme === 'dark' ? 'white' : '#0B1923'" :stroke="currentTheme === 'dark' ? 'white' : '#0B1923'" stroke-width="0.119639" stroke-miterlimit="10"/>
-            <path d="M0.0598145 17.6443V44.3811H32.426V35.483H9.73587V26.2035H23.1725V17.6443H0.0598145Z" :fill="currentTheme === 'dark' ? 'white' : '#0B1923'" :stroke="currentTheme === 'dark' ? 'white' : '#0B1923'" stroke-width="0.119639" stroke-miterlimit="10"/>
-          </svg>
+            <div class="navbar-logo">
+              <svg width="85" height="45" viewBox="0 0 85 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.0598145 0.0598221V8.83087H26.4683L42.6514 44.3812H53.0457L60.5669 28.4068V44.3812H72.0598V0.0598221H61.1162L47.8908 28.4068L35.0457 0.0598221H0.0598145Z" :fill="currentTheme === 'dark' ? 'white' : '#0B1923'" :stroke="currentTheme === 'dark' ? 'white' : '#0B1923'" stroke-width="0.119639" stroke-miterlimit="10"/>
+                <path d="M0.0598145 17.6443V44.3811H32.426V35.483H9.73587V26.2035H23.1725V17.6443H0.0598145Z" :fill="currentTheme === 'dark' ? 'white' : '#0B1923'" :stroke="currentTheme === 'dark' ? 'white' : '#0B1923'" stroke-width="0.119639" stroke-miterlimit="10"/>
+              </svg>
+            </div>
+          </a>
+          <p v-if="currentCaseStudyTitle" class="case-study-title">{{ currentCaseStudyTitle }}</p>
         </div>
-      </a>
         
         <div class="navbar-menu">
           <a href="#/resume" class="nav-link">Resume</a>
@@ -113,9 +136,30 @@ onMounted(() => {
   width: 100%;
 }
 
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .navbar-logo svg {
   width: 84px;
   height: auto;
+}
+
+.case-study-title {
+  color: var(--color-text);
+  opacity: 0.7;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .case-study-title {
+    display: none;
+  }
 }
 
 .navbar-menu {

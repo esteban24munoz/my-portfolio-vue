@@ -150,16 +150,18 @@ const navigateToSpringHillsRanch = () => {
       <article class="case-card card-5">
         <div class="card-content">
           <div class="card-header">
-            <h3 class="card-title">Packaging Design</h3>
+            <h3 class="card-title">Olive the Above | Fusion Cuisine Branding Team Project</h3>
             <p class="card-role">Graphic Design</p>
           </div>
           <p class="card-description">
-            3D packaging design and advertisement for a new line of U.S.-grown spice blends, inspired by a specific historical design that would follow the client brief
+            Branding project focused on creating a fresh, cohesive brand identity for a new fusion food concept starting as a food truck and expanding into catering and a future restaurant
           </p>
           <div class="card-skills">
             <span class="skill-tag">Indesign</span>
             <span class="skill-tag">Photoshop</span>
             <span class="skill-tag">Ilustrator</span>
+            <span class="skill-tag">Figma</span>
+
           </div>
         </div>
         <!-- <div class="card-image">
