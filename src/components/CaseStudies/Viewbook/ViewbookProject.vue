@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useScrollAnimation } from "../../../composables/useScrollAnimation";
 import CustomCursor from "../../CustomCursor/CustomCursor.vue";
 import VueEasyLightbox from "vue-easy-lightbox";
 import "img-comparison-slider";
@@ -155,13 +156,29 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
 const flippingBookHtml = ref(
   '<iframe src="https://player.flipsnack.com?hash=RUI4QzZBRjdDNkYraG0ydHNhMDk1ZQ==" width="100%" height="480" seamless="seamless" scrolling="no" frameBorder="0" allowFullScreen allow="autoplay; clipboard-read; clipboard-write"></iframe>'
 );
+
+// Scroll animation refs
+const titleContentRef = ref<HTMLElement | null>(null);
+const roleSectionRef = ref<HTMLElement | null>(null);
+const challengesSectionRef = ref<HTMLElement | null>(null);
+const processSectionRef = ref<HTMLElement | null>(null);
+const resultsSectionRef = ref<HTMLElement | null>(null);
+const nextProjectSectionRef = ref<HTMLElement | null>(null);
+
+// Initialize scroll animations for each section
+useScrollAnimation(titleContentRef, { threshold: 0.15 });
+useScrollAnimation(roleSectionRef, { threshold: 0.15 });
+useScrollAnimation(challengesSectionRef, { threshold: 0.15 });
+useScrollAnimation(processSectionRef, { threshold: 0.1 });
+useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
+useScrollAnimation(nextProjectSectionRef, { threshold: 0.2 });
 </script>
 
 <template>
   <div class="case-study">
     <div class="case-study-container">
       <!-- Title and Overview Section -->
-      <section class="title-content">
+      <section ref="titleContentRef" class="title-content fade-in-element">
         <div class="main-title-wrapper">
           <h1 class="main-title">
             Designing<br />
@@ -200,7 +217,7 @@ const flippingBookHtml = ref(
       </section>
 
       <!-- Role Section -->
-      <section class="role-section">
+      <section ref="roleSectionRef" class="role-section fade-in-element">
         <div class="role-content">
           <h2 class="section-label">02. ROLE</h2>
           <h3 class="role-title">
@@ -230,7 +247,7 @@ const flippingBookHtml = ref(
       </section>
 
       <!-- Key Challenges Section -->
-      <section class="challenges-section">
+      <section ref="challengesSectionRef" class="challenges-section fade-in-element">
         <div class="challenges-header">
           <div class="divider-line"></div>
           <div class="challenges-title-wrapper">
@@ -270,7 +287,7 @@ const flippingBookHtml = ref(
       </section>
 
       <!-- Process Section -->
-      <section class="process-section">
+      <section ref="processSectionRef" class="process-section fade-in-element">
         <div class="process-header">
           <div class="divider-line"></div>
           <div class="process-title-wrapper">
@@ -367,7 +384,7 @@ const flippingBookHtml = ref(
       </section>
 
       <!-- Final Results Section -->
-      <section class="results-section">
+      <section ref="resultsSectionRef" class="results-section fade-in-element">
         <div class="results-title-wrapper">
           <h2 class="section-label">05. FINAL RESULTS</h2>
           <h3 class="results-title">Creating a Visual Story</h3>
@@ -384,7 +401,7 @@ const flippingBookHtml = ref(
       </section>
 
       <!-- Next Project Section -->
-      <section class="next-project-section">
+      <section ref="nextProjectSectionRef" class="next-project-section fade-in-element">
         <div class="divider-line"></div>
         <div class="next-project-content">
           <div class="next-project-header">
@@ -471,6 +488,18 @@ const flippingBookHtml = ref(
 </style>
 
 <style scoped>
+/* Scroll-triggered fade-in animations */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .case-study {
   width: 100%;
   padding: 80px 20px;

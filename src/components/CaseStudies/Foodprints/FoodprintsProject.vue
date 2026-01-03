@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useScrollAnimation } from "../../../composables/useScrollAnimation";
 import VueEasyLightbox from "vue-easy-lightbox";
 import CustomCursor from "../../CustomCursor/CustomCursor.vue";
 import amazoniaVideo from "./assets/amazonia_v1.mp4";
@@ -22,6 +23,7 @@ import CarmenCover from "./assets/carmen_cover.png";
 import AmazoniaCover from "./assets/amazonia_cover.png";
 import ChefCover from "./assets/chef_cover.jpg";
 import CarmenInsight from "./assets/carmen_insight.png";
+
 
 // Wireframe Lightbox state
 const wireframeVisibleRef = ref(false);
@@ -85,13 +87,35 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
     restartVideo(event);
   }
 };
+
+// Navigate to The Table project
+const navigateToTheTable = () => {
+  window.location.hash = '#/thetable';
+  window.scrollTo(0, 0);
+};
+
+// Scroll animation refs
+const titleContentRef = ref<HTMLElement | null>(null);
+const roleSectionRef = ref<HTMLElement | null>(null);
+const challengesSectionRef = ref<HTMLElement | null>(null);
+const processSectionRef = ref<HTMLElement | null>(null);
+const resultsSectionRef = ref<HTMLElement | null>(null);
+const nextProjectSectionRef = ref<HTMLElement | null>(null);
+
+// Initialize scroll animations for each section
+useScrollAnimation(titleContentRef, { threshold: 0.15 });
+useScrollAnimation(roleSectionRef, { threshold: 0.15 });
+useScrollAnimation(challengesSectionRef, { threshold: 0.15 });
+useScrollAnimation(processSectionRef, { threshold: 0.1 });
+useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
+useScrollAnimation(nextProjectSectionRef, { threshold: 0.2 });
 </script>
 
 <template>
   <div class="case-study">
     <div class="case-study-container">
       <!-- Title and Overview Section -->
-      <section class="title-content">
+      <section ref="titleContentRef" class="title-content fade-in-element">
         <div class="main-title-wrapper">
           <h1 class="main-title">
             Eight Months.<br />
@@ -146,7 +170,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
       </section>
 
       <!-- Role Section -->
-      <section class="role-section">
+      <section ref="roleSectionRef" class="role-section fade-in-element">
         <div class="role-content">
           <h2 class="section-label">02. ROLE</h2>
           <h3 class="role-title">
@@ -154,13 +178,11 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
             Web Developer
           </h3>
           <p class="role-description">
-            As a UX/UI designer, I created both low-fidelity and high-fidelity
-            wireframes for the websites and presented interactive demos in Figma
-            and Dora.ai to demonstrate the storytelling approach.
+I designed both low-fidelity and high-fidelity wireframes and presented interactive demos using Figma and Dora.ai, demonstrating the storytelling approach to stakeholders and during internal staff meetings. I also conducted usability testing throughout the design iterations, continuously improving the user experience.
+
             <br /><br />
-            Later, my primary role shifted to development, where I built the
-            website and made it interactive and fully responsive across all
-            screen sizes.
+        As the project evolved, my primary focus shifted to development. I built the website using React.js and GSAP, ensuring rich interactivity and full responsiveness across all screen sizes.
+
           </p>
         </div>
         <div class="mockup-wrapper">
@@ -174,7 +196,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
       </section>
 
       <!-- Key Challenges Section -->
-      <section class="challenges-section">
+      <section ref="challengesSectionRef" class="challenges-section fade-in-element">
         <div class="challenges-header">
           <div class="divider-line"></div>
           <div class="challenges-title-wrapper">
@@ -208,7 +230,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
       </section>
 
       <!-- Process Section -->
-      <section class="process-section">
+      <section ref="processSectionRef" class="process-section fade-in-element">
         <div class="process-header">
           <div class="divider-line"></div>
           <div class="process-title-wrapper">
@@ -263,8 +285,8 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
           </div>
           <div class="wireframes-layout">
             <p class="block-description">
-              Some of my wireframe ideas that were later used by the graphic
-              designer in charge of the final visual design of the websites
+              My wireframe ideas were later used by the lead graphic
+              designer, in charge of the final visual design of the websites
             </p>
             <div class="wireframes-images">
               <img
@@ -331,10 +353,9 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
             <div class="content-header">
               <h4 class="ux-title">UX Psychology Applied</h4>
               <p class="block-description">
-                The design on the left represents the first iteration of this
-                interactive section. Its primary goal was to prompt users to
+                The primary goal of this section was to prompt users to
                 select a price point and then reveal the underlying truth behind
-                that choice. After 5 usability tests, I redesigned the section
+                that choice. After 5 usability tests, I redesigned the section (Right Image),
                 taking in consideration the following cognitive bias:
               </p>
             </div>
@@ -366,7 +387,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
       </section>
 
       <!-- Final Results Section -->
-      <section class="results-section">
+      <section ref="resultsSectionRef" class="results-section fade-in-element">
         <div class="results-title-wrapper">
           <h2 class="section-label">05. FINAL RESULTS</h2>
           <h3 class="results-title">Bringing the Story to Life</h3>
@@ -501,7 +522,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
       </section>
 
       <!-- Next Project Section -->
-      <section class="next-project-section">
+      <section ref="nextProjectSectionRef" class="next-project-section fade-in-element">
         <div class="divider-line"></div>
         <div class="next-project-content">
           <div class="next-project-header">
@@ -522,7 +543,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
               />
             </svg>
           </div>
-          <article class="next-project-card">
+          <article class="next-project-card" @click="navigateToTheTable">
             <div class="card-content">
               <h4 class="card-title">The Table | Harding University</h4>
               <p class="card-role">UX/UI Designer & Web Developer</p>
@@ -577,6 +598,18 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
 </style>
 
 <style scoped>
+/* Scroll-triggered fade-in animations */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .case-study {
   width: 100%;
   padding: 80px 20px;

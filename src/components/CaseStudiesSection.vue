@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useScrollAnimation } from '../composables/useScrollAnimation'
 import SpringHillsCover from '../assets/spring_hills_cover.png'
 import OliveTheAboveCover from '../assets/olive_cover.png'
+import CarmenCover from '../assets/carmen_cover.png'
+import ViewbookCover from '../assets/viewbook_cover.webp'
+import TheTableCover from '../assets/the_table_cover.png'
 
 type FilterTab = 'All' | 'Development' | 'Graphic Design'
 type CaseStudy = {
@@ -51,10 +55,10 @@ const caseStudies: CaseStudy[] = [
     id: 'card-1',
     title: 'FoodPrints | World Food Programme (WFP) of the United Nations',
     role: 'UX/UI Designer & Web Developer',
-    description: 'Collaborated with product managers, developers and designers to create 3 fully responsive and interactive websites that showcase important data in a storytelling way.',
+    description: 'Collaborated with product managers, developers and designers to create 4 fully responsive and interactive websites that draws from public statistics, figures of WFP data across the region.',
     skills: ['React', 'TypeScript', 'Figma', 'AWS', 'GitHub', 'SEO'],
     category: 'Development',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/227a03404fc10b2260819f75cc6e18dad03f64bf?width=1126',
+    image: CarmenCover,
     onClick: navigateToFoodprints
   },
   {
@@ -64,7 +68,7 @@ const caseStudies: CaseStudy[] = [
     description: 'Led the visual development of a comprehensive viewbook in just one month, presenting initial sketches and rough concepts to stakeholders, iterating on feedback to refine the design',
     skills: ['Indesign', 'Photoshop', 'Ilustrator'],
     category: 'Graphic Design',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/159cf09b19d7eb93036f8cfcfd32e86180685134?width=598',
+    image: ViewbookCover,
     onClick: navigateToViewbook
   },
   {
@@ -74,7 +78,7 @@ const caseStudies: CaseStudy[] = [
     description: 'Designed and developed a robust React web application that displays products in stock and out of stock to Harding Students, leveraging MySQL databases for real-time inventory control and the registration of 1167 shoppers since it began operations.',
     skills: ['React', 'TypeScript', 'Figma'],
     category: 'Development',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4dad6658fe5b7d84ca5bfe0081d2201b7826b40f?width=1128',
+    image: TheTableCover,
     onClick: navigateToTheTable
   },
   {
@@ -107,11 +111,21 @@ const filteredCaseStudies = computed(() => {
   return caseStudies.filter(study => study.category === activeFilter.value)
 })
 
+// Scroll animation setup
+const sectionHeaderRef = ref<HTMLElement | null>(null)
+const bentoGridRef = ref<HTMLElement | null>(null)
+const moreProjectsBtnRef = ref<HTMLElement | null>(null)
+
+// Initialize scroll animations
+useScrollAnimation(sectionHeaderRef, { threshold: 0.2 })
+useScrollAnimation(bentoGridRef, { threshold: 0.1 })
+useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
+
 </script>
 
 <template>
   <section class="case-studies-section">
-    <div class="section-header">
+    <div ref="sectionHeaderRef" class="section-header fade-in-element">
       <h2 class="section-title">Case Studies</h2>
       <div class="filter-tabs">
         <button 
@@ -138,7 +152,7 @@ const filteredCaseStudies = computed(() => {
       </div>
     </div>
 
-    <div class="bento-grid" :class="`grid-${filteredCaseStudies.length}`">
+    <div ref="bentoGridRef" class="bento-grid fade-in-element" :class="`grid-${filteredCaseStudies.length}`">
       <article
         v-for="(study, index) in filteredCaseStudies"
         :key="study.id"
@@ -166,11 +180,23 @@ const filteredCaseStudies = computed(() => {
       </article>
     </div>
 
-    <button class="more-projects-btn">More Projects</button>
+    <button ref="moreProjectsBtnRef" class="more-projects-btn fade-in-element">More Projects</button>
   </section>
 </template>
 
 <style scoped>
+/* Scroll-triggered fade-in animations */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .case-studies-section {
   min-height: 100vh;
   background-color: var(--color-background);
