@@ -144,13 +144,12 @@ const restartVideo = (event: Event) => {
   video.play();
 };
 
-// Restart video on keyboard press (Enter or Space)
-const handleVideoKeydown = (event: KeyboardEvent) => {
-  if (event.key === "Enter" || event.key === " ") {
-    event.preventDefault();
-    restartVideo(event);
-  }
+// Navigate to The Table project
+const navigateToNextProject = () => {
+  window.location.hash = '#/olivetheabove';
+  window.scrollTo(0, 0);
 };
+
 
 // Flipping book HTML content
 const flippingBookHtml = ref(
@@ -231,7 +230,7 @@ useScrollAnimation(nextProjectSectionRef, { threshold: 0.2 });
             meetings, where we discussed feedback and worked on improvements.
             <br /><br />
 
-            I also collaborated with a graphic designer alumni who helped
+            I also collaborated with a graphic designer alumna who helped
             enhance the layout, composition, and graphic elements, particularly
             on the back page of the viewbook.
           </p>
@@ -422,7 +421,7 @@ useScrollAnimation(nextProjectSectionRef, { threshold: 0.2 });
               />
             </svg>
           </div>
-          <article class="next-project-card">
+          <article class="next-project-card" @click="navigateToNextProject">
             <div class="card-content">
               <h4 class="card-title">Olive the Above | Fusion Cuisine Branding Team Project</h4>
               <p class="card-role">Graphic Designer</p>

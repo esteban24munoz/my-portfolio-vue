@@ -114,16 +114,23 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           <div class="overview-section">
             <h2 class="section-label">01. OVERVIEW</h2>
             <p class="overview-description">
-              This case study goes over my challenges and results of Spring
-              Hills Ranch LLC Website, a complete informational e-commerce
-              website for a small, family-run cattle farm in Mt. Vernon,
-              Missouri. The site needed to showcase their brand, allow users to
-              contact the owner, and expand their reach beyond local customers.
+              This case study covers the design and development of the Spring
+              Hills Ranch LLC website, a complete informational e-commerce
+              experience for a small, family-run Red Angus cattle farm in Mt.
+              Vernon, Missouri. The goal was to clearly communicate the ranch’s
+              values, build trust with potential buyers, and expand their reach
+              beyond local customers through a clean, user-friendly and fully
+              mobile-responsive interface.
               <br /><br />
-              Key tasks included designing a user-friendly layout, implementing
-              a CRM system (to manage new bull's and the one's sold), ensuring
-              mobile responsiveness, and highlighting the farm’s values and
-              identity.
+
+              The website has generated
+              <span class="text-accent">3 confirmed bull sales</span>
+              and currently ranks
+              <span class="text-accent">#1 on Google </span> Red Angus cattle
+              information and sales in Missouri. It also included implementing a
+              custom CRM system to manage available bulls and track sold
+              inventory, improving internal organization while supporting
+              ongoing growth.
             </p>
           </div>
         </div>
@@ -147,16 +154,17 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           <h2 class="section-label">02. ROLE</h2>
           <h3 class="role-title">
             UX / UI Designer<br />
-            Web Developer
+            Full Stack Developer
           </h3>
           <p class="role-description">
-            As a UX/UI designer, I created both low-fidelity and high-fidelity
-            wireframes for the websites and presented interactive demos in Figma
-            and Dora.ai to demonstrate the storytelling approach.
+            I led the design process of the website from early wireframes and
+            interactive prototypes to final implementation. I collaborated
+            closely with the client to align the product with their goals and
+            expectations, conducted user testing to validate design decisions.
             <br /><br />
-            Later, my primary role shifted to development, where I built the
-            website and made it interactive and fully responsive across all
-            screen sizes.
+            I then developed the website using PHP, MySQL, CSS, with
+            integrations for Mailchimp and Google Analytics to support marketing
+            and performance tracking.
           </p>
         </div>
         <div class="mockup-wrapper">
@@ -170,7 +178,10 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
       </section>
 
       <!-- Key Challenges Section -->
-      <section ref="challengesSectionRef" class="challenges-section fade-in-element">
+      <section
+        ref="challengesSectionRef"
+        class="challenges-section fade-in-element"
+      >
         <div class="challenges-header">
           <div class="divider-line"></div>
           <div class="challenges-title-wrapper">
@@ -183,21 +194,18 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           <div class="challenge-block">
             <h4 class="block-title">Challenge</h4>
             <p class="block-description">
-              In my role as a developer, one of the biggest challenges was time.
-              The deadlines were tight, as we planned to launch these three
-              websites by the end of 2025. Responsiveness was also difficult to
-              achieve because we had designed parallax and scrolling animations
-              for several sections in all of the websites.
+              After conducting UX research with the client, the main challenge
+              was displaying detailed genetic information for each bull on the
+              website. This data is critical for buyers, who rely on it to make
+              informed purchasing decisions. The challenge was to present all
+              this technical information clearly and accessibly without
+              cluttering the page or confusing users.
             </p>
           </div>
           <div class="solution-block">
             <h4 class="block-title">Solution</h4>
             <p class="block-description">
-              During one of our design meetings, I proposed making some of the
-              section layouts reusable so they could be easily reused in code
-              and for future websites. The team agreed, and we created a shared
-              library of sections—first in design and then in code—that could be
-              reused across projects in order to save more time.
+              I structured the site so my client could enter each bull’s RAAA# directly in the CMS, which automatically creates a link to the bull’s official record on redangus.org. This allows buyers to access all relevant genetic and registration details without cluttering the page. This approach ensures full transparency, easy access to important data, and a clean, user-friendly interface, while also enabling users to contact the client directly to proceed with a purchase
             </p>
           </div>
         </div>
@@ -216,11 +224,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           <div class="wireframes-content">
             <h4 class="block-title">User Flow</h4>
             <p class="block-description">
-              I began the creative process by building the first wireframes,
-              focusing on storytelling and the real stories collected from
-              countries like Honduras, Colombia, and El Salvador. Some concepts
-              explored more ambitious ideas and were refined to thoughtfully
-              align with the organization's brand guidelines
+              I began the creative process by mapping the user flow, focusing on making bull information easily accessible. Key concepts explored clear navigation and content hierarchy, ensuring each bull’s genetic and registration details were presented prominently while keeping the interface clean, intuitive, and aligned with the ranch’s brand.
             </p>
           </div>
           <div class="wireframes-images">
@@ -243,8 +247,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           </div>
           <div class="wireframes-layout">
             <p class="block-description">
-              Some of my wireframe ideas that were later used by the graphic
-              designer in charge of the final visual design of the websites
+              Like any good design, I started with wireframes that prioritized clarity and hierarchy, making it easy for users to quickly find essential information about the farm and its bulls while maintaining a clean, approachable, and trustworthy interface
             </p>
             <div class="wireframes-images">
               <img
@@ -265,13 +268,12 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 
         <div class="wireframes-section high-fidelity">
           <div class="wireframes-header">
-            <h4 class="block-title">CRM System Wireframes</h4>
+            <h4 class="block-title">CMS System Wireframes</h4>
             <div class="divider-line short"></div>
           </div>
           <div class="wireframes-layout">
             <p class="block-description">
-              Some of my wireframe ideas that were later used by the graphic
-              designer in charge of the final visual design of the websites
+              I focused on user-friendliness for the client, who are older and less familiar with complex digital tools. I designed an intuitive backend that allows them to add new bulls, update details, and manage content effortlessly, while keeping the workflow simple and organized
             </p>
             <div class="wireframes-images">
               <img
@@ -367,8 +369,8 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
         </div>
 
         <div class="result-image-showcase">
-     <h4 class="block-title">CRM System </h4>
-          
+          <h4 class="block-title">CRM System</h4>
+
           <img
             :src="SpringHillsSystemCover"
             alt="High-fidelity wireframe 1"
@@ -428,7 +430,8 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 .fade-in-element {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in-visible {
@@ -531,6 +534,11 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
   max-width: 720px;
 }
 
+.text-accent {
+  color: var(--color-accent-light);
+  font-weight: 700;
+}
+
 .section-label {
   font-family: Inter, sans-serif;
   font-size: 18px;
@@ -574,7 +582,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 .image-wrapper {
   flex: 1;
   min-width: 280px;
-  max-width: 340px;
+  max-width: 540px;
 }
 
 .project-image {

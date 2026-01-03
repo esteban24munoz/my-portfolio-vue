@@ -271,6 +271,9 @@ Designer
           </div>
         </div>
 
+          <div class="divider-line"></div>
+
+
         <!-- 1st Roughs Section -->
         <div class="roughs-section">
           <div class="roughs-header">
@@ -892,6 +895,7 @@ Designer
   display: flex;
   flex-direction: column;
   gap: 59px;
+  width: 100%;
 }
 
 .wireframes-images {
@@ -900,7 +904,11 @@ Designer
   gap: 35px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  max-width: 425px;
 }
+
+
 
 .wireframes-section.low-fidelity .wireframes-images {
   gap: 65px;
@@ -912,6 +920,9 @@ Designer
   display: block;
   cursor: zoom-in;
   transition: transform 0.2s ease;
+  width: 100%;
+  max-width: 374px;
+  border-radius: 12px;
 }
 
 .wireframe-image:hover {
