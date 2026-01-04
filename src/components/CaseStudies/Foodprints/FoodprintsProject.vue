@@ -1006,6 +1006,8 @@ I designed both low-fidelity and high-fidelity wireframes and presented interact
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  flex: 1;
+  min-width: 320px;
 }
 
 img-comparison-slider {
@@ -1026,7 +1028,8 @@ img-comparison-slider {
 
 .slider-image-wrapper img,
 img-comparison-slider img {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: auto;
   object-fit: cover;
   border-radius: 11px;
@@ -1054,6 +1057,8 @@ img-comparison-slider img {
   gap: 64px;
   width: 100%;
   padding: 100px 0;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .ux-header {
@@ -1077,10 +1082,10 @@ img-comparison-slider img {
 
 .ux-content {
   display: flex;
-  align-items: center;
-  gap: var(--gap);
-  width: var(--width);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  min-width: 320px;
 }
 
 .ux-image {
@@ -1329,6 +1334,19 @@ img-comparison-slider img {
   .wireframes-layout {
     gap: 60px;
   }
+
+  .ux-section {
+    gap: 48px;
+    padding: 80px 0;
+  }
+
+  .ux-title {
+    font-size: 36px;
+  }
+
+  .bias-title {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1413,6 +1431,48 @@ img-comparison-slider img {
   .next-project-card .card-title {
     font-size: 22px;
   }
+
+  .ux-section {
+    flex-direction: column;
+    gap: 48px;
+    padding: 60px 0;
+  }
+
+  .image-comparison-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .slider-image-wrapper img,
+  img-comparison-slider img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .comparison-labels {
+    max-width: 100%;
+  }
+
+  .ux-title {
+    font-size: 28px;
+  }
+
+  .ux-content {
+    width: 100%;
+  }
+
+  .bias-title {
+    font-size: 18px;
+  }
+
+  .bias-description {
+    padding-left: 24px;
+    font-size: 15px;
+  }
+
+  .content-header {
+    gap: 20px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -1495,6 +1555,36 @@ img-comparison-slider img {
 
   .next-project-card .card-image img {
     max-width: 100%;
+  }
+
+  .ux-section {
+    padding: 40px 0;
+    gap: 32px;
+  }
+
+  .ux-title {
+    font-size: 24px;
+  }
+
+  .bias-title {
+    font-size: 16px;
+  }
+
+  .bias-description {
+    padding-left: 16px;
+    font-size: 14px;
+  }
+
+  .content-header {
+    gap: 16px;
+  }
+
+  .ux-biases {
+    gap: 12px;
+  }
+
+  .image-comparison-wrapper {
+    gap: 12px;
   }
 }
 </style>

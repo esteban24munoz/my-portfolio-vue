@@ -237,7 +237,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
             <img
               :src="UserFlow"
               alt="Low-fidelity wireframe 1"
-              class="wireframe-image"
+              class="user-flow-image"
               @click="openLightbox(0)"
             />
           </div>
@@ -805,6 +805,19 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 }
 
 .wireframe-image:hover {
+  transform: scale(1.02);
+}
+
+.user-flow-image {
+  height: auto;
+  max-height: 274px;
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.user-flow-image:hover {
   transform: scale(1.02);
 }
 

@@ -30,6 +30,13 @@ const toggleTheme = () => {
   document.documentElement.setAttribute('data-theme', currentTheme.value)
 }
 
+const navigateHome = () => {
+  if (window.location.hash) {
+    window.location.hash = ''
+  }
+  window.scrollTo(0, 0)
+}
+
 onMounted(() => {
   document.documentElement.setAttribute('data-theme', currentTheme.value)
 })
@@ -40,7 +47,7 @@ onMounted(() => {
     <div class="navbar-container">
       <div class="navbar-content">
         <div class="navbar-left">
-          <a href="/" class="navbar-logo-link">
+          <a href="#" class="navbar-logo-link" @click.prevent="navigateHome">
             <div class="navbar-logo">
               <svg width="85" height="45" viewBox="0 0 85 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.0598145 0.0598221V8.83087H26.4683L42.6514 44.3812H53.0457L60.5669 28.4068V44.3812H72.0598V0.0598221H61.1162L47.8908 28.4068L35.0457 0.0598221H0.0598145Z" :fill="currentTheme === 'dark' ? 'white' : '#0B1923'" :stroke="currentTheme === 'dark' ? 'white' : '#0B1923'" stroke-width="0.119639" stroke-miterlimit="10"/>
@@ -165,7 +172,8 @@ onMounted(() => {
 .navbar-menu {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: 2.5rem;
 }
 
 .nav-link {
@@ -217,17 +225,14 @@ onMounted(() => {
   }
 
   .navbar-menu {
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .nav-link {
     font-size: 0.95rem;
   }
 
-  .theme-toggle {
-    width: 38px;
-    height: 38px;
-  }
+
 }
 
 @media (max-width: 480px) {
@@ -240,16 +245,13 @@ onMounted(() => {
   }
 
   .navbar-menu {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .nav-link {
     font-size: 0.875rem;
   }
 
-  .theme-toggle {
-    width: 35px;
-    height: 35px;
-  }
+
 }
 </style>

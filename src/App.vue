@@ -13,12 +13,18 @@ import TheTableProject from './components/CaseStudies/TheTable/TheTableProject.v
 import SpringHillsRanchProject from './components/CaseStudies/SpringHillsRanch/SpringHillsRanchProject.vue'
 import OliveTheAboveProject from './components/CaseStudies/OliveTheAbove/OliveTheAboveProject.vue'
 import GoUpButton from './components/goUpButton/GoUpButton.vue'
+import Preloader from './components/preloader/Preloader.vue'
 
 const currentRoute = ref(window.location.hash || '')
+const showContent = ref(false)
 
 const updateRoute = () => {
   currentRoute.value = window.location.hash
   window.scrollTo(0, 0)
+}
+
+const handlePreloaderComplete = () => {
+  showContent.value = true
 }
 
 onMounted(() => {
@@ -28,38 +34,41 @@ onMounted(() => {
 
 <template>
   <div>
-    <NavBar :current-route="currentRoute" />
-    <main>
-      <template v-if="currentRoute === '#/resume'">
-        <Resume />
-      </template>
-         <template v-else-if="currentRoute === '#/contact'">
-        <ContactSection />
-      </template>
-      <template v-else-if="currentRoute === '#/foodprints'">
-        <FoodprintsProject />
-      </template>
-      <template v-else-if="currentRoute === '#/viewbook'">
-        <ViewbookProject />
-      </template>
-      <template v-else-if="currentRoute === '#/thetable'">
-        <TheTableProject />
-      </template>
-      <template v-else-if="currentRoute === '#/springhillsranch'">
-        <SpringHillsRanchProject />
-      </template>
-      <template v-else-if="currentRoute === '#/olivetheabove'">
-        <OliveTheAboveProject />
-      </template>
-      <template v-else>
-        <HeroSection />
-        <CaseStudiesSection />
-        <RecommendationsSection />
-        <ContactSection />
-      </template>
-    </main>
-    <Footer />
-    <GoUpButton />
+    <Preloader @complete="handlePreloaderComplete" />
+    <div v-if="showContent">
+      <NavBar :current-route="currentRoute" />
+      <main>
+        <template v-if="currentRoute === '#/resume'">
+          <Resume />
+        </template>
+        <template v-else-if="currentRoute === '#/contact'">
+          <ContactSection />
+        </template>
+        <template v-else-if="currentRoute === '#/foodprints'">
+          <FoodprintsProject />
+        </template>
+        <template v-else-if="currentRoute === '#/viewbook'">
+          <ViewbookProject />
+        </template>
+        <template v-else-if="currentRoute === '#/thetable'">
+          <TheTableProject />
+        </template>
+        <template v-else-if="currentRoute === '#/springhillsranch'">
+          <SpringHillsRanchProject />
+        </template>
+        <template v-else-if="currentRoute === '#/olivetheabove'">
+          <OliveTheAboveProject />
+        </template>
+        <template v-else>
+          <HeroSection />
+          <CaseStudiesSection />
+          <RecommendationsSection />
+          <ContactSection />
+        </template>
+      </main>
+      <Footer />
+      <GoUpButton />
+    </div>
   </div>
 </template>
 

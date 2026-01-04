@@ -26,7 +26,7 @@ const downloadResume = () => {
         <img :src="ResumeImage" alt="Resume Preview" class="resume-image" />
         <div class="resume-overlay">
           <button class="resume-button view-button" @click="viewResume">View</button>
-          <button class="resume-button download-button" @click="downloadResume">Download</button>
+          <button class="more-projects-btn" @click="downloadResume">Download</button>
         </div>
       </div>
     </div>
@@ -110,9 +110,9 @@ const downloadResume = () => {
   justify-content: center;
   align-items: center;
   width: 148px;
-  height: 51px;
+  height: 45px;
   border: none;
-  border-radius: 19.3px;
+  border-radius: 12px;
   background-color: transparent;
   color: var(--color-text-light);
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
