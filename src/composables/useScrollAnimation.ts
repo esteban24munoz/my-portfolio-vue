@@ -24,6 +24,11 @@ export function useScrollAnimation(
       return
     }
 
+    // Disconnect existing observer before creating a new one
+    if (observer) {
+      observer.disconnect()
+    }
+
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

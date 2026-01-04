@@ -126,7 +126,7 @@ const handleSubmit = async (event: Event) => {
   width: 100%;
   max-width: 1077px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 6rem 0em 0rem 0rem;
 }
 
 .section-title {
@@ -190,14 +190,33 @@ const handleSubmit = async (event: Event) => {
 .form-textarea {
   width: 100%;
   padding: 15px;
-  border: 1px solid var(--linear-top-right);
+
+  border: 1px solid transparent;
   border-radius: 4px;
-  background: transparent;
+
+  background:
+    /* Inner fill */
+    linear-gradient(
+      var(--color-background),
+      var(--color-background)
+    ) padding-box,
+
+    /* Border layer */
+    linear-gradient(
+      135deg,
+      var(--color-accent) 0%,
+      rgba(0, 181, 226, 0.25) 18%,
+      rgba(60, 60, 60, 0.471) 45%,
+      rgba(60, 60, 60, 0.503) 100%
+    ) border-box;
+
   color: var(--color-text);
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+
+  transition: background 0.3s ease;
 }
+
 
 .form-input {
   height: 50px;

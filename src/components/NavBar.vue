@@ -53,7 +53,7 @@ onMounted(() => {
         
         <div class="navbar-menu">
           <a href="#/resume" class="nav-link">Resume</a>
-          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#/contact" class="nav-link">Contact</a>
           <button class="theme-toggle" aria-label="Toggle theme" @click="toggleTheme">
             <svg v-if="currentTheme === 'dark'" width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="44" height="44" rx="22" fill="#1B1B1B" fill-opacity="0.2"/>

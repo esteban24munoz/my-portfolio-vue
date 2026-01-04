@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import { useScrollAnimation } from '../composables/useScrollAnimation'
 import SpringHillsCover from '../assets/spring_hills_cover.png'
 import OliveTheAboveCover from '../assets/olive_cover.png'
 import CarmenCover from '../assets/carmen_cover.png'
 import ViewbookCover from '../assets/viewbook_cover.webp'
 import TheTableCover from '../assets/the_table_cover.png'
+import SpicePackageCover from '../assets/spice_package_cover.png'
 
 type FilterTab = 'All' | 'Development' | 'Graphic Design'
 type CaseStudy = {
@@ -18,12 +19,26 @@ type CaseStudy = {
   image?: string
   coverImage?: string
   onClick?: () => void
+  hidden?: boolean
+  comingSoon?: boolean
 }
 
 const activeFilter = ref<FilterTab>('All')
+// Key for forcing re-mount of bento grid when filter changes
+const gridKey = ref(0)
+// Track if "More Projects" button has been clicked
+const showHiddenProjects = ref(false)
 
 const setFilter = (filter: FilterTab) => {
   activeFilter.value = filter
+  // Increment key to force re-mount of bento grid
+  gridKey.value++
+}
+
+const toggleMoreProjects = () => {
+  showHiddenProjects.value = !showHiddenProjects.value
+  // Increment key to force re-mount of bento grid when showing/hiding projects
+  gridKey.value++
 }
 
 const navigateToFoodprints = () => {
@@ -50,12 +65,22 @@ const navigateToOliveTheAbove = () => {
   window.scrollTo(0, 0)
 }
 
+const navigateToSouthernKettle = () => {
+  window.location.hash = '#/southernkettle'
+  window.scrollTo(0, 0)
+}
+
+const navigateToPackagingDesign = () => {
+  window.location.hash = '#/packagingdesign'
+  window.scrollTo(0, 0)
+}
+
 const caseStudies: CaseStudy[] = [
   {
     id: 'card-1',
     title: 'FoodPrints | World Food Programme (WFP) of the United Nations',
     role: 'UX/UI Designer & Web Developer',
-    description: 'Collaborated with product managers, developers and designers to create 4 fully responsive and interactive websites that draws from public statistics, figures of WFP data across the region.',
+    description: 'Collaborated with product managers, developers and designers to create 3 fully responsive and interactive websites that showcase important data in a storytelling way.',
     skills: ['React', 'TypeScript', 'Figma', 'AWS', 'GitHub', 'SEO'],
     category: 'Development',
     image: CarmenCover,
@@ -84,7 +109,7 @@ const caseStudies: CaseStudy[] = [
   {
     id: 'card-4',
     title: 'Spring Hills Ranch | Freelance',
-    role: 'UX/UI Designer & Web Developer',
+    role: 'UX/UI Designer & Full Stack Developer',
     description: 'An informational e-commerce website from conception to implementation, specifically tailored to meet the needs of a small, family-run cattle farming enterprise in Mt. Vernon, Missouri.',
     skills: ['Figma', 'PHP', 'APIs', 'SEO'],
     category: 'Development',
@@ -100,15 +125,47 @@ const caseStudies: CaseStudy[] = [
     category: 'Graphic Design',
     coverImage: OliveTheAboveCover,
     onClick: navigateToOliveTheAbove
-
+  },
+  {
+    id: 'card-6',
+    title: 'Southern Kettle | Web Development Project',
+    role: 'UX/UI Designer & Web Developer',
+    description: 'Designed and developed a responsive and interactive website for a popcorn family business.',
+    skills: ['NextJS', 'TypeScript', 'Figma', 'AWS', 'GitHub', 'SEO'],
+    category: 'Development',
+    coverImage: SpringHillsCover,
+    onClick: navigateToSouthernKettle,
+    hidden: true,
+    comingSoon: true
+  },
+  {
+    id: 'card-7',
+    title: 'Packaging Design | Brand Identity Project',
+    role: 'Graphic Design',
+    description: '3D packaging design and advertisement for a new line of U.S.-grown spice blends, inspired by a specific historical design that would follow the client brief.',
+    skills: ['Indesign', 'Photoshop', 'Ilustrator', '3D Design'],
+    category: 'Graphic Design',
+    coverImage: SpicePackageCover,
+    onClick: navigateToPackagingDesign,
+    hidden: true,
+    comingSoon: true
   }
 ]
 
 const filteredCaseStudies = computed(() => {
+  // First filter by hidden state
+  let visibleStudies = caseStudies.filter(study => {
+    if (study.hidden && !showHiddenProjects.value) {
+      return false
+    }
+    return true
+  })
+
+  // Then filter by category
   if (activeFilter.value === 'All') {
-    return caseStudies
+    return visibleStudies
   }
-  return caseStudies.filter(study => study.category === activeFilter.value)
+  return visibleStudies.filter(study => study.category === activeFilter.value)
 })
 
 // Scroll animation setup
@@ -118,8 +175,22 @@ const moreProjectsBtnRef = ref<HTMLElement | null>(null)
 
 // Initialize scroll animations
 useScrollAnimation(sectionHeaderRef, { threshold: 0.2 })
-useScrollAnimation(bentoGridRef, { threshold: 0.1 })
+const { observeElements: observeBentoGrid } = useScrollAnimation(bentoGridRef, { threshold: 0.1 })
 useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
+
+// Re-trigger scroll animation when grid is re-mounted (filter changes)
+watch(gridKey, async () => {
+  await nextTick()
+  // Wait a bit longer to ensure the element is fully mounted and in the DOM
+  setTimeout(() => {
+    if (bentoGridRef.value) {
+      // Reset animation state to ensure fade-in can trigger again
+      bentoGridRef.value.classList.remove('fade-in-visible')
+      // Re-observe the element to trigger animation
+      observeBentoGrid()
+    }
+  }, 150)
+})
 
 </script>
 
@@ -128,37 +199,29 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
     <div ref="sectionHeaderRef" class="section-header fade-in-element">
       <h2 class="section-title">Case Studies</h2>
       <div class="filter-tabs">
-        <button 
-          class="filter-tab"
-          :class="{ active: activeFilter === 'All' }"
-          @click="setFilter('All')"
-        >
+        <button class="filter-tab" :class="{ active: activeFilter === 'All' }" @click="setFilter('All')">
           All
         </button>
-        <button 
-          class="filter-tab"
-          :class="{ active: activeFilter === 'Development' }"
-          @click="setFilter('Development')"
-        >
+        <button class="filter-tab" :class="{ active: activeFilter === 'Development' }"
+          @click="setFilter('Development')">
           Development
         </button>
-        <button 
-          class="filter-tab"
-          :class="{ active: activeFilter === 'Graphic Design' }"
-          @click="setFilter('Graphic Design')"
-        >
+        <button class="filter-tab" :class="{ active: activeFilter === 'Graphic Design' }"
+          @click="setFilter('Graphic Design')">
           Graphic Design
         </button>
       </div>
     </div>
 
-    <div ref="bentoGridRef" class="bento-grid fade-in-element" :class="`grid-${filteredCaseStudies.length}`">
-      <article
-        v-for="(study, index) in filteredCaseStudies"
-        :key="study.id"
-        :class="['case-card', study.id]"
-        @click="study.onClick"
-      >
+    <div :key="`bento-grid-${gridKey}`" ref="bentoGridRef" class="bento-grid fade-in-element" :class="[
+      `grid-${filteredCaseStudies.length}`,
+      { 'development': activeFilter === 'Development' },
+      { 'graphic-design': activeFilter === 'Graphic Design' }
+    ]">
+      <article v-for="study in filteredCaseStudies" :key="study.id"
+        :class="['case-card', study.id, { 'coming-soon-card': study.comingSoon }]"
+        @click="study.comingSoon ? null : study.onClick?.()">
+        <div v-if="study.comingSoon" class="coming-soon-label">Coming Soon</div>
         <div v-if="study.coverImage" class="card-cover">
           <img :src="study.coverImage" :alt="`${study.title} cover`" class="cover-image" />
         </div>
@@ -180,7 +243,9 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
       </article>
     </div>
 
-    <button ref="moreProjectsBtnRef" class="more-projects-btn fade-in-element">More Projects</button>
+    <button ref="moreProjectsBtnRef" class="more-projects-btn fade-in-element" @click="toggleMoreProjects">
+      {{ showHiddenProjects ? 'Show Less' : 'More Projects' }}
+    </button>
   </section>
 </template>
 
@@ -272,38 +337,127 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
     "card5 card5 card5 card5 card5 card3 card3 card3 card3 card3 card3 card3";
 }
 
-.bento-grid.grid-5 .card-1 { grid-area: card1; }
-.bento-grid.grid-5 .card-2 { grid-area: card2; }
-.bento-grid.grid-5 .card-3 { grid-area: card3; }
-.bento-grid.grid-5 .card-4 { grid-area: card4; }
-.bento-grid.grid-5 .card-5 { grid-area: card5; }
-
-/* Development filter (3 cards: FoodPrints, The Table, Spring Hills Ranch) */
-.bento-grid.grid-3 {
-  grid-template-areas:
-    "card1 card1 card1 card1 card1 card1 card3 card3 card3 card3 card3 card3"
-    "card4 card4 card4 card4 card4 card4 card3 card3 card3 card3 card3 card3";
+.bento-grid.grid-5 .card-1 {
+  grid-area: card1;
 }
 
-.bento-grid.grid-3 .case-card:nth-child(1) { grid-area: card1; }
-.bento-grid.grid-3 .case-card:nth-child(2) { grid-area: card3; }
-.bento-grid.grid-3 .case-card:nth-child(3) { grid-area: card4; }
+.bento-grid.grid-5 .card-2 {
+  grid-area: card2;
+}
 
-/* Graphic Design filter (2 cards: Viewbook, Packaging Design) */
+.bento-grid.grid-5 .card-3 {
+  grid-area: card3;
+}
+
+.bento-grid.grid-5 .card-4 {
+  grid-area: card4;
+}
+
+.bento-grid.grid-5 .card-5 {
+  grid-area: card5;
+}
+
+/* Development filter (2 cards: FoodPrints, The Table) */
+.bento-grid.grid-2.development {
+  grid-template-areas:
+    "card1 card1 card1 card1 card1 card1 card3 card3 card3 card3 card3 card3";
+}
+
+.bento-grid.grid-2.development .case-card:nth-child(1) {
+  grid-area: card1;
+}
+
+.bento-grid.grid-2.development .case-card:nth-child(2) {
+  grid-area: card3;
+}
+
+/* Development filter with hidden projects (3 cards: FoodPrints, The Table, Southern Kettle) */
+.bento-grid.grid-3.development {
+  grid-template-areas:
+    "card1 card1 card1 card1 card1 card1 card3 card3 card3 card3 card3 card3"
+    "card6 card6 card6 card6 card6 card6 card6 card6 card6 card6 card6 card6";
+}
+
+.bento-grid.grid-3.development .case-card:nth-child(1) {
+  grid-area: card1;
+}
+
+.bento-grid.grid-3.development .case-card:nth-child(2) {
+  grid-area: card3;
+}
+
+.bento-grid.grid-3.development .case-card:nth-child(3) {
+  grid-area: card6;
+}
+
+/* Graphic Design filter (3 cards: Viewbook, Spring Hills Ranch, Olive the Above) */
+.bento-grid.grid-3.graphic-design {
+  grid-template-areas:
+    "card2 card2 card2 card2 card2 card2 card4 card4 card4 card4 card4 card4"
+    "card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5";
+}
+
+.bento-grid.grid-3.graphic-design .case-card:nth-child(1) {
+  grid-area: card2;
+}
+
+.bento-grid.grid-3.graphic-design .case-card:nth-child(2) {
+  grid-area: card4;
+}
+
+.bento-grid.grid-3.graphic-design .case-card:nth-child(3) {
+  grid-area: card5;
+}
+
+/* Graphic Design filter with hidden projects (5 cards: Viewbook, Spring Hills Ranch, Olive the Above, Southern Kettle, Packaging Design) */
+.bento-grid.grid-5.graphic-design {
+  grid-template-areas:
+    "card2 card2 card2 card2 card2 card2 card4 card4 card4 card4 card4 card4"
+    "card5 card5 card5 card5 card5 card5 card6 card6 card6 card7 card7 card7";
+}
+
+.bento-grid.grid-5.graphic-design .case-card:nth-child(1) {
+  grid-area: card2;
+}
+
+.bento-grid.grid-5.graphic-design .case-card:nth-child(2) {
+  grid-area: card4;
+}
+
+.bento-grid.grid-5.graphic-design .case-card:nth-child(3) {
+  grid-area: card5;
+}
+
+.bento-grid.grid-5.graphic-design .case-card:nth-child(4) {
+  grid-area: card6;
+}
+
+.bento-grid.grid-5.graphic-design .case-card:nth-child(5) {
+  grid-area: card7;
+}
+
+/* Fallback for 2 cards (Graphic Design without hidden) */
 .bento-grid.grid-2 {
   grid-template-areas:
     "card2 card2 card2 card2 card2 card2 card5 card5 card5 card5 card5 card5";
 }
 
-.bento-grid.grid-2 .case-card:nth-child(1) { grid-area: card2; }
-.bento-grid.grid-2 .case-card:nth-child(2) { grid-area: card5; }
+.bento-grid.grid-2 .case-card:nth-child(1) {
+  grid-area: card2;
+}
+
+.bento-grid.grid-2 .case-card:nth-child(2) {
+  grid-area: card5;
+}
 
 /* Fallback for single card */
 .bento-grid.grid-1 {
   grid-template-areas: "card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1";
 }
 
-.bento-grid.grid-1 .case-card { grid-area: card1; }
+.bento-grid.grid-1 .case-card {
+  grid-area: card1;
+}
 
 /* Fallback for 4 cards */
 .bento-grid.grid-4 {
@@ -312,10 +466,133 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
     "card3 card3 card3 card3 card3 card3 card4 card4 card4 card4 card4 card4";
 }
 
-.bento-grid.grid-4 .case-card:nth-child(1) { grid-area: card1; }
-.bento-grid.grid-4 .case-card:nth-child(2) { grid-area: card2; }
-.bento-grid.grid-4 .case-card:nth-child(3) { grid-area: card3; }
-.bento-grid.grid-4 .case-card:nth-child(4) { grid-area: card4; }
+.bento-grid.grid-4 .case-card:nth-child(1) {
+  grid-area: card1;
+}
+
+.bento-grid.grid-4 .case-card:nth-child(2) {
+  grid-area: card2;
+}
+
+.bento-grid.grid-4 .case-card:nth-child(3) {
+  grid-area: card3;
+}
+
+.bento-grid.grid-4 .case-card:nth-child(4) {
+  grid-area: card4;
+}
+
+/* Layout for 6 cards (All filter with hidden projects shown - matching PDF layout) */
+.bento-grid.grid-6 {
+  grid-template-areas:
+    "card1 card1 card1 card1 card1 card1 card1 card2 card2 card2 card2 card2"
+    "card4 card4 card4 card4 card4 card4 card3 card3 card3 card3 card3 card3"
+    "card5 card5 card5 card5 card5 card5 card3 card3 card3 card3 card3 card3"
+    "card6 card6 card6 card6 card6 card6 card6 card6 card6 card6 card6 card6";
+}
+
+.bento-grid.grid-6 .case-card:nth-child(1) {
+  grid-area: card1;
+}
+
+.bento-grid.grid-6 .case-card:nth-child(2) {
+  grid-area: card2;
+}
+
+.bento-grid.grid-6 .case-card:nth-child(3) {
+  grid-area: card3;
+}
+
+.bento-grid.grid-6 .case-card:nth-child(4) {
+  grid-area: card4;
+}
+
+.bento-grid.grid-6 .case-card:nth-child(5) {
+  grid-area: card5;
+}
+
+.bento-grid.grid-6 .case-card:nth-child(6) {
+  grid-area: card6;
+}
+
+/* Layout for 7 cards (All filter with all projects shown) */
+.bento-grid.grid-7 {
+  grid-template-areas:
+    "card1 card1 card1 card1 card1 card1 card1 card2 card2 card2 card2 card2"
+    "card4 card4 card4 card4 card4 card4 card3 card3 card3 card3 card3 card3"
+    "card5 card5 card5 card5 card5 card5 card3 card3 card3 card3 card3 card3"
+    "card6 card6 card6 card6 card7 card7 card7 card7 card7 card7 card7 card7";
+}
+
+.bento-grid.grid-7 .case-card:nth-child(1) {
+  grid-area: card1;
+}
+
+.bento-grid.grid-7 .case-card:nth-child(2) {
+  grid-area: card2;
+}
+
+.bento-grid.grid-7 .case-card:nth-child(3) {
+  grid-area: card3;
+}
+
+.bento-grid.grid-7 .case-card:nth-child(4) {
+  grid-area: card4;
+}
+
+.bento-grid.grid-7 .case-card:nth-child(5) {
+  grid-area: card5;
+}
+
+.bento-grid.grid-7 .case-card:nth-child(6) {
+  grid-area: card6;
+}
+
+.bento-grid.grid-7 .case-card:nth-child(7) {
+  grid-area: card7;
+}
+
+/* Development filter with hidden projects (4 cards: FoodPrints, The Table, Spring Hills Ranch, Southern Kettle) */
+.bento-grid.grid-4.development {
+  grid-template-areas:
+    "card1 card1 card1 card1 card1 card1 card3 card3 card3 card3 card3 card3"
+    "card4 card4 card4 card4 card4 card4 card6 card6 card6 card6 card6 card6";
+}
+
+.bento-grid.grid-4.development .case-card:nth-child(1) {
+  grid-area: card1;
+}
+
+.bento-grid.grid-4.development .case-card:nth-child(2) {
+  grid-area: card3;
+}
+
+.bento-grid.grid-4.development .case-card:nth-child(3) {
+  grid-area: card4;
+}
+
+.bento-grid.grid-4.development .case-card:nth-child(4) {
+  grid-area: card6;
+}
+
+/* Graphic Design filter with hidden projects (3 cards: Viewbook, Olive the Above, Packaging Design) */
+.bento-grid.grid-3.graphic-design {
+  grid-template-areas:
+    "card2 card2 card2 card2 card2 card2 card5 card5 card5 card5 card5 card5"
+    "card7 card7 card7 card7 card7 card7 card7 card7 card7 card7 card7 card7";
+}
+
+.bento-grid.grid-3.graphic-design .case-card:nth-child(1) {
+  grid-area: card2;
+}
+
+.bento-grid.grid-3.graphic-design .case-card:nth-child(2) {
+  grid-area: card5;
+}
+
+.bento-grid.grid-3.graphic-design .case-card:nth-child(3) {
+  grid-area: card7;
+}
 
 .case-card {
   border: 1.578px solid var(--linear-top-right);
@@ -332,11 +609,51 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
   animation: fadeIn 0.4s ease-in-out;
 }
 
+.coming-soon-card {
+  position: relative;
+  cursor: default;
+  opacity: 0.85;
+  overflow: hidden; /* required for overlay */
+}
+
+.coming-soon-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.35); /* dark overlay */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  z-index: 5;
+  pointer-events: none;
+}
+
+.coming-soon-card:hover {
+  transform: none;
+  border-color: var(--linear-top-right);
+}
+
+.coming-soon-label {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--color-accent);
+  color: var(--color-background);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 181, 226, 0.3);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -517,9 +834,41 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
       "card4 card4 card4 card4 card4 card4 card4 card4 card4 card4 card4 card4";
   }
 
-  .bento-grid.grid-3 .case-card:nth-child(1) { grid-area: card1; }
-  .bento-grid.grid-3 .case-card:nth-child(2) { grid-area: card3; }
-  .bento-grid.grid-3 .case-card:nth-child(3) { grid-area: card4; }
+  .bento-grid.grid-3 .case-card:nth-child(1) {
+    grid-area: card1;
+  }
+
+  .bento-grid.grid-3 .case-card:nth-child(2) {
+    grid-area: card3;
+  }
+
+  .bento-grid.grid-3 .case-card:nth-child(3) {
+    grid-area: card4;
+  }
+
+  .bento-grid.grid-4.development {
+    grid-template-areas:
+      "card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1 card1"
+      "card3 card3 card3 card3 card3 card3 card3 card3 card3 card3 card3 card3"
+      "card4 card4 card4 card4 card4 card4 card4 card4 card4 card4 card4 card4"
+      "card6 card6 card6 card6 card6 card6 card6 card6 card6 card6 card6 card6";
+  }
+
+  .bento-grid.grid-4.development .case-card:nth-child(1) {
+    grid-area: card1;
+  }
+
+  .bento-grid.grid-4.development .case-card:nth-child(2) {
+    grid-area: card3;
+  }
+
+  .bento-grid.grid-4.development .case-card:nth-child(3) {
+    grid-area: card4;
+  }
+
+  .bento-grid.grid-4.development .case-card:nth-child(4) {
+    grid-area: card6;
+  }
 
   .bento-grid.grid-2 {
     grid-template-areas:
@@ -527,8 +876,32 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
       "card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5";
   }
 
-  .bento-grid.grid-2 .case-card:nth-child(1) { grid-area: card2; }
-  .bento-grid.grid-2 .case-card:nth-child(2) { grid-area: card5; }
+  .bento-grid.grid-2 .case-card:nth-child(1) {
+    grid-area: card2;
+  }
+
+  .bento-grid.grid-2 .case-card:nth-child(2) {
+    grid-area: card5;
+  }
+
+  .bento-grid.grid-3.graphic-design {
+    grid-template-areas:
+      "card2 card2 card2 card2 card2 card2 card2 card2 card2 card2 card2 card2"
+      "card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5 card5"
+      "card7 card7 card7 card7 card7 card7 card7 card7 card7 card7 card7 card7";
+  }
+
+  .bento-grid.grid-3.graphic-design .case-card:nth-child(1) {
+    grid-area: card2;
+  }
+
+  .bento-grid.grid-3.graphic-design .case-card:nth-child(2) {
+    grid-area: card5;
+  }
+
+  .bento-grid.grid-3.graphic-design .case-card:nth-child(3) {
+    grid-area: card7;
+  }
 
   .section-title {
     font-size: 2.75rem;
@@ -570,7 +943,9 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
   .bento-grid.grid-2,
   .bento-grid.grid-3,
   .bento-grid.grid-4,
-  .bento-grid.grid-5 {
+  .bento-grid.grid-5,
+  .bento-grid.grid-6,
+  .bento-grid.grid-7 {
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
     grid-template-areas: none !important;
@@ -670,7 +1045,9 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
   .bento-grid.grid-2,
   .bento-grid.grid-3,
   .bento-grid.grid-4,
-  .bento-grid.grid-5 {
+  .bento-grid.grid-5,
+  .bento-grid.grid-6,
+  .bento-grid.grid-7 {
     grid-template-columns: 1fr;
     gap: 1rem;
     grid-template-areas: none !important;

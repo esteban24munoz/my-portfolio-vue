@@ -45,11 +45,12 @@ const headingContent = computed(() => {
       default:
         return {
           parts: [
-            { text: 'Hello there, I ', highlight: false },
-            { text: 'solve', highlight: true },
-            { text: ' design problems and develop ', highlight: false },
-            { text: 'smart', highlight: true },
-            { text: ' user interfaces for rich web experiences.', highlight: false }
+            { text: 'Hi, I love to ', highlight: false },
+            { text: 'solve', highlight: false },
+            { text: ' design challenges ', highlight: true },
+            { text: 'and bring them to life through clean,', highlight: false },
+            { text: ' scalable code ', highlight: true },
+            { text: 'and intuitive interfaces.', highlight: false }
           ]
         }
     }
