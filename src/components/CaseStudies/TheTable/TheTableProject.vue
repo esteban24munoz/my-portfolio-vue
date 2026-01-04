@@ -108,14 +108,20 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           <div class="overview-section">
             <h2 class="section-label">01. OVERVIEW</h2>
             <p class="overview-description">
-              The Table's website goal was to to provide real-time inventory
-              updates, allowing students to see which items at the food pantry
-              are available in stock.
+              TheTable’s website was designed to provide real-time inventory
+              updates, giving students instant visibility into the availability
+              of items at the food pantry. The platform has significantly
+              improved both operational efficiency and user experience when
+              looking for items.
 
               <br /><br />
-              Furthermore, the website would enhance the accessibility to
-              management tools while providing a user friendly interface for the
-              volunteers, shoppers and board members.
+              Since its launch in Fall 2024, the website has supported a
+              <span class="text-accent">total of 3,678 shopping visitors</span>.
+              Beyond inventory management, the site also enhances accessibility
+              to administrative tools, offering a user-friendly interface for
+              volunteers and board members alike. This project demonstrates how
+              thoughtful digital design can streamline operations while
+              increasing engagement and accessibility for all stakeholders.
             </p>
           </div>
         </div>
@@ -154,17 +160,23 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
         <div class="role-content">
           <h2 class="section-label">02. ROLE</h2>
           <h3 class="role-title">
-            UX / UI Designer<br />
-            Web Developer
+            UX / UI Designer &<br />
+            Lead Web Developer
           </h3>
           <p class="role-description">
-            As a UX/UI designer, I created both low-fidelity and high-fidelity
-            wireframes for the websites and presented interactive demos in Figma
-            and Dora.ai to demonstrate the storytelling approach.
+            I designed and implemented TheTable’s website in React, focusing on
+            a clean, intuitive interface that allows students to see real-time
+            pantry inventory and volunteers/board members to access management
+            tools easily.
             <br /><br />
-            Later, my primary role shifted to development, where I built the
-            website and made it interactive and fully responsive across all
-            screen sizes.
+            As the lead developer,
+            <span class="text-accent"
+              >I managed a team of three web developers</span
+            >, through which we further enhanced the system by creating a
+            barcode scanning feature that integrates product images via an API
+            and automates checkout by updating the MySQL database in real time.
+            This solution improved operational efficiency and reduced manual
+            errors.
           </p>
         </div>
         <div class="mockup-wrapper">
@@ -178,7 +190,10 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
       </section>
 
       <!-- Key Challenges Section -->
-      <section ref="challengesSectionRef" class="challenges-section fade-in-element">
+      <section
+        ref="challengesSectionRef"
+        class="challenges-section fade-in-element"
+      >
         <div class="challenges-header">
           <div class="divider-line"></div>
           <div class="challenges-title-wrapper">
@@ -191,7 +206,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           <div class="challenge-block">
             <h4 class="block-title">Challenge</h4>
             <p class="block-description">
-              The challenge was to design a website that reduces the stigma
+              The #1 challenge was to design a website that reduces the stigma
               around food insecurity on campus while providing real-time
               inventory visibility for students and staff. The platform needed
               to clearly show which pantry items were in stock without exposing
@@ -206,12 +221,11 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
               In one of our board meetings, I proposed making the pantry
               inventory public after hearing from students that they didn’t know
               which products were available and had to visit the building just
-              to find out. After discussing the idea, it was
-              approved. I then began designing a human-centered website with my team that
+              to find out. After discussing the idea, it was approved. I then
+              began designing a human-centered website with my team that
               showcases real-time inventory status—clearly indicating which
               items are in stock or out of stock—while also providing
               information about The Table’s mission, hours, and ways to donate.
-              
             </p>
           </div>
         </div>
@@ -233,11 +247,12 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
               Homepage <br />Low-Fidelity Wireframes
             </h4>
             <p class="wireframe-description">
-              After creating basic layout drafts, I created rough drafts of the
-              viewbook. These rough drafts were used to get feedback from the
-              client and to refine the design. Some concepts explored more
-              ambitious ideas and were refined to thoughtfully align with the
-              organization's brand guidelines
+              I started the design of the public homepage website with a
+              human-centered approach. The pantry inventory should clearly
+              indicate which items are in or out of stock. The design should
+              also highlight the Table’s mission, hours, and donation options,
+              making it easy for students to access essential information at a
+              glance.
             </p>
           </div>
 
@@ -271,11 +286,9 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
               Login and Dashboard <br />Low-Fidelity Wireframes
             </h4>
             <p class="wireframe-description">
-              After creating basic layout drafts, I created rough drafts of the
-              viewbook. These rough drafts were used to get feedback from the
-              client and to refine the design. Some concepts explored more
-              ambitious ideas and were refined to thoughtfully align with the
-              organization's brand guidelines
+              These were designed with security as a priority. My team and I decided to authenticate users using a University ID combined with a 4-digit PIN, ensuring controlled access for volunteers and board members.
+<br /><br />
+Once logged in, the dashboard allows volunteers to check out shoppers, register pantry items, and add new shoppers, streamlining daily operations through a clear, task-focused interface.
             </p>
           </div>
 
@@ -337,8 +350,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
         </div>
 
         <div class="result-image-showcase">
-          
-          <h4 class="block-title">CRM System</h4>
+          <h4 class="block-title">System Interface</h4>
 
           <img
             :src="LoginCover"
@@ -348,7 +360,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
           <img
             :src="SystemCover"
             alt="High-fidelity wireframe 2"
-            @click="openProjectLightbox(3)"
+            @click="openProjectLightbox(2)"
           />
         </div>
       </section>
@@ -433,7 +445,8 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 .fade-in-element {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in-visible {
@@ -555,6 +568,11 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
   color: var(--color-text);
   opacity: 0.75;
   margin: 0;
+}
+
+.text-accent {
+  color: var(--color-accent);
+  font-weight: 800;
 }
 
 /* ===== Project Images ===== */
@@ -820,7 +838,8 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 
 .wireframe-image {
   height: auto;
-  max-height: 374px;
+  max-width: 350px;
+  width: 100%;
   display: block;
   cursor: zoom-in;
   transition: transform 0.2s ease;
