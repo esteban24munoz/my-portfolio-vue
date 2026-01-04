@@ -5,11 +5,10 @@ import CustomCursor from "../../CustomCursor/CustomCursor.vue";
 import VueEasyLightbox from "vue-easy-lightbox";
 import "img-comparison-slider";
 
-
 import OliveCover from "./assets/olive_cover.png";
 import BrandIdentity from "./assets/brand_identity.png";
 
-// Drafts 
+// Drafts
 import MenuDraft1 from "./assets/menu_draft_1.png";
 import MenuDraft2 from "./assets/menu_draft_2.png";
 import MenuDraft3 from "./assets/menu_draft_3.png";
@@ -29,7 +28,6 @@ import Product from "./assets/product.png";
 import Website from "./assets/website.png";
 import FoodTruck from "./assets/food_truck.png";
 
-
 // Lightbox state for wireframes
 const wireframeVisibleRef = ref(false);
 const wireframeIndexRef = ref(0);
@@ -47,12 +45,7 @@ const ProjectVisibleRef = ref(false);
 const ProjectIndexRef = ref(0);
 
 // All wireframe images - using high-resolution imported images for lightbox
-const wireframeImages = [
-  MenuDraft1,
-  MenuDraft2,
-  MenuDraft3,
-  MenuDraft4,
-];
+const wireframeImages = [MenuDraft1, MenuDraft2, MenuDraft3, MenuDraft4];
 
 // All rough images - using high-resolution imported images for lightbox
 const roughImages = [
@@ -68,18 +61,10 @@ const roughImages = [
   MenuFront,
   MenuBack,
   LetterHead,
-
-
 ];
-
 
 // All project images - using high-resolution imported images for lightbox
-const projectImages = [
-  MenuFront,
-  OliveCover,
-  BrandIdentity
-];
-
+const projectImages = [OliveCover, MenuFront, BrandIdentity];
 
 // Open lightbox for wireframes
 const openWireframeLightbox = (index: number) => {
@@ -91,12 +76,6 @@ const openWireframeLightbox = (index: number) => {
 const openRoughLightbox = (index: number) => {
   roughIndexRef.value = index;
   roughVisibleRef.value = true;
-};
-
-// Open lightbox for iterations
-const openIterationLightbox = (index: number) => {
-  iterationIndexRef.value = index;
-  iterationVisibleRef.value = true;
 };
 
 // Close lightbox functions
@@ -160,19 +139,30 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
       <section ref="titleContentRef" class="title-content fade-in-element">
         <div class="main-title-wrapper">
           <h1 class="main-title">
-            The Power of 
-<br />
-            Collaboration
+            A Collaborative
+            <br />
+            Fusion Cuisine
+            <br />
+            Food Truck Branding
           </h1>
 
           <div class="overview-section">
             <h2 class="section-label">01. OVERVIEW</h2>
             <p class="overview-description">
-             This case study documents the full creative process and team collaboration behind the Fusion Cuisine Branding Project, developed alongside two graphic designers. Together, we researched fusion food culture, explored visual storytelling, and built a cohesive brand identity from the ground up. 
+              This case study documents the full creative process and team
+              collaboration behind the Fusion Cuisine Branding Project,
+              <span class="text-accent">
+                developed alongside two graphic designers.
+              </span>
+              Together, we researched fusion food culture, explored visual
+              storytelling, and built a cohesive brand identity from the ground
+              up.
 
               <br /><br />
-              The work was developed through sketches, research boards, concept statements, and visual systems, and was finalized as printed branding materials that were professionally presented at the university
-
+              The work was developed through sketches, research boards, concept
+              statements, and visual systems, and was finalized as printed
+              branding materials that were professionally presented at the
+              university
             </p>
           </div>
         </div>
@@ -194,13 +184,13 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
       <section ref="roleSectionRef" class="role-section fade-in-element">
         <div class="role-content">
           <h2 class="section-label">02. ROLE</h2>
-          <h3 class="role-title">
-            Graphic
-Designer
-          </h3>
+          <h3 class="role-title">Graphic Designer</h3>
           <p class="role-description">
-           I worked as a graphic designer, creating the menu design and six social media advertisements for the brand. I also collaborated with the team on the food truck design and final presentation. As a team, we developed the logo and established the brand guidelines to ensure consistency across all visual elements.
-           
+            I worked as a graphic designer, creating the menu design and six
+            social media advertisements for the brand. I also collaborated with
+            the team on the food truck design and final presentation. As a team,
+            we developed the logo and established the brand guidelines to ensure
+            consistency across all visual elements.
           </p>
         </div>
         <div class="mockup-wrapper">
@@ -214,7 +204,10 @@ Designer
       </section>
 
       <!-- Key Challenges Section -->
-      <section ref="challengesSectionRef" class="challenges-section fade-in-element">
+      <section
+        ref="challengesSectionRef"
+        class="challenges-section fade-in-element"
+      >
         <div class="challenges-header">
           <div class="divider-line"></div>
           <div class="challenges-title-wrapper">
@@ -227,18 +220,25 @@ Designer
           <div class="challenge-block">
             <h4 class="block-title">Challenge</h4>
             <p class="block-description">
-             Create a unified brand identity for a new Italian–Mediterranean fusion food truck in Baltimore. The project required researching fusion cuisine, understanding the local food-truck market, analyzing competitors, and developing a strong visual identity—logo, typography, color system, and branded materials—to launch the concept.
-             
+              Create a unified brand identity for a new Italian–Mediterranean
+              fusion food truck in Baltimore. The project required researching
+              fusion cuisine, understanding the local food-truck market,
+              analyzing competitors, and developing a strong visual
+              identity—logo, typography, color system, and branded materials—to
+              launch the concept.
             </p>
           </div>
           <div class="solution-block">
             <h4 class="block-title">Solution</h4>
             <p class="block-description">
-           As a team, we researched Italian–Mediterranean fusion culture and Baltimore’s food-truck scene, developed the brand concept, and created a cohesive visual identity system. 
+              As a team, we researched Italian–Mediterranean fusion culture and
+              Baltimore’s food-truck scene, developed the brand concept, and
+              created a cohesive visual identity system.
 
               <br /><br />
-            Together, we designed the logo, brand guidelines, research boards, concept statements, and a printed branding book. We finalized everything in a professional 3D display and presentation.
-
+              Together, we designed the logo, brand guidelines, research boards,
+              concept statements, and a printed branding book. We finalized
+              everything in a professional 3D display and presentation.
             </p>
           </div>
         </div>
@@ -253,11 +253,16 @@ Designer
             <h3 class="process-title">My Impact on the Project</h3>
           </div>
         </div>
-     <div class="wireframes-section low-fidelity">
+        <div class="wireframes-section low-fidelity">
           <div class="wireframes-content">
             <h4 class="block-title">Brand Identity</h4>
             <p class="block-description">
-             Create a unified brand identity for a new Italian–Mediterranean fusion food truck in Baltimore. The project required researching fusion cuisine, understanding the local food-truck market, analyzing competitors, and developing a strong visual identity—logo, typography, color system, and branded materials—to launch the concept.
+              Create a unified brand identity for a new Italian–Mediterranean
+              fusion food truck in Baltimore. The project required researching
+              fusion cuisine, understanding the local food-truck market,
+              analyzing competitors, and developing a strong visual
+              identity—logo, typography, color system, and branded materials—to
+              launch the concept.
             </p>
           </div>
           <div class="wireframes-images">
@@ -267,22 +272,21 @@ Designer
               class="wireframe-image"
               @click="openProjectLightbox(2)"
             />
-      
           </div>
         </div>
 
-          <div class="divider-line"></div>
-
+        <div class="divider-line"></div>
 
         <!-- 1st Roughs Section -->
         <div class="roughs-section">
           <div class="roughs-header">
             <h4 class="roughs-title">1st Roughs</h4>
             <p class="roughs-description">
-              After creating basic layout drafts, I created rough drafts of the viewbook.
-              These rough drafts were used to get feedback from the client and to refine the design.
-              Some concepts explored more ambitious ideas and were refined to thoughtfully
-              align with the organization's brand guidelines
+              After creating basic layout drafts, I created rough drafts of the
+              viewbook. These rough drafts were used to get feedback from the
+              client and to refine the design. Some concepts explored more
+              ambitious ideas and were refined to thoughtfully align with the
+              organization's brand guidelines
             </p>
           </div>
 
@@ -294,17 +298,13 @@ Designer
                 :src="image"
                 :alt="`Viewbook rough ${index + 1}`"
                 class="wireframe-thumbnail"
-                @click="openRoughLightbox(index)"
+                @click="openWireframeLightbox(index)"
               />
             </div>
           </div>
 
           <div class="divider-line"></div>
         </div>
-
-
-
-
       </section>
 
       <!-- Final Results Section -->
@@ -314,13 +314,15 @@ Designer
           <h3 class="results-title">Creating a Visual Story</h3>
         </div>
 
-<!-- MOCKUP SHOWCASE  -->
-<div class="roughs-section">
+        <!-- MOCKUP SHOWCASE  -->
+        <div class="roughs-section">
           <div class="roughs-header">
             <h4 class="roughs-title">1st Design Iterations</h4>
             <p class="roughs-description">
-              After receiving feedback from the client, I refined the design to create a more cohesive and visually appealing viewbook.
-              We made the decision of removing the Masters, Degrees and Programs pages to keep the viewbook lightweight and focused on the main message.
+              After receiving feedback from the client, I refined the design to
+              create a more cohesive and visually appealing viewbook. We made
+              the decision of removing the Masters, Degrees and Programs pages
+              to keep the viewbook lightweight and focused on the main message.
             </p>
           </div>
 
@@ -332,16 +334,13 @@ Designer
                 :src="image"
                 :alt="`Viewbook iteration ${index + 1}`"
                 class="wireframe-thumbnail"
-                @click="openIterationLightbox(index)"
+                @click="openRoughLightbox(index)"
               />
             </div>
           </div>
 
-          <div class="divider-line"></div>
         </div>
       </section>
-
-   
     </div>
 
     <!-- Custom Cursor Component -->
@@ -395,7 +394,8 @@ Designer
 .fade-in-element {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in-visible {
@@ -519,6 +519,11 @@ Designer
   margin: 0;
 }
 
+.text-accent {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
 /* ===== Project Images ===== */
 .project-images {
   display: flex;
@@ -531,7 +536,7 @@ Designer
 .image-wrapper {
   flex: 1;
   min-width: 280px;
-  max-width: 340px;
+  max-width: 440px;
 }
 
 .project-image {
@@ -815,33 +820,33 @@ Designer
 }
 
 /* Row 1 pattern: small (1 col), large (2 cols), large (2 cols) */
-.roughs-section .wireframe-thumbnail:nth-child(6n+1) {
+.roughs-section .wireframe-thumbnail:nth-child(6n + 1) {
   grid-column: span 1;
   aspect-ratio: 214.58 / 277.692;
 }
 
-.roughs-section .wireframe-thumbnail:nth-child(6n+2) {
+.roughs-section .wireframe-thumbnail:nth-child(6n + 2) {
   grid-column: span 2;
   aspect-ratio: 429.161 / 277.692;
 }
 
-.roughs-section .wireframe-thumbnail:nth-child(6n+3) {
+.roughs-section .wireframe-thumbnail:nth-child(6n + 3) {
   grid-column: span 2;
   aspect-ratio: 429.161 / 277.692;
 }
 
 /* Row 2 pattern: large (2 cols), large (2 cols), small (1 col) */
-.roughs-section .wireframe-thumbnail:nth-child(6n+4) {
+.roughs-section .wireframe-thumbnail:nth-child(6n + 4) {
   grid-column: span 2;
   aspect-ratio: 429.161 / 277.692;
 }
 
-.roughs-section .wireframe-thumbnail:nth-child(6n+5) {
+.roughs-section .wireframe-thumbnail:nth-child(6n + 5) {
   grid-column: span 2;
   aspect-ratio: 429.161 / 277.692;
 }
 
-.roughs-section .wireframe-thumbnail:nth-child(6n+6) {
+.roughs-section .wireframe-thumbnail:nth-child(6n + 6) {
   grid-column: span 1;
   aspect-ratio: 214.58 / 277.692;
 }
@@ -907,8 +912,6 @@ Designer
   width: 100%;
   max-width: 425px;
 }
-
-
 
 .wireframes-section.low-fidelity .wireframes-images {
   gap: 65px;
@@ -1085,7 +1088,7 @@ img-comparison-slider img {
   flex-direction: row-reverse;
 }
 
-.flipping-book-container{
+.flipping-book-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1267,16 +1270,12 @@ img-comparison-slider img {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  .roughs-section .wireframe-thumbnail:nth-child(6n+1),
-  .roughs-section .wireframe-thumbnail:nth-child(6n+6) {
-    grid-column: span 1;
-    aspect-ratio: 193.12 / 250;
-  }
-
-  .roughs-section .wireframe-thumbnail:nth-child(6n+2),
-  .roughs-section .wireframe-thumbnail:nth-child(6n+3),
-  .roughs-section .wireframe-thumbnail:nth-child(6n+4),
-  .roughs-section .wireframe-thumbnail:nth-child(6n+5) {
+ 
+  
+  .roughs-section .wireframe-thumbnail:nth-child(6n + 2),
+  .roughs-section .wireframe-thumbnail:nth-child(6n + 3),
+  .roughs-section .wireframe-thumbnail:nth-child(6n + 4),
+  .roughs-section .wireframe-thumbnail:nth-child(6n + 5) {
     grid-column: span 2;
     aspect-ratio: 386.245 / 250;
   }

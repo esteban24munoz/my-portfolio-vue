@@ -10,6 +10,7 @@ import TableCover from "./assets/table_cover_trans.png";
 import LoginCover from "./assets/login_cover_trans.png";
 import SystemCover from "./assets/system_cover_trans.png";
 import TableInsight from "./assets/table_insight.png";
+import SpringHillsCover from "./assets/spring_hills_cover.png";
 
 // Wireframes Images
 import LowWireframe1 from "./assets/wireframe-1.jpg";
@@ -76,6 +77,12 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
     event.preventDefault();
     restartVideo(event);
   }
+};
+
+// Navigate to next  project
+const navigateToNextProject = () => {
+  window.location.hash = '#/springhillsranch';
+  window.scrollTo(0, 0);
 };
 
 // Scroll animation refs
@@ -366,7 +373,7 @@ Once logged in, the dashboard allows volunteers to check out shoppers, register 
       </section>
 
       <!-- Next Project Section -->
-      <!-- <section class="next-project-section">
+      <section class="next-project-section">
         <div class="divider-line"></div>
         <div class="next-project-content">
           <div class="next-project-header">
@@ -387,20 +394,20 @@ Once logged in, the dashboard allows volunteers to check out shoppers, register 
               />
             </svg>
           </div>
-          <article class="next-project-card">
+          <article class="next-project-card" @click="navigateToNextProject">
             <div class="card-content">
-              <h4 class="card-title">The Table | Harding University</h4>
-              <p class="card-role">UX/UI Designer & Web Developer</p>
+              <h4 class="card-title">Spring Hills Ranch | Freelance</h4>
+              <p class="card-role">UX/UI Designer & Full Stack Developer</p>
             </div>
             <div class="card-image">
               <img
-                :src="TableDesktop"
-                alt="The Table Project Desktop Preview"
+                :src="SpringHillsCover"
+                alt="Spring Hills Ranch Preview"
               />
             </div>
           </article>
         </div>
-      </section> -->
+      </section>
     </div>
 
     <!-- Lightbox Components -->

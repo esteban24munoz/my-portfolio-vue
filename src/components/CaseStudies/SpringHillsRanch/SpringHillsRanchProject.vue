@@ -84,6 +84,12 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
   }
 };
 
+// Navigate to The Table project
+const navigateToNextProject = () => {
+  window.location.hash = '#/olivetheabove';
+  window.scrollTo(0, 0);
+};
+
 // Scroll animation refs
 const titleContentRef = ref<HTMLElement | null>(null);
 const roleSectionRef = ref<HTMLElement | null>(null);
@@ -369,7 +375,7 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
         </div>
 
         <div class="result-image-showcase">
-          <h4 class="block-title">CRM System</h4>
+          <h4 class="block-title">CMS System</h4>
 
           <img
             :src="SpringHillsSystemCover"
