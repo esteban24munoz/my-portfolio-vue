@@ -3,8 +3,10 @@ import { ref, onMounted } from 'vue'
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import CaseStudiesSection from './components/CaseStudiesSection.vue'
+import RecommendationsSection from './components/RecommendationsSection.vue'
 import Footer from './components/Footer.vue'
 import Resume from './components/Resume.vue'
+import ContactSection from './components/ContactSection.vue'
 import FoodprintsProject from './components/CaseStudies/Foodprints/FoodprintsProject.vue'
 import ViewbookProject from './components/CaseStudies/Viewbook/ViewbookProject.vue'
 import TheTableProject from './components/CaseStudies/TheTable/TheTableProject.vue'
@@ -31,6 +33,9 @@ onMounted(() => {
       <template v-if="currentRoute === '#/resume'">
         <Resume />
       </template>
+         <template v-else-if="currentRoute === '#/contact'">
+        <ContactSection />
+      </template>
       <template v-else-if="currentRoute === '#/foodprints'">
         <FoodprintsProject />
       </template>
@@ -49,6 +54,8 @@ onMounted(() => {
       <template v-else>
         <HeroSection />
         <CaseStudiesSection />
+        <RecommendationsSection />
+        <ContactSection />
       </template>
     </main>
     <Footer />

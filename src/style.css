@@ -202,3 +202,34 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+.more-projects-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  background: var(--color-background-soft);
+  border: 1.5px solid var(--color-border);
+  font-size: 1.42rem;
+  font-weight: 700;
+  color: var(--color-text);
+  opacity: 0.85;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+.more-projects-btn:hover {
+  background: rgba(0, 181, 226, 0.15);
+  border-color: var(--color-accent);
+  transform: scale(1.05);
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .more-projects-btn {
+    font-size: 1rem;
+  }
+}

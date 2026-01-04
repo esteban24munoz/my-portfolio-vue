@@ -501,6 +501,7 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
   color: var(--color-accent);
 }
 
+/* Tablet breakpoint - 1200px down */
 @media (max-width: 1200px) {
   .bento-grid.grid-5 {
     grid-template-areas:
@@ -534,89 +535,210 @@ useScrollAnimation(moreProjectsBtnRef, { threshold: 0.3 })
   }
 }
 
+/* Large tablet - 768px down */
 @media (max-width: 768px) {
   .case-studies-section {
-    padding: 3rem 1.5rem;
-    gap: 3rem;
-    text-align: left;
+    padding: 2.5rem 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .section-header {
+    max-width: 100%;
   }
 
   .section-title {
-    font-size: 2.25rem;
+    font-size: 2rem;
+    text-align: left;
   }
 
   .filter-tabs {
-    gap: 1.25rem;
+    gap: 1rem;
+    justify-content: flex-start;
   }
 
   .filter-tab {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
-  .bento-grid,
+  /* 2-column grid for tablet */
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
   .bento-grid.grid-1,
   .bento-grid.grid-2,
   .bento-grid.grid-3,
   .bento-grid.grid-4,
   .bento-grid.grid-5 {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    grid-template-areas: none;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    grid-template-areas: none !important;
+  }
+
+  /* Reset all card grid-area assignments */
+  .card-1,
+  .card-2,
+  .card-3,
+  .card-4,
+  .card-5 {
+    grid-area: auto !important;
   }
 
   .bento-grid .case-card {
-    grid-area: auto;
+    grid-area: auto !important;
   }
 
   .case-card {
-    padding: 1.5rem;
-    gap: 1.5rem;
+    padding: 1.25rem;
+    gap: 1.25rem;
+    height: auto;
+    min-height: auto;
   }
 
   .card-title {
-    font-size: 1.35rem;
-  }
-
-  .card-description {
-    font-size: 0.85rem;
-  }
-
-  .skill-tag {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
-
-  .more-projects-btn {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 425px) {
-  .case-studies-section {
-    padding: 2rem 1rem;
-    gap: 2rem;
-    text-align: left;
-  }
-
-  .section-title {
-    font-size: 1.85rem;
-  }
-
-  .filter-tab {
-    font-size: 0.9rem;
-  }
-
-  .card-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   .card-role {
     font-size: 0.85rem;
   }
 
+  .card-description {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  .skill-tag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .card-1 .card-image img {
+    max-height: 300px;
+  }
+
+  .card-2 .card-image img {
+    max-height: 280px;
+  }
+
+  .card-3 .card-image img {
+    max-height: 260px;
+  }
+
   .more-projects-btn {
-    font-size: 1.1rem;
-    padding: 0.65rem 1.25rem;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Small tablets and large phones - 425px down */
+@media (max-width: 425px) {
+  .case-studies-section {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+    min-height: auto;
+  }
+
+  .section-header {
+    max-width: 100%;
+    gap: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+    text-align: left;
+  }
+
+  .filter-tabs {
+    gap: 0.8rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .filter-tab {
+    font-size: 0.85rem;
+  }
+
+  /* Single column for mobile */
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .bento-grid.grid-1,
+  .bento-grid.grid-2,
+  .bento-grid.grid-3,
+  .bento-grid.grid-4,
+  .bento-grid.grid-5 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    grid-template-areas: none !important;
+  }
+
+  /* Reset all card grid-area assignments */
+  .card-1,
+  .card-2,
+  .card-3,
+  .card-4,
+  .card-5 {
+    grid-area: auto !important;
+  }
+
+  .bento-grid .case-card {
+    grid-area: auto !important;
+  }
+
+  .case-card {
+    padding: 1rem;
+    gap: 1rem;
+    height: auto;
+    min-height: auto;
+  }
+
+  .card-header {
+    gap: 0.25rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .card-role {
+    font-size: 0.75rem;
+  }
+
+  .card-description {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .card-skills {
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .card-1 .card-image img {
+    max-height: 200px;
+  }
+
+  .card-2 .card-image img {
+    max-height: 180px;
+  }
+
+  .card-3 .card-image img {
+    max-height: 180px;
+  }
+
+  .more-projects-btn {
+    font-size: 0.95rem;
+    padding: 0.55rem 1rem;
+    width: 100%;
   }
 }
 </style>
