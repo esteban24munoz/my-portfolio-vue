@@ -107,12 +107,6 @@ const openRoughLightbox = (index: number) => {
   roughVisibleRef.value = true;
 };
 
-// Open lightbox for iterations
-const openIterationLightbox = (index: number) => {
-  iterationIndexRef.value = index;
-  iterationVisibleRef.value = true;
-};
-
 // Close lightbox functions
 const onHideWireframe = () => {
   wireframeVisibleRef.value = false;
@@ -120,6 +114,12 @@ const onHideWireframe = () => {
 
 const onHideRough = () => {
   roughVisibleRef.value = false;
+};
+
+// Open lightbox for iterations
+const openIterationLightbox = (index: number) => {
+  iterationVisibleRef.value = true;
+  iterationIndexRef.value = index;
 };
 
 const onHideIteration = () => {
@@ -137,12 +137,7 @@ const onProjectHide = () => {
   ProjectVisibleRef.value = false;
 };
 
-// Restart video on click
-const restartVideo = (event: Event) => {
-  const video = event.target as HTMLVideoElement;
-  video.currentTime = 0;
-  video.play();
-};
+
 
 // Navigate to The Table project
 const navigateToNextProject = () => {

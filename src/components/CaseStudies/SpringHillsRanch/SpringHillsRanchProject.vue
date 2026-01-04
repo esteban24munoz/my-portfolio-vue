@@ -4,8 +4,7 @@ import { useScrollAnimation } from "../../../composables/useScrollAnimation";
 import VueEasyLightbox from "vue-easy-lightbox";
 import CustomCursor from "../../CustomCursor/CustomCursor.vue";
 import SpringHillsVideo from "./assets/springhills_video.mp4";
-import PostInterviewImage from "./assets/post_interview.png";
-import PreInterviewImage from "./assets/pre_interview.png";
+
 import "img-comparison-slider";
 import ComputerFrame from "./assets/computer_frame.png";
 
@@ -84,11 +83,7 @@ const handleVideoKeydown = (event: KeyboardEvent) => {
   }
 };
 
-// Navigate to The Table project
-const navigateToNextProject = () => {
-  window.location.hash = '#/olivetheabove';
-  window.scrollTo(0, 0);
-};
+
 
 // Scroll animation refs
 const titleContentRef = ref<HTMLElement | null>(null);

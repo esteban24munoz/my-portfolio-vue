@@ -36,10 +36,6 @@ const wireframeIndexRef = ref(0);
 const roughVisibleRef = ref(false);
 const roughIndexRef = ref(0);
 
-// Lightbox state for iterations
-const iterationVisibleRef = ref(false);
-const iterationIndexRef = ref(0);
-
 // Lightbox state for project images
 const ProjectVisibleRef = ref(false);
 const ProjectIndexRef = ref(0);
@@ -87,9 +83,7 @@ const onHideRough = () => {
   roughVisibleRef.value = false;
 };
 
-const onHideIteration = () => {
-  iterationVisibleRef.value = false;
-};
+
 
 // Open lightbox for project images
 const openProjectLightbox = (index: number) => {
@@ -102,20 +96,9 @@ const onProjectHide = () => {
   ProjectVisibleRef.value = false;
 };
 
-// Restart video on click
-const restartVideo = (event: Event) => {
-  const video = event.target as HTMLVideoElement;
-  video.currentTime = 0;
-  video.play();
-};
 
-// Restart video on keyboard press (Enter or Space)
-const handleVideoKeydown = (event: KeyboardEvent) => {
-  if (event.key === "Enter" || event.key === " ") {
-    event.preventDefault();
-    restartVideo(event);
-  }
-};
+
+
 
 // Scroll animation refs
 const titleContentRef = ref<HTMLElement | null>(null);
