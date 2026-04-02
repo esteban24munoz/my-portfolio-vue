@@ -21,6 +21,9 @@ import SpringHillsInsight from "./assets/springhills_insight.png";
 import SpringHillsSystemCover from "./assets/springhills_system_trans.png";
 import SpringHillsSystemCover2 from "./assets/springhills_system_2_trans.png";
 
+import ATestImage from "./assets/A_test.png";
+import BTestImage from "./assets/B_test.png";
+
 // Wireframe Lightbox state
 const wireframeVisibleRef = ref(false);
 const wireframeIndexRef = ref(0);
@@ -90,6 +93,7 @@ const titleContentRef = ref<HTMLElement | null>(null);
 const roleSectionRef = ref<HTMLElement | null>(null);
 const challengesSectionRef = ref<HTMLElement | null>(null);
 const processSectionRef = ref<HTMLElement | null>(null);
+const abTestingSectionRef = ref<HTMLElement | null>(null);
 const resultsSectionRef = ref<HTMLElement | null>(null);
 
 // Initialize scroll animations for each section
@@ -97,6 +101,7 @@ useScrollAnimation(titleContentRef, { threshold: 0.15 });
 useScrollAnimation(roleSectionRef, { threshold: 0.15 });
 useScrollAnimation(challengesSectionRef, { threshold: 0.15 });
 useScrollAnimation(processSectionRef, { threshold: 0.1 });
+useScrollAnimation(abTestingSectionRef, { threshold: 0.1 });
 useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 </script>
 
@@ -300,10 +305,89 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
         </div>
       </section>
 
+      <!-- AB testing Section -->
+      <section
+        ref="abTestingSectionRef"
+        class="ab-testing-section fade-in-element"
+      >
+        <div class="ab-testing-header">
+          <div class="divider-line"></div>
+          <div class="ab-testing-title-wrapper">
+            <h2 class="section-label">05. A/B TESTING</h2>
+            <h3 class="ab-testing-title">Data-Driven Optimization</h3>
+          </div>
+        </div>
+
+        <div class="ux-section">
+          <div class="image-comparison-wrapper">
+            <!-- SLIDER -->
+            <img-comparison-slider value="50">
+              <div
+                slot="first"
+                class="slider-image-wrapper"
+                data-cursor-text="version a"
+                data-cursor-color="var(--color-accent)"
+                data-cursor-text-color="var(--color-text-light)"
+              >
+                <img :src="ATestImage" alt="Version A" />
+              </div>
+
+              <div
+                slot="second"
+                class="slider-image-wrapper"
+                data-cursor-text="version b"
+                data-cursor-color="var(--color-accent)"
+                data-cursor-text-color="var(--color-text-light)"
+              >
+                <img :src="BTestImage" alt="Version B" />
+              </div>
+            </img-comparison-slider>
+          </div>
+
+          <div class="ux-content">
+            <div class="content-header">
+              <h4 class="ux-title">Performance Analysis</h4>
+              <p class="block-description">
+                To further optimize user engagement and conversion rates, I
+                conducted rigorous A/B testing on key interface elements.
+                Version B emerged as the clear winner, demonstrating a
+                measurable impact by facilitating 3 additional confirmed sales
+                compared to Version A. This iterative refinement process ensured
+                that the final design was not only aesthetically pleasing but
+                also commercially effective.
+              </p>
+            </div>
+            <div class="ux-biases">
+              <div class="bias-item">
+                <h5 class="bias-title">+ Progressive Disclosure</h5>
+                <p class="bias-description">
+                  Users are less overwhelmed if they're exposed to complex
+                  features later
+                </p>
+              </div>
+              <div class="bias-item">
+                <h5 class="bias-title">+ Framing</h5>
+                <p class="bias-description">
+                  The way information is presented affects how users make
+                  decisions
+                </p>
+              </div>
+              <div class="bias-item">
+                <h5 class="bias-title">+ Nudge</h5>
+                <p class="bias-description">
+                  Subtle hints can affect users' decisions, leading to higher
+                  conversion rates.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Final Results Section -->
       <section ref="resultsSectionRef" class="results-section fade-in-element">
         <div class="results-title-wrapper">
-          <h2 class="section-label">05. FINAL RESULTS</h2>
+          <h2 class="section-label">06. FINAL RESULTS</h2>
           <h3 class="results-title">Quality Red Angus Cattle</h3>
         </div>
 
@@ -857,11 +941,11 @@ useScrollAnimation(resultsSectionRef, { threshold: 0.1 });
 
 img-comparison-slider {
   width: 100%;
-  max-width: 1200px;
+  max-width: 600px;
   height: auto;
   --divider-width: 3px;
-  --divider-color: var(--primary-color);
-  --handle-color: var(--primary-color);
+  --divider-color: var(--color-accent);
+  --handle-color: var(--color-accent);
   --handle-size: 44px;
 }
 
@@ -873,11 +957,13 @@ img-comparison-slider {
 
 .slider-image-wrapper img,
 img-comparison-slider img {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: auto;
   object-fit: cover;
   border-radius: 11px;
   display: block;
+  margin: 0 auto;
 }
 
 /* Label row */
@@ -898,9 +984,44 @@ img-comparison-slider img {
 
 .ux-section {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 64px;
   width: 100%;
   padding: 100px 0;
+}
+
+.ab-testing-section {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+}
+
+.ab-testing-header {
+  display: flex;
+  flex-direction: column;
+  gap: 69px;
+}
+
+.ab-testing-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.ab-testing-title {
+  font-family: Inter, sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+  background: var(--gradient-accent-side);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin: 0;
 }
 
 .ux-header {
@@ -924,10 +1045,12 @@ img-comparison-slider img {
 
 .ux-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--gap);
-  width: var(--width);
-  flex-wrap: wrap;
+  gap: 48px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .ux-image {
@@ -948,6 +1071,8 @@ img-comparison-slider img {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  text-align: center;
+  align-items: center;
 }
 
 .block-description {
@@ -963,6 +1088,7 @@ img-comparison-slider img {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
 }
 
 .bias-title {
@@ -973,9 +1099,10 @@ img-comparison-slider img {
 }
 
 .bias-description {
-  padding-left: 32px;
+  padding-left: 0;
   color: var(--color-text);
   opacity: 0.75;
+  text-align: center;
 }
 
 /* ===== Final Results Section ===== */
@@ -1172,6 +1299,7 @@ img-comparison-slider img {
   .role-title,
   .challenges-title,
   .process-title,
+  .ab-testing-title,
   .results-title,
   .next-project-title {
     font-size: 48px;
@@ -1202,6 +1330,7 @@ img-comparison-slider img {
   .role-title,
   .challenges-title,
   .process-title,
+  .ab-testing-title,
   .results-title,
   .next-project-title {
     font-size: 36px;
@@ -1287,6 +1416,7 @@ img-comparison-slider img {
   .role-title,
   .challenges-title,
   .process-title,
+  .ab-testing-title,
   .results-title,
   .next-project-title {
     font-size: 28px;
